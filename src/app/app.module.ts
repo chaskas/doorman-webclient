@@ -15,6 +15,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 
 import { EventService } from './services/event.service';
 import { EventNewComponent } from './components/events/event-new/event-new.component';
+import { MemberNewComponent } from './components/member/member-new/member-new.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { EventNewComponent } from './components/events/event-new/event-new.compo
     AppComponent,
     DashboardComponent,
     CalendarComponent,
-    EventNewComponent
+    EventNewComponent,
+    MemberNewComponent
   ],
   imports: [
     BrowserModule,
