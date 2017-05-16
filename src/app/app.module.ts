@@ -9,10 +9,12 @@ import { RoutingModule } from './routing/routing.module';
 
 import { AppComponent } from './app.component';
 
+
 import { MaterialModule } from './modules/material/material.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 
+import { MemberService} from './services/member.service';
 import { EventService } from './services/event.service';
 import { EventNewComponent } from './components/events/event-new/event-new.component';
 import { MemberNewComponent } from './components/member/member-new/member-new.component';
@@ -31,7 +33,8 @@ import { MemberNewComponent } from './components/member/member-new/member-new.co
     FormsModule,
     HttpModule,
     RoutingModule,
-    MaterialModule
+    MaterialModule,
+    MemberService
   ],
   entryComponents: [EventNewComponent],
   providers: [AppConfig, EventService],
