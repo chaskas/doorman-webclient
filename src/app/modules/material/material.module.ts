@@ -8,7 +8,10 @@ import { MdCardModule } from '@angular/material';
 import { MdButtonModule } from '@angular/material';
 import { MdIconModule } from '@angular/material';
 import { MdGridListModule } from '@angular/material';
+import { MdInputModule } from '@angular/material';
+import { MdSelectModule } from '@angular/material';
 import { MdDialogModule } from '@angular/material';
+import { MdProgressBarModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -19,7 +22,10 @@ import { MdDialogModule } from '@angular/material';
     MdButtonModule,
     MdIconModule,
     MdGridListModule,
-    MdDialogModule
+    MdDialogModule,
+    MdInputModule,
+    MdSelectModule,
+    MdProgressBarModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -28,7 +34,10 @@ import { MdDialogModule } from '@angular/material';
     MdButtonModule,
     MdIconModule,
     MdGridListModule,
-    MdDialogModule
+    MdDialogModule,
+    MdInputModule,
+    MdSelectModule,
+    MdProgressBarModule
   ],
   declarations: []
 })
