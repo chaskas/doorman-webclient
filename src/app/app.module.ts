@@ -18,6 +18,8 @@ import { MemberService} from './services/member.service';
 import { EventService } from './services/event.service';
 import { EventNewComponent } from './components/events/event-new/event-new.component';
 import { MemberNewComponent } from './components/member/member-new/member-new.component';
+import { MemberListComponent } from './components/member/member-list/member-list.component';
+import { MemberEditComponent } from './components/member/member-edit/member-edit.component';
 
 
 @NgModule({
@@ -26,18 +28,19 @@ import { MemberNewComponent } from './components/member/member-new/member-new.co
     DashboardComponent,
     CalendarComponent,
     EventNewComponent,
-    MemberNewComponent
+    MemberNewComponent,
+    MemberListComponent,
+    MemberEditComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RoutingModule,
-    MaterialModule,
-    MemberService
+    MaterialModule
   ],
   entryComponents: [EventNewComponent],
-  providers: [AppConfig, EventService],
+  providers: [AppConfig, EventService,MemberService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
