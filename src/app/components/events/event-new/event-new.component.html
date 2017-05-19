@@ -1,4 +1,24 @@
-<h2 md-dialog-title>Crear Evento</h2>
-<md-dialog-content>	Primary scrollable content of the dialog </md-dialog-content>
-<md-dialog-actions>	Container for action buttons at the bottom of the dialog </md-dialog-actions>
-<button md-dialog-close>Cerrar</button>
+<h1 >Crear Evento</h1>
+<md-dialog-content>
+  <form [formGroup]="eventForm" (submit)="submitEvent()">
+  <md-grid-list cols="2" rowHeight="70px">
+
+    <md-grid-tile [colspan]="2" [rowspan]="1" class="full-width">
+      <md-input-container class="full-width"><input mdInput placeholder="Nombre Evento" formControlName="name" required></md-input-container>
+    </md-grid-tile>
+
+    <md-grid-tile [colspan]="1" [rowspan]="1">
+      <md-input-container class="full-width"><input mdInput placeholder="Fecha de Inicio" type="date" formControlName="starts" required></md-input-container>
+    </md-grid-tile>
+
+    <md-grid-tile [colspan]="1" [rowspan]="1">
+      <md-input-container class="full-width"><input mdInput placeholder="Fecha de Término" type="date" formControlName="ends" required></md-input-container>
+    </md-grid-tile>
+
+  </md-grid-list>
+  </form>
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-button md-dialog-close>Crear</button>
+  <button md-button md-dialog-close>Cancelar</button>
+</md-dialog-actions>
