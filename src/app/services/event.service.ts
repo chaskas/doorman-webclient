@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/toPromise';
@@ -19,6 +19,19 @@ export class EventService {
     private http: Http,
     private config: AppConfig
   ) { }
+
+  createEvent(event: Event) : Promise<Event> {
+
+    let body = JSON.stringify( event );
+
+    let headers  = new Headers({ 'Content-Type': 'application/json' });
+    let options  = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.url, body, options)
+                .toPromise()
+                .then(response => response.json() as Event)
+                .catch(this.handleError);
+  }
 
   getAllEvents(): Promise<Event[]> {
     return this.http.get(this.url, { headers: this.headers })

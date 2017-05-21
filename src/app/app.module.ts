@@ -17,6 +17,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 
 import { MemberService} from './services/member.service';
 import { EventService } from './services/event.service';
+
 import { EventNewComponent } from './components/events/event-new/event-new.component';
 import { MemberNewComponent } from './components/member/member-new/member-new.component';
 
@@ -34,11 +35,10 @@ import { MemberNewComponent } from './components/member/member-new/member-new.co
     HttpModule,
     RoutingModule,
     ReactiveFormsModule,
-    MaterialModule,
-    MemberService
+    MaterialModule
   ],
   entryComponents: [EventNewComponent],
-  providers: [AppConfig, EventService],
+  providers: [AppConfig, EventService, MemberService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

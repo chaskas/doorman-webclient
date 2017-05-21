@@ -20,15 +20,24 @@ export class MemberService {
 
   ) { }
 
-  createMembers(member_id: number, rut: string, first_name: string, last_name: string, gender: string, email: string, phone: string, mtype: number, last_seen:string, created_at:string, updated_at: string)
+  createMembers(member: Member)
 	{
     let url = this.config.get('host') + '/member';
-    let body = JSON.stringify({member_id: member_id, rut: rut, first_name: first_name, last_name: last_name,
-                              gender: gender, email: email, phone: phone, mtype: mtype, last_seen: last_seen,
-                            created_at: created_at, updated_at: updated_at});
+    let body = JSON.stringify({rut: member.rut, first_name: member.first_name, last_name: member.last_name,
+                              gender: member.gender, email: member.email, phone: member.phone, mtype: member.mtype, last_seen: member.last_seen,
+                            created_at: member.created_at, updated_at: member.updated_at});
     let headers      = new Headers({ 'Content-Type': 'application/json' });
     let options      = new RequestOptions({ headers: headers });
 
-    return this.http.post(url, body, options);
+    return this.http.post(url, body, options)
+            .toPromise()
+            .then(response => response.json() as Member)
+            .catch(this.handleError);
 
-}}
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
+  }
+}

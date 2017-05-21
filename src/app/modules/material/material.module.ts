@@ -12,6 +12,8 @@ import { MdInputModule } from '@angular/material';
 import { MdSelectModule } from '@angular/material';
 import { MdDialogModule } from '@angular/material';
 import { MdProgressBarModule } from '@angular/material';
+import { MdDatepickerModule } from '@angular/material';
+import { MdNativeDateModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -25,7 +27,9 @@ import { MdProgressBarModule } from '@angular/material';
     MdDialogModule,
     MdInputModule,
     MdSelectModule,
-    MdProgressBarModule
+    MdProgressBarModule,
+    MdDatepickerModule,
+    MdNativeDateModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -37,7 +41,9 @@ import { MdProgressBarModule } from '@angular/material';
     MdDialogModule,
     MdInputModule,
     MdSelectModule,
-    MdProgressBarModule
+    MdProgressBarModule,
+    MdDatepickerModule,
+    MdNativeDateModule
   ],
   declarations: []
 })

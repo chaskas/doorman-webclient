@@ -1,24 +1,26 @@
-<h1 >Crear Evento</h1>
-<md-dialog-content>
-  <form [formGroup]="eventForm" (submit)="submitEvent()">
-  <md-grid-list cols="2" rowHeight="70px">
+<form [formGroup]="eventForm" (submit)="submitEvent()">
+  <h1 md-dialog-title>Crear Evento</h1>
+  <md-dialog-content>
 
-    <md-grid-tile [colspan]="2" [rowspan]="1" class="full-width">
-      <md-input-container class="full-width"><input mdInput placeholder="Nombre Evento" formControlName="name" required></md-input-container>
-    </md-grid-tile>
+    <md-grid-list cols="2" rowHeight="70px">
 
-    <md-grid-tile [colspan]="1" [rowspan]="1">
-      <md-input-container class="full-width"><input mdInput placeholder="Fecha de Inicio" type="date" formControlName="starts" required></md-input-container>
-    </md-grid-tile>
+      <md-grid-tile [colspan]="2" [rowspan]="1" class="full-width">
+        <md-input-container class="full-width"><input mdInput placeholder="Nombre Evento" formControlName="name" required></md-input-container>
+      </md-grid-tile>
 
-    <md-grid-tile [colspan]="1" [rowspan]="1">
-      <md-input-container class="full-width"><input mdInput placeholder="Fecha de Término" type="date" formControlName="ends" required></md-input-container>
-    </md-grid-tile>
+      <md-grid-tile [colspan]="1" [rowspan]="1" class="full-width">
+        <md-input-container class="full-width"><input mdInput placeholder="Hora Inicio" type="time" formControlName="starts" required></md-input-container>
+      </md-grid-tile>
 
-  </md-grid-list>
-  </form>
-</md-dialog-content>
-<md-dialog-actions>
-  <button md-button md-dialog-close>Crear</button>
-  <button md-button md-dialog-close>Cancelar</button>
-</md-dialog-actions>
+      <md-grid-tile [colspan]="1" [rowspan]="1" class="full-width">
+        <md-input-container class="full-width"><input mdInput placeholder="Hora Término" type="time" formControlName="ends" required></md-input-container>
+      </md-grid-tile>
+
+    </md-grid-list>
+
+  </md-dialog-content>
+  <md-dialog-actions class="event-actions">
+    <button md-button md-dialog-close>Cancelar</button>
+    <button md-button type="submit" [disabled]="!eventForm.valid">Crear</button>
+  </md-dialog-actions>
+</form>

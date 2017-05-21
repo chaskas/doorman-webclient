@@ -1,1 +1,3 @@
 .full-width { width: 100%; }
+
+.event-actions { justify-content: flex-end; }
