@@ -20,6 +20,8 @@ import { EventService } from './services/event.service';
 
 import { EventNewComponent } from './components/events/event-new/event-new.component';
 import { MemberNewComponent } from './components/member/member-new/member-new.component';
+import { MemberListComponent } from './components/member/member-list/member-list.component';
+import { MemberEditComponent } from './components/member/member-edit/member-edit.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { MemberNewComponent } from './components/member/member-new/member-new.co
     DashboardComponent,
     CalendarComponent,
     EventNewComponent,
-    MemberNewComponent
+    MemberNewComponent,
+    MemberListComponent,
+    MemberEditComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,10 @@ export class MemberNewComponent implements OnInit {
   constructor(
     private memberService: MemberService,
     private formBuilder: FormBuilder
-  ) { }
+  ) {
+
+    this.createForm();
+   }
 
   ngOnInit() {
   }
@@ -31,24 +34,24 @@ export class MemberNewComponent implements OnInit {
     );
   }
 
-  private _handleGetOfferSuccess(member: Member)
-{
-  this.memberForm.setValue({
-    id: member.id,
-    rut: member.rut,
-    first_name: member.first_name,
-    last_name: member.last_name,
-    gender: member.gender,
-    email: member.email,
-    phone: member.phone, 
-    mtype: member.mtype,
-    last_seen: member.last_seen,
-    created_at: member.created_at,
-    updated_at: member.updated_at
-});
+  private _handleGetMemberSuccess(member: Member)
+  {
+    this.memberForm.setValue({
+      id: member.id,
+      rut: member.rut,
+      first_name: member.first_name,
+      last_name: member.last_name,
+      gender: member.gender,
+      email: member.email,
+      phone: member.phone,
+      mtype: member.mtype,
+      last_seen: member.last_seen,
+      created_at: member.created_at,
+      updated_at: member.updated_at
+    });
+  }
 
-
-/*	private createForm()
+	private createForm()
 	{
 	    this.memberForm = this.formBuilder.group({
 	      member_id: ['', [Validators.required]],
@@ -63,15 +66,17 @@ export class MemberNewComponent implements OnInit {
 	      created_at: ['', [Validators.required]],
         updated_at: ['', [Validators.required]]
 	    });
-	} */
+	}
 
-this.success = "Oferta creada correctamente";
-}
-private _handleError(error: any) {
-  this.errors = error.json().errors.full_messages;
-}
+  private _handleUpdateSuccess(data: any) {
+    this.errors = null;
+    this.success = "Sucursal creada correctamente";
+    //this.router.navigate(['dash/business/offers']);
+  }
 
-private _handleUpdateSuccess(data: any) {
-  this.errors = null;
-}
+  private _handleError(error: any) {
+      this.errors = error.json().errors.full_messages;
+  }
+
+
 }

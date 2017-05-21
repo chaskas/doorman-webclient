@@ -20,7 +20,14 @@ export class MemberService {
 
   ) { }
 
-  createMembers(member: Member)
+  getMembers(): Promise<Member[]> {
+    return this.http.get(this.url)
+               .toPromise()
+               .then(response => response.json() as Member[])
+               .catch(this.handleError);
+  }
+
+  createMembers(member: Member) : Promise<Member>
 	{
     let url = this.config.get('host') + '/member';
     let body = JSON.stringify({rut: member.rut, first_name: member.first_name, last_name: member.last_name,
@@ -30,14 +37,39 @@ export class MemberService {
     let options      = new RequestOptions({ headers: headers });
 
     return this.http.post(url, body, options)
-            .toPromise()
-            .then(response => response.json() as Member)
-            .catch(this.handleError);
-
+              .toPromise()
+              .then(response => response.json() as Member)
+              .catch(this.handleError);
   }
 
-  private handleError(error: any): Promise<any> {
+  updateMember(member: Member): Promise<Member>
+  {
+
+    let body = JSON.stringify(member);
+
+    const url = `${this.url}/${member.id}`;
+
+    let headers      = new Headers({ 'Content-Type': 'application/json' });
+    let options      = new RequestOptions({ headers: headers });
+
+    return this.http.put(url,body, options)
+             .toPromise()
+             .then(response => response.json() as Member)
+             .catch(this.handleError);
+  }
+
+  deleteMember(id: number): Promise<any>
+  {
+    const url = `${this.url}/${id}`;
+      return this.http.delete(url)
+                  .toPromise()
+                  .catch(this.handleError);
+  }
+
+  private handleError(error: any): Promise<any>
+  {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
+
 }
