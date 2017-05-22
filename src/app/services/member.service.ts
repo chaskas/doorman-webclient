@@ -27,6 +27,27 @@ export class MemberService {
                .catch(this.handleError);
   }
 
+  getHosts(): Promise<Member[]> {
+    return this.http.get(this.url + '/m/host')
+               .toPromise()
+               .then(response => response.json() as Member[])
+               .catch(this.handleError);
+  }
+
+  getResidentes(): Promise<Member[]> {
+    return this.http.get(this.url + '/m/residente')
+               .toPromise()
+               .then(response => response.json() as Member[])
+               .catch(this.handleError);
+  }
+
+  getInvitados(): Promise<Member[]> {
+    return this.http.get(this.url + '/m/invitado')
+               .toPromise()
+               .then(response => response.json() as Member[])
+               .catch(this.handleError);
+  }
+
   createMembers(member: Member) : Promise<Member>
 	{
     let url = this.config.get('host') + '/member';

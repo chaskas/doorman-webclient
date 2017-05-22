@@ -1,7 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
-  padding: 20px 80px;
+  padding: 40px;
 }
 
 .monthName { font-size: 18px; font-weight: bold; }

@@ -10,16 +10,22 @@ import { MemberService } from '../../../services/member.service';
 })
 export class MemberListComponent implements OnInit {
 
-  members: Member[] = [];
-
+  hosts: Member[] = [];
+  residentes: Member[] = [];
 
   constructor(
       private memberService: MemberService
   ) { }
 
   ngOnInit() {
-	this.memberService.getMembers()
-	    .then(members => this.members = members);
+
+  	this.memberService.getHosts()
+  	    .then(hosts => this.hosts = hosts);
+
+
+    this.memberService.getResidentes()
+  	    .then(residentes => this.residentes = residentes);
+
   }
 
 }
