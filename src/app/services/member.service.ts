@@ -48,12 +48,12 @@ export class MemberService {
                .catch(this.handleError);
   }
 
-  createMembers(member: Member) : Promise<Member>
+  createMember(member: Member) : Promise<Member>
 	{
-    let url = this.config.get('host') + '/member';
+    let url = this.config.get('host') + '/people';
     let body = JSON.stringify({rut: member.rut, first_name: member.first_name, last_name: member.last_name,
-                              gender: member.gender, email: member.email, phone: member.phone, mtype: member.mtype, last_seen: member.last_seen,
-                            created_at: member.created_at, updated_at: member.updated_at});
+                              gender: member.gender, email: member.email, phone: member.phone, mtype: member.mtype
+                            });
     let headers      = new Headers({ 'Content-Type': 'application/json' });
     let options      = new RequestOptions({ headers: headers });
 

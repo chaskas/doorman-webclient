@@ -16,6 +16,8 @@ export class MemberNewComponent implements OnInit {
   @Input() errors: string[];
 	@Input() success: string;
 
+
+
   constructor(
     private memberService: MemberService,
     private formBuilder: FormBuilder
@@ -25,10 +27,12 @@ export class MemberNewComponent implements OnInit {
    }
 
   ngOnInit() {
+
+
   }
   createMember()
   {
-    this.memberService.createMembers(this.memberForm.value).then(
+    this.memberService.createMember(this.memberForm.value).then(
       res =>      this._handleUpdateSuccess(res),
       error =>    this._handleError(error)
     );
@@ -37,35 +41,29 @@ export class MemberNewComponent implements OnInit {
   private _handleGetMemberSuccess(member: Member)
   {
     this.memberForm.setValue({
-      id: member.id,
       rut: member.rut,
       first_name: member.first_name,
       last_name: member.last_name,
       gender: member.gender,
       email: member.email,
       phone: member.phone,
-      mtype: member.mtype,
-      last_seen: member.last_seen,
-      created_at: member.created_at,
-      updated_at: member.updated_at
+      mtype: member.mtype
+
     });
   }
 
 	private createForm()
 	{
-	    this.memberForm = this.formBuilder.group({
-	      member_id: ['', [Validators.required]],
-	      rut: ['', [Validators.required]],
-	      first_name: ['', [Validators.required]],
-	      last_name: ['', [Validators.required]],
-	      gender: ['', [Validators.required]],
-	      email: ['', [Validators.required]],
-	      phone: ['', [Validators.required]],
-	      mtype: ['', [Validators.required]],
-	      last_seen: ['', [Validators.required]],
-	      created_at: ['', [Validators.required]],
-        updated_at: ['', [Validators.required]]
-	    });
+    this.memberForm = this.formBuilder.group({
+      rut: ['', [Validators.required]],
+      first_name: ['', [Validators.required]],
+      last_name: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      mtype: ['', [Validators.required]]
+
+    });
 	}
 
   private _handleUpdateSuccess(data: any) {

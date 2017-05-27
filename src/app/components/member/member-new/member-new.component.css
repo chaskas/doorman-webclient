@@ -1,0 +1,10 @@
+.container {	
+  height: 100%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.actions { display: flex; justify-content: flex-end; }
