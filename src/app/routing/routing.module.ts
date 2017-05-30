@@ -15,10 +15,9 @@ const routes: Routes = [
       children:[
         { path : '', component: CalendarComponent },
         { path : 'members', component: MemberListComponent },
-        { path : 'newmembers', component: MemberNewComponent },
-        { path : 'editmembers', component: MemberEditComponent }
-
-
+        { path : 'members/new', component: MemberNewComponent },
+        { path : 'members/edit/:id', component: MemberEditComponent }
+        
       ]
  },
 ];

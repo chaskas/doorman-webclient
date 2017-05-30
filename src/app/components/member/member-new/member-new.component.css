@@ -8,3 +8,5 @@
   align-content: center;
 }
 .actions { display: flex; justify-content: flex-end; }
+
+.form-row { height: 70px; }

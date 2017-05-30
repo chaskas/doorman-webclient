@@ -27,6 +27,13 @@ export class MemberService {
                .catch(this.handleError);
   }
 
+  getMember(id: number): Promise<Member> {
+    return this.http.get(this.url + '/' + id)
+               .toPromise()
+               .then(response => response.json() as Member)
+               .catch(this.handleError);
+  }
+
   getHosts(): Promise<Member[]> {
     return this.http.get(this.url + '/m/host')
                .toPromise()
@@ -63,8 +70,9 @@ export class MemberService {
               .catch(this.handleError);
   }
 
-  updateMember(member: Member): Promise<Member>
+  updateMember(id: number, member: Member): Promise<Member>
   {
+    member.id = id;
 
     let body = JSON.stringify(member);
 

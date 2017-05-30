@@ -2,6 +2,7 @@ import { Component, OnInit,Input} from '@angular/core';
 
 import { MemberService } from '../../../services/member.service';
 import { Member } from '../../../model/member';
+import { MdSnackBar } from '@angular/material';
 
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
@@ -15,12 +16,13 @@ export class MemberNewComponent implements OnInit {
   memberForm: FormGroup;
   @Input() errors: string[];
 	@Input() success: string;
-
+  
 
 
   constructor(
     private memberService: MemberService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public snackBar: MdSnackBar
   ) {
 
     this.createForm();
@@ -68,9 +70,12 @@ export class MemberNewComponent implements OnInit {
 
   private _handleUpdateSuccess(data: any) {
     this.errors = null;
-    this.success = "Sucursal creada correctamente";
+    this.snackBar.open("Miembro actualizado correctamente", "OK", {
+      duration: 2000,
     //this.router.navigate(['dash/business/offers']);
+  });
   }
+
 
   private _handleError(error: any) {
       this.errors = error.json().errors.full_messages;

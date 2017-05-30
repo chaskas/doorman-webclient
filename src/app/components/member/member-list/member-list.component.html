@@ -8,7 +8,7 @@
           <div fxLayout="row">
             <div><img  src="https://api.adorable.io/avatars/60/{{ member.first_name }}" class="member-avatar"/></div>
             <div fxLayout="column" class="member-desc">
-              <span class="member-title">{{ member.first_name }} {{ member.last_name }}</span>
+             <a [routerLink]="['edit',member.id]"> <span  class="member-title">{{ member.first_name }} {{ member.last_name }}</span> </a>
               <span class="member-subtitle">Últ. visto: {{ member.last_seen | date:'dd/MM/y' }}</span>
             </div>
           </div>

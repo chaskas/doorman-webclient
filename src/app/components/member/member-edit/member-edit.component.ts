@@ -1,7 +1,8 @@
 import { Component, OnInit,Input} from '@angular/core';
-
+import { ActivatedRoute, Params }   from '@angular/router';
 import { MemberService } from '../../../services/member.service';
 import { Member } from '../../../model/member';
+import { MdSnackBar } from '@angular/material';
 
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -13,14 +14,25 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class MemberEditComponent implements OnInit {
 
   member: Member;
+  members: Member[];
   memberForm: FormGroup;
+
   @Input() errors: string[];
   @Input() success: string;
 
   constructor(
 	    private memberService: MemberService,
-	    private formBuilder: FormBuilder
-  ) { }
+	    private formBuilder: FormBuilder,
+      private route: ActivatedRoute,
+      public snackBar: MdSnackBar
+  ) {
+
+    this.createForm();
+
+    this.route.params
+      .switchMap((params: Params) => this.memberService.getMember(+params['id']))
+      .subscribe(member => this._handleGetMemberSuccess(member));
+  }
 
   ngOnInit() {
     
@@ -28,7 +40,7 @@ export class MemberEditComponent implements OnInit {
 
   updateMember()
   {
-  	this.memberService.updateMember(this.memberForm.value).then(
+  	this.memberService.updateMember(this.member.id, this.memberForm.value).then(
   		res => this._handleUpdateSuccess(res),
   		error => this._handleError(error)
   	);
@@ -36,6 +48,8 @@ export class MemberEditComponent implements OnInit {
 
   private _handleGetMemberSuccess(member: Member)
   {
+    this.member = member;
+
     this.memberForm.setValue({
       rut: member.rut,
       first_name: member.first_name,
@@ -64,7 +78,11 @@ export class MemberEditComponent implements OnInit {
 
   private _handleUpdateSuccess(data: any) {
     this.errors = null;
-    this.success = "Sucursal creada correctamente";
+    this.snackBar.open("Miembro actualizado correctamente", "OK", {
+      duration: 2000,
+    });
+
+    this.success = "Miembro actualizado correctamente";
     //this.router.navigate(['dash/business/offers']);
   }
 
