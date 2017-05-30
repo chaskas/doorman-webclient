@@ -72,8 +72,7 @@ export class MemberNewComponent implements OnInit {
     this.errors = null;
     this.snackBar.open("Miembro actualizado correctamente", "OK", {
       duration: 2000,
-    //this.router.navigate(['dash/business/offers']);
-  });
+    });
   }
 
 

@@ -22,6 +22,8 @@ import { EventNewComponent } from './components/events/event-new/event-new.compo
 import { MemberNewComponent } from './components/member/member-new/member-new.component';
 import { MemberListComponent } from './components/member/member-list/member-list.component';
 import { MemberEditComponent } from './components/member/member-edit/member-edit.component';
+import { MemberListInvitadosComponent } from './components/member/member-list/member-list-invitados/member-list-invitados.component';
+import { MemberShowComponent } from './components/member/member-show/member-show.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { MemberEditComponent } from './components/member/member-edit/member-edit
     EventNewComponent,
     MemberNewComponent,
     MemberListComponent,
-    MemberEditComponent
+    MemberEditComponent,
+    MemberListInvitadosComponent,
+    MemberShowComponent
   ],
   imports: [
     BrowserModule,

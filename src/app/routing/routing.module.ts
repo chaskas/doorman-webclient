@@ -8,6 +8,7 @@ import { CalendarComponent } from '../components/calendar/calendar.component';
 import { MemberListComponent } from '../components/member/member-list/member-list.component';
 import { MemberNewComponent } from '../components/member/member-new/member-new.component';
 import { MemberEditComponent } from '../components/member/member-edit/member-edit.component';
+import { MemberListInvitadosComponent } from '../components/member/member-list/member-list-invitados/member-list-invitados.component';
 
 
 const routes: Routes = [
@@ -16,8 +17,8 @@ const routes: Routes = [
         { path : '', component: CalendarComponent },
         { path : 'members', component: MemberListComponent },
         { path : 'members/new', component: MemberNewComponent },
-        { path : 'members/edit/:id', component: MemberEditComponent }
-        
+        { path : 'members/edit/:id', component: MemberEditComponent },
+        { path : 'invitados', component: MemberListInvitadosComponent }
       ]
  },
 ];
