@@ -68,7 +68,7 @@ export class MemberNewComponent implements OnInit {
 
   private _handleUpdateSuccess(data: any) {
     this.errors = null;
-    this.success = "Sucursal creada correctamente";
+    this.success = "Miembro ingresado correctamente";
     //this.router.navigate(['dash/business/offers']);
   }
 

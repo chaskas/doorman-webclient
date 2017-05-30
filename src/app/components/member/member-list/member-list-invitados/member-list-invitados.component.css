@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.member-list-tabs { width: 100%; }
+.member-desc { display: flex; align-self: center; }
+.member-avatar { border-radius: 30px; margin-right: 20px;}
+.member-title { font-size: 14px; font-weight: bold; display: block; }
+.member-subtitle { font-size: 10px; }
