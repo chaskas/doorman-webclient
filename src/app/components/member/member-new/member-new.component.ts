@@ -70,7 +70,7 @@ export class MemberNewComponent implements OnInit {
 
   private _handleUpdateSuccess(data: any) {
     this.errors = null;
-    this.snackBar.open("Miembro actualizado correctamente", "OK", {
+    this.snackBar.open("Miembro Registrado correctamente", "OK", {
       duration: 2000,
     });
   }

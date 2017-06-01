@@ -17,6 +17,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 
 import { MemberService} from './services/member.service';
 import { EventService } from './services/event.service';
+import { DialogsServiceService } from './services/dialogs-service.service';
 
 import { EventNewComponent } from './components/events/event-new/event-new.component';
 import { MemberNewComponent } from './components/member/member-new/member-new.component';
@@ -24,6 +25,8 @@ import { MemberListComponent } from './components/member/member-list/member-list
 import { MemberEditComponent } from './components/member/member-edit/member-edit.component';
 import { MemberListInvitadosComponent } from './components/member/member-list/member-list-invitados/member-list-invitados.component';
 import { MemberShowComponent } from './components/member/member-show/member-show.component';
+import { DialogComponent } from './utils/dialog/dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { MemberShowComponent } from './components/member/member-show/member-show
     MemberListComponent,
     MemberEditComponent,
     MemberListInvitadosComponent,
-    MemberShowComponent
+    MemberShowComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -45,8 +49,8 @@ import { MemberShowComponent } from './components/member/member-show/member-show
     ReactiveFormsModule,
     MaterialModule
   ],
-  entryComponents: [EventNewComponent],
-  providers: [AppConfig, EventService, MemberService],
+  entryComponents: [EventNewComponent, DialogComponent],
+  providers: [AppConfig, EventService, MemberService, DialogsServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
