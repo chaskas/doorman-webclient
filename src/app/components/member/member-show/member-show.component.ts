@@ -13,15 +13,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class MemberShowComponent implements OnInit {
 
 member: Member;
-memberForm: FormGroup;
+// memberForm: FormGroup;
 
   constructor(
     private memberService: MemberService,
-    private formBuilder: FormBuilder,
+    // private formBuilder: FormBuilder,
     private route: ActivatedRoute
   ) {
-
-    this.createForm();
 
     this.route.params
     .switchMap((params: Params) => this.memberService.getMember(+params['id']))
@@ -37,30 +35,30 @@ memberForm: FormGroup;
   {
     this.member = member;
 
-    this.memberForm.setValue({
-      rut: member.rut,
-      first_name: member.first_name,
-      last_name: member.last_name,
-      gender: member.gender,
-      email: member.email,
-      phone: member.phone,
-      mtype: member.mtype
-    });
+    // this.memberForm.setValue({
+    //   rut: member.rut,
+    //   first_name: member.first_name,
+    //   last_name: member.last_name,
+    //   gender: member.gender,
+    //   email: member.email,
+    //   phone: member.phone,
+    //   mtype: member.mtype
+    // });
   }
 
 
-  	private createForm()
-  	{
-      this.memberForm = this.formBuilder.group({
-        rut: ['', [Validators.required]],
-        first_name: ['', [Validators.required]],
-        last_name: ['', [Validators.required]],
-        gender: ['', [Validators.required]],
-        email: ['', [Validators.required]],
-        phone: ['', [Validators.required]],
-        mtype: ['', [Validators.required]]
-
-      });
-  	}
+  	// private createForm()
+  	// {
+    //   this.memberForm = this.formBuilder.group({
+    //     rut: ['', [Validators.required]],
+    //     first_name: ['', [Validators.required]],
+    //     last_name: ['', [Validators.required]],
+    //     gender: ['', [Validators.required]],
+    //     email: ['', [Validators.required]],
+    //     phone: ['', [Validators.required]],
+    //     mtype: ['', [Validators.required]]
+    //
+    //   });
+  	// }
 
 }

@@ -1,43 +1,46 @@
 
 <div class="container">
-<form [formGroup]="memberForm" >
 <md-card>
   <md-card-header>
-    <md-card-title>Detalle Miembro</md-card-title>
+    <md-card-title>Detalle de Miembro </md-card-title>
   </md-card-header>
 
+  <ng-container *ngIf="member">
+  <md-card-content>
   <div>
-     <md-input-container><input mdInput placeholder="Rut" formControlName="rut" readonly="true"></md-input-container>
+     <md-input-container><input mdInput placeholder="Rut" [value]="member.rut" readonly="true"></md-input-container>
   </div>
   <div fxLayout="row" class="form-row">
     <div fxFlex="50">
-       <md-input-container><input mdInput placeholder="Nombre" formControlName="first_name" readonly="true"></md-input-container>
+       <md-input-container><input mdInput placeholder="Nombre" [value]="member.first_name" readonly="true"></md-input-container>
     </div>
    <div fxFlex="50">
-      <md-input-container><input mdInput placeholder="Apellido" formControlName="last_name" readonly="true"></md-input-container>
+      <md-input-container><input mdInput placeholder="Apellido" [value]="member.last_name" readonly="true"></md-input-container>
     </div>
   </div>
 
   <div fxLayout="row" class="form-row">
     <div fxFlex="50">
-      <md-input-container><input type="email" mdInput placeholder="Email" formControlName="email" readonly="true"></md-input-container>
+      <md-input-container><input type="email" mdInput placeholder="Email" [value]="member.email" readonly="true"></md-input-container>
     </div>
     <div fxFlex="50">
-       <md-input-container><input mdInput placeholder="Teléfono" formControlName="phone" readonly="true"></md-input-container>
+       <md-input-container><input mdInput placeholder="Teléfono" [value]="member.phone" readonly="true"></md-input-container>
     </div>
   </div>
 
-<div fxLayout="row" class="form-row">
+  <div fxLayout="row" class="form-row">
   <div fxFlex="50">
-    <md-input-container><input  mdInput placeholder="Género" formControlName="gender" readonly="true"></md-input-container>
-
+    <md-input-container><input  mdInput placeholder="Género" [value]="member.gender == 1 ? 'Masculino' : 'Femenino' " readonly="true"></md-input-container>
   </div>
 
   <div fxFlex="50">
-    <md-input-container><input  mdInput placeholder="Tipo" formControlName="mtype" readonly="true"></md-input-container>
+    <md-input-container><input  mdInput placeholder="Tipo" [value]="member.mtype == 1 ? 'Residente' : 'Host' " readonly="true"></md-input-container>
 
   </div>
   </div>
+
+  </md-card-content>
+</ng-container>
 
 
 
@@ -47,5 +50,5 @@
    </div>
   </md-card-actions>
 </md-card>
-</form>
+
 </div>
