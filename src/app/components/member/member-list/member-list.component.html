@@ -25,13 +25,17 @@
           <div fxLayout="row">
             <a [routerLink]="['edit',member.id]"> <div><img  src="https://api.adorable.io/avatars/60/{{ member.first_name }}" class="member-avatar"/></div> </a>
             <div fxLayout="column" class="member-desc">
+<<<<<<< HEAD
               <a [routerLink]="['edit',member.id]"> <span class="member-title">{{ member.first_name }} {{ member.last_name }}</span> </a>
+=======
+             <a [routerLink]="['show',member.id]">  <span class="member-title">{{ member.first_name }} {{ member.last_name }}</span> </a>
+>>>>>>> 8e9607ff3baac016fdf770daf9d1b382fc39a4d2
               <span class="member-subtitle">Últ. visto: {{ member.last_seen | date:'dd/MM/y' }}</span>
             </div>
           </div>
 
         </md-grid-tile>
-      </md-grid-list>     
+      </md-grid-list>
     </md-tab>
   </md-tab-group>
 </div>
