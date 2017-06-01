@@ -1,50 +1,54 @@
 <div class="container">
+
 <form [formGroup]="memberForm" (submit)="updateMember()">
 <md-card>
   <md-card-header>
     <md-card-title>Actualización de Miembros</md-card-title>
+    <md-card-actions class="actions">
+    <button type="button" md-mini-fab  (click)="openDialog()" confirm> <md-icon>delete_sweep</md-icon></button>
+    </md-card-actions>
   </md-card-header>
-
       <div>
-         <md-input-container><input mdInput placeholder="Rut" formControlName="rut" required></md-input-container>
+         <md-input-container><input mdInput placeholder="Rut" formControlName="rut" required="true"></md-input-container>
       </div>
       <div fxLayout="row" class="form-row">
         <div fxFlex="50">
-           <md-input-container><input mdInput placeholder="Nombre" formControlName="first_name" required></md-input-container>
+           <md-input-container >
+           <input mdInput placeholder="Nombre" formControlName="first_name" ></md-input-container>
         </div>
        <div fxFlex="50">
-          <md-input-container><input mdInput placeholder="Apellido" formControlName="last_name" required></md-input-container>
+          <md-input-container><input mdInput placeholder="Apellido" formControlName="last_name" required="true"></md-input-container>
         </div>
       </div>
 
       <div fxLayout="row" class="form-row">
         <div fxFlex="50">
-          <md-input-container><input type="email" mdInput placeholder="Email" formControlName="email" required></md-input-container>
+          <md-input-container><input type="email" mdInput placeholder="Email" formControlName="email" required="true"></md-input-container>
         </div>
         <div fxFlex="50">
-           <md-input-container><input mdInput placeholder="Teléfono" formControlName="phone" required></md-input-container>
+           <md-input-container><input mdInput placeholder="Teléfono" formControlName="phone" required="true"></md-input-container>
         </div>
       </div>
 
       <div fxLayout="row" class="form-row">
         <div fxFlex="50">
-          <md-select placeholder="Género" formControlName="gender" required>
+          <md-select placeholder="Género" formControlName="gender" required="true">
              <md-option [value]="1"> Masculino</md-option>
              <md-option [value]="2"> Femenino </md-option>
           </md-select>
         </div>
         <div fxFlex="50">
-          <md-select placeholder="Tipo Miembro" formControlName="mtype" required>
-             <md-option [value]="1"> Invitado</md-option>
-             <md-option [value]="2"> Residente </md-option>
-             <md-option [value]="3"> Host </md-option>
+          <md-select placeholder="Tipo Miembro" formControlName="mtype" required="true">
+             <md-option [value]="1"> Residente </md-option>
+             <md-option [value]="2"> Host </md-option>
           </md-select>
         </div>
       </div>
 
       <md-card-actions class="actions">
-        <div>
-         <button md-button type="submit">Actualizar Miembro</button>
+        <div class="example-button-row">
+           <a routerLink="/members"><button md-button >Cancelar</button></a>
+           <button md-button type="submit" [disabled]="!memberForm.valid">Actualizar Miembro</button>
        </div> 
       </md-card-actions>  
 </md-card>

@@ -9,6 +9,7 @@ import { MemberListComponent } from '../components/member/member-list/member-lis
 import { MemberNewComponent } from '../components/member/member-new/member-new.component';
 import { MemberEditComponent } from '../components/member/member-edit/member-edit.component';
 import { MemberListInvitadosComponent } from '../components/member/member-list/member-list-invitados/member-list-invitados.component';
+import { MemberShowComponent } from '../components/member/member-show/member-show.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
         { path : 'members', component: MemberListComponent },
         { path : 'members/new', component: MemberNewComponent },
         { path : 'members/edit/:id', component: MemberEditComponent },
+        { path : 'members/show', component: MemberShowComponent },
         { path : 'invitados', component: MemberListInvitadosComponent }
       ]
  },

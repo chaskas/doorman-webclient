@@ -1,8 +1,10 @@
 import { Component, OnInit,Input} from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { MemberService } from '../../../services/member.service';
+import { DialogsServiceService } from '../../../services/dialogs-service.service';
 import { Member } from '../../../model/member';
 import { MdSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -20,11 +22,15 @@ export class MemberEditComponent implements OnInit {
   @Input() errors: string[];
   @Input() success: string;
 
+  public result: any;
   constructor(
+     private dialogsService: DialogsServiceService,
 	    private memberService: MemberService,
 	    private formBuilder: FormBuilder,
       private route: ActivatedRoute,
-      public snackBar: MdSnackBar
+      public snackBar: MdSnackBar,
+      private _router: Router
+
   ) {
 
     this.createForm();
@@ -37,6 +43,11 @@ export class MemberEditComponent implements OnInit {
   ngOnInit() {
     
   }
+  public openDialog() {
+    this.dialogsService
+      .confirm('Confirm Dialog', 'Seguro que quiere eliminar?')
+      .subscribe(res => this.deleteMember(res));
+  }
 
   updateMember()
   {
@@ -44,6 +55,15 @@ export class MemberEditComponent implements OnInit {
   		res => this._handleUpdateSuccess(res),
   		error => this._handleError(error)
   	);
+  }
+
+  deleteMember(res: boolean): void
+  {
+    if(res) {
+      this.memberService.deleteMember(this.member.id).then((data) => {
+        this._router.navigate(['members']);
+      });  
+    }
   }
 
   private _handleGetMemberSuccess(member: Member)
