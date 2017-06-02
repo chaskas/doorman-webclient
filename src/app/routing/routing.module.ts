@@ -18,7 +18,8 @@ const routes: Routes = [
         { path : 'members', component: MemberListComponent },
         { path : 'members/new', component: MemberNewComponent },
         { path : 'members/edit/:id', component: MemberEditComponent },
-        { path : 'members/show', component: MemberShowComponent },
+        { path : 'members/show/:id/edit', component: MemberEditComponent },
+        { path : 'members/show/:id', component: MemberShowComponent },
         { path : 'invitados', component: MemberListInvitadosComponent }
       ]
  },
