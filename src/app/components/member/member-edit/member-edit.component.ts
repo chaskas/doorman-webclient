@@ -3,9 +3,11 @@ import { ActivatedRoute, Params }   from '@angular/router';
 import { MemberService } from '../../../services/member.service';
 import { DialogsServiceService } from '../../../services/dialogs-service.service';
 import { Member } from '../../../model/member';
+
 import { MdSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
-
+import { CustomValidators } from 'ng2-validation';
+import { RutValidator } from '../../../utils/rut/ng2-rut.module'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -24,7 +26,8 @@ export class MemberEditComponent implements OnInit {
 
   public result: any;
   constructor(
-     private dialogsService: DialogsServiceService,
+      private rv: RutValidator,
+      private dialogsService: DialogsServiceService,
 	    private memberService: MemberService,
 	    private formBuilder: FormBuilder,
       private route: ActivatedRoute,
@@ -45,7 +48,7 @@ export class MemberEditComponent implements OnInit {
   }
   public openDialog() {
     this.dialogsService
-      .confirm('Confirm Dialog', 'Seguro que quiere eliminar?')
+      .confirm('Confirmar', '¿Seguro que quiere eliminar?')
       .subscribe(res => this.deleteMember(res));
   }
 
@@ -85,12 +88,12 @@ export class MemberEditComponent implements OnInit {
 	private createForm()
 	{
     this.memberForm = this.formBuilder.group({
-      rut: ['', [Validators.required]],
+      rut: ['', [Validators.required, this.rv]],
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
       gender: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
+      email: ['', [Validators.required, CustomValidators.email]],
+      phone: ['', [Validators.required, CustomValidators.max(99999999999)]],
       mtype: ['', [Validators.required]]
 
     });

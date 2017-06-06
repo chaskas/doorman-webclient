@@ -26,7 +26,8 @@ import { MemberEditComponent } from './components/member/member-edit/member-edit
 import { MemberListInvitadosComponent } from './components/member/member-list/member-list-invitados/member-list-invitados.component';
 import { MemberShowComponent } from './components/member/member-show/member-show.component';
 import { DialogComponent } from './utils/dialog/dialog.component';
-
+import { CustomValidators } from 'ng2-validation';
+import { Ng2Rut, RutValidator } from './utils/rut/ng2-rut.module';
 
 @NgModule({
   declarations: [
@@ -47,10 +48,11 @@ import { DialogComponent } from './utils/dialog/dialog.component';
     HttpModule,
     RoutingModule,
     ReactiveFormsModule,
+    Ng2Rut,
     MaterialModule
   ],
   entryComponents: [EventNewComponent, DialogComponent],
-  providers: [AppConfig, EventService, MemberService, DialogsServiceService],
+  providers: [AppConfig, EventService, MemberService, DialogsServiceService, RutValidator],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

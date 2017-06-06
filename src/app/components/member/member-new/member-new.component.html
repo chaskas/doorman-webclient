@@ -19,7 +19,9 @@
 
       <div fxLayout="row" class="form-row">
         <div fxFlex="50">
-          <md-input-container><input type="email" mdInput placeholder="Email" formControlName="email" required></md-input-container>
+          <md-input-container><input type="email" mdInput placeholder="Email" formControlName="email" required>
+
+          </md-input-container>
         </div>
         <div fxFlex="50">
            <md-input-container><input type="number" mdInput placeholder="Teléfono" formControlName="phone" required></md-input-container>
@@ -41,8 +43,9 @@
         </div>
       </div>
       <md-card-actions class="actions">
-        <div>
-         <button md-button type="submit">Registrar Miembro</button>
+      <div class="example-button-row">
+         <a routerLink="/members"><button md-button >Volver</button></a>
+         <button md-button type="submit" [disabled]="!memberForm.valid">Registrar Miembro</button>
        </div>
       </md-card-actions>
 </md-card>

@@ -3,7 +3,8 @@ import { Component, OnInit,Input} from '@angular/core';
 import { MemberService } from '../../../services/member.service';
 import { Member } from '../../../model/member';
 import { MdSnackBar } from '@angular/material';
-
+import { CustomValidators } from 'ng2-validation';
+import { RutValidator } from '../../../utils/rut/ng2-rut.module'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-member-new',
@@ -18,18 +19,18 @@ export class MemberNewComponent implements OnInit {
 	@Input() success: string;
   
 
-
   constructor(
+    private rv: RutValidator,
     private memberService: MemberService,
     private formBuilder: FormBuilder,
     public snackBar: MdSnackBar
+
   ) {
 
     this.createForm();
    }
 
   ngOnInit() {
-
 
   }
   createMember()
@@ -57,12 +58,12 @@ export class MemberNewComponent implements OnInit {
 	private createForm()
 	{
     this.memberForm = this.formBuilder.group({
-      rut: ['', [Validators.required]],
+      rut: ['', [Validators.required, this.rv]],
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
       gender: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
+      email: ['', [Validators.required, CustomValidators.email]],
+      phone: ['', [Validators.required, CustomValidators.max(99999999999)]],
       mtype: ['', [Validators.required]]
 
     });
