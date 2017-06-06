@@ -128,13 +128,11 @@ export class CalendarComponent implements OnInit {
 
   getEvent(day: Day) {
     if(day.event) {
-      // ver detalle evento
-      console.log(day.event['name']);
 
       this._router.navigate(['events/show/',day.event['id']]);
 
     } else {
-      // crear nuevo evento
+
       var config = new MdDialogConfig();
       config.data = day;
       config.height = "300px";

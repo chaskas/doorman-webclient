@@ -23,12 +23,13 @@ export class EventShowComponent implements OnInit {
     private eventService: EventService,
     public dialog: MdDialog,
   ) {
-    this.route.params
-      .switchMap((params: Params) => this.eventService.getEvent(+params['id']))
-      .subscribe(event => this._handleGetEventSuccess(event));
+    
   }
 
   ngOnInit() {
+    this.route.params
+      .switchMap((params: Params) => this.eventService.getEvent(+params['id']))
+      .subscribe(event => this._handleGetEventSuccess(event));
   }
 
   private _handleGetEventSuccess(event: Event)
