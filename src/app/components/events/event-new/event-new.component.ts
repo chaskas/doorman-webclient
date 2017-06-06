@@ -40,7 +40,15 @@ export class EventNewComponent implements OnInit {
 
     this.event.name = this.eventForm.value.name;
     this.event.starts = this.day.date.getFullYear() + "-" + (this.day.date.getMonth()+1) + "-" + this.day.date.getDate() + " " + this.eventForm.value.starts;
-    this.event.ends = this.day.date.getFullYear() + "-" + (this.day.date.getMonth()+1) + "-" + this.day.date.getDate() + " " + this.eventForm.value.ends;
+
+    var nextDay = new Date(this.day.date.getFullYear(),this.day.date.getMonth(),this.day.date.getDate());
+    nextDay.setDate(this.day.date.getDate()+1);
+
+    if (this.eventForm.value.starts > this.eventForm.value.ends) {
+      this.event.ends = nextDay.getFullYear() + "-" + (nextDay.getMonth()+1) + "-" + nextDay.getDate() + " " + this.eventForm.value.ends;
+    } else {
+      this.event.ends = this.day.date.getFullYear() + "-" + (this.day.date.getMonth()+1) + "-" + this.day.date.getDate() + " " + this.eventForm.value.ends;
+    }
 
     this.eventService.createEvent(this.event);
     this.dialogRef.close();

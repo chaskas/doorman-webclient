@@ -3,6 +3,8 @@ export class Event {
   name: string;
   starts: string;
   ends: string;
+  guests: number;
+  attendees: number;
   created_at: string;
   updated_at: string;
 }

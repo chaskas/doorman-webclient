@@ -1,0 +1,22 @@
+<h1 md-dialog-title>Añadir Invitados</h1>
+<md-dialog-content>
+  <div fxLayout="row">
+    <div fxFlex="70">
+      <md-input-container class="full-width">
+        <textarea mdInput class="textarea-height" [(ngModel)]="guests"></textarea>
+      </md-input-container>
+    </div>
+    <div fxFlex="30">
+      <table *ngIf="badRuts">
+        <h4 *ngIf="badRuts.length">Inválido</h4>
+        <tr *ngFor="let rut of badRuts" class="badruts"><td>
+          {{ rut }}
+        </td></tr>
+      </table>
+    </div>
+  </div>
+</md-dialog-content>
+<md-dialog-actions class="event-actions">
+  <button md-button md-dialog-close>Cancelar</button>
+  <button md-button [disabled]="!guests" (click)="addGuests()">Aceptar</button>
+</md-dialog-actions>

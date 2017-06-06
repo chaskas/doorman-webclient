@@ -1,13 +1,12 @@
 <div class="container">
-
-<form [formGroup]="memberForm" (submit)="updateMember()">
-<md-card>
-  <md-card-header>
-    <md-card-title>Actualización de Miembros</md-card-title>
-      <md-card-actions class="actions">
-        <button type="button" md-mini-fab (click)="openDialog()" confirm><md-icon>delete_sweep</md-icon> </button>
-      </md-card-actions>
-  </md-card-header>
+  <form [formGroup]="memberForm" (submit)="updateMember()">
+    <md-card>
+      <md-card-header>
+        <md-card-title>Actualización de Miembros</md-card-title>
+          <md-card-actions class="actions">
+            <button type="button" md-mini-fab (click)="openDialog()" confirm><md-icon>delete_sweep</md-icon> </button>
+          </md-card-actions>
+      </md-card-header>
       <div>
          <md-input-container><input mdInput placeholder="Rut" formControlName="rut" required="true"></md-input-container>
       </div>
@@ -46,12 +45,12 @@
       </div>
 
       <md-card-actions class="actions">
-        <div class="example-button-row">
+        <div>
            <a routerLink="/members"><button md-button >Cancelar</button></a>
            <button md-button type="submit" [disabled]="!memberForm.valid">Actualizar Miembro</button>
        </div>
       </md-card-actions>
-    
-</md-card>
-</form>
+
+    </md-card>
+  </form>
 </div>
