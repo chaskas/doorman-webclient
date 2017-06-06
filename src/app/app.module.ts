@@ -28,6 +28,8 @@ import { MemberShowComponent } from './components/member/member-show/member-show
 import { DialogComponent } from './utils/dialog/dialog.component';
 import { CustomValidators } from 'ng2-validation';
 import { Ng2Rut, RutValidator } from './utils/rut/ng2-rut.module';
+import { ChartsComponent } from './components/charts/charts.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { Ng2Rut, RutValidator } from './utils/rut/ng2-rut.module';
     MemberEditComponent,
     MemberListInvitadosComponent,
     MemberShowComponent,
-    DialogComponent
+    DialogComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,9 @@ import { Ng2Rut, RutValidator } from './utils/rut/ng2-rut.module';
     RoutingModule,
     ReactiveFormsModule,
     Ng2Rut,
-    MaterialModule
+    MaterialModule,
+    ChartsModule
+
   ],
   entryComponents: [EventNewComponent, DialogComponent],
   providers: [AppConfig, EventService, MemberService, DialogsServiceService, RutValidator],
