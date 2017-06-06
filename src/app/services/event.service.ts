@@ -33,6 +33,13 @@ export class EventService {
                 .catch(this.handleError);
   }
 
+  getEvent(id: number): Promise<Event> {
+    return this.http.get(this.url+'/'+id, { headers: this.headers })
+               .toPromise()
+               .then(response => response.json() as Event)
+               .catch(this.handleError);
+  }
+
   getAllEvents(): Promise<Event[]> {
     return this.http.get(this.url, { headers: this.headers })
                .toPromise()

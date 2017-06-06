@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
+
 
 import { EventService } from '../../services/event.service';
 
@@ -36,7 +37,8 @@ export class CalendarComponent implements OnInit {
 
   constructor(
     private eventService: EventService,
-    public dialog: MdDialog
+    public dialog: MdDialog,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -128,6 +130,9 @@ export class CalendarComponent implements OnInit {
     if(day.event) {
       // ver detalle evento
       console.log(day.event['name']);
+
+      this._router.navigate(['events/show/',day.event['id']]);
+
     } else {
       // crear nuevo evento
       var config = new MdDialogConfig();

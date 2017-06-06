@@ -40,15 +40,14 @@
   </div>
 
   </md-card-content>
-</ng-container>
-
-
 
   <md-card-actions class="actions">
     <div>
-     <button [routerLink]="['edit']" md-button type="button">Editar Miembro</button>
+     <button [routerLink]="['edit',member.id]" md-button type="button">Editar Miembro</button>
    </div>
   </md-card-actions>
+
+  </ng-container>
 </md-card>
 
 </div>

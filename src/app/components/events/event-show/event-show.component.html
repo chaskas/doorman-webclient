@@ -1,0 +1,55 @@
+<ng-container *ngIf="event">
+<div class="container">
+
+  <div fxLayout="row" class="rowMargin">
+    <md-card class="card-container">
+
+      <md-card-content fxLayout="row" class="">
+
+
+        <div fxFlex="20">
+          <md-input-container class="full-width">
+            <input mdInput placeholder="Nombre" [value]="event.name">
+          </md-input-container>
+        </div>
+
+        <div fxFlex="20">
+          <md-input-container class="full-width">
+            <input mdInput placeholder="Inicio" [value]="event.starts | date: 'dd/MM/yyyy  HH:mm'">
+          </md-input-container>
+        </div>
+
+        <div fxFlex="20">
+          <md-input-container class="full-width">
+            <input mdInput placeholder="Inicio" [value]="event.ends | date: 'dd/MM/yyyy  HH:mm'">
+          </md-input-container>
+        </div>
+
+        <div fxFlex="20">
+          <md-input-container class="full-width">
+            <input mdInput placeholder="Total Invitados" [value]="event.guests">
+          </md-input-container>
+        </div>
+
+        <div fxFlex="20">
+          <md-input-container class="full-width">
+            <input mdInput placeholder="Total Asistentes" [value]="event.attendees">
+          </md-input-container>
+        </div>
+
+      </md-card-content>
+    </md-card>
+  </div>
+
+  <div fxLayout="row" class="rowMargin">
+    <md-card class="card-container">
+      <md-card-header>
+        <md-card-title>
+          <button md-button (click)="addGuestsDialog()">Añadir Invitados</button>
+        </md-card-title>
+      </md-card-header>
+    </md-card>
+  </div>
+
+</div>
+</ng-container>
