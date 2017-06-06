@@ -11,8 +11,6 @@ import { RoutingModule } from './routing/routing.module';
 import { AppComponent } from './app.component';
 
 import { MaterialModule } from './modules/material/material.module';
-import { CustomValidators } from 'ng2-validation';
-import { Ng2Rut, RutValidator } from './utils/rut/ng2-rut.module';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
@@ -34,6 +32,10 @@ import { MemberShowComponent } from './components/member/member-show/member-show
 import { GuestAddComponent } from './components/guests/guest-add/guest-add.component';
 
 import { DialogComponent } from './utils/dialog/dialog.component';
+import { CustomValidators } from 'ng2-validation';
+import { Ng2Rut, RutValidator } from './utils/rut/ng2-rut.module';
+import { ChartsComponent } from './components/charts/charts.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -49,7 +51,8 @@ import { DialogComponent } from './utils/dialog/dialog.component';
     MemberListInvitadosComponent,
     MemberShowComponent,
     DialogComponent,
-    GuestAddComponent
+    GuestAddComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,9 @@ import { DialogComponent } from './utils/dialog/dialog.component';
     RoutingModule,
     ReactiveFormsModule,
     Ng2Rut,
-    MaterialModule
+    MaterialModule,
+    ChartsModule
+
   ],
   entryComponents: [EventNewComponent, GuestAddComponent, DialogComponent],
   providers: [AppConfig, EventService, MemberService, GuestService, DialogsServiceService, RutValidator],

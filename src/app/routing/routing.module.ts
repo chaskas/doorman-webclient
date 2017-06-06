@@ -11,6 +11,8 @@ import { MemberEditComponent } from '../components/member/member-edit/member-edi
 import { MemberListInvitadosComponent } from '../components/member/member-list/member-list-invitados/member-list-invitados.component';
 import { MemberShowComponent } from '../components/member/member-show/member-show.component';
 import { EventShowComponent } from '../components/events/event-show/event-show.component';
+import { ChartsComponent } from '../components/charts/charts.component';
+
 
 const routes: Routes = [
  {  path: '', component: DashboardComponent ,
@@ -21,7 +23,8 @@ const routes: Routes = [
         { path : 'members/edit/:id', component: MemberEditComponent },
         { path : 'members/show/:id', component: MemberShowComponent },
         { path : 'events/show/:id', component: EventShowComponent },
-        { path : 'invitados', component: MemberListInvitadosComponent }
+        { path : 'invitados', component: MemberListInvitadosComponent },
+        { path : 'charts', component: ChartsComponent }
       ]
  },
 ];
