@@ -1,0 +1,24 @@
+<div class="container">
+    <form [formGroup]="loginForm" (submit)="doLogin()">
+        <md-card>
+          <md-card-header>
+            <md-card-title class="title">Login</md-card-title>
+          </md-card-header>
+              <div>
+                <div>
+                  <md-input-container><input type="email" mdInput placeholder="Email" formControlName="email" required>
+                  </md-input-container>
+                </div>
+
+                <div>
+                  <md-input-container><input type="password" mdInput placeholder="Password" formControlName="password" required>
+                  </md-input-container>
+                </div>    
+              </div>
+          <md-card-actions class="actions">
+             <a class="btn btn-link" routerLink="/signup">¿No tienes cuenta?</a>
+             <button md-button type="submit" [disabled]="!loginForm.valid">Login</button>
+          </md-card-actions>            
+        </md-card>
+    </form>
+</div>

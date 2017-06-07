@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 
 import { AppConfig } from './config/app.config';
 
@@ -19,6 +20,7 @@ import { MemberService} from './services/member.service';
 import { EventService } from './services/event.service';
 import { GuestService } from './services/guest.service';
 import { DialogsServiceService } from './services/dialogs-service.service';
+import { SessionService } from './services/session.service';
 
 import { EventNewComponent } from './components/events/event-new/event-new.component';
 import { EventShowComponent } from './components/events/event-show/event-show.component';
@@ -36,7 +38,10 @@ import { CustomValidators } from 'ng2-validation';
 import { Ng2Rut, RutValidator } from './utils/rut/ng2-rut.module';
 import { ChartsComponent } from './components/charts/charts.component';
 import { ChartsModule } from 'ng2-charts';
-
+import { Angular2TokenService } from 'angular2-token';
+import { LoginComponent } from './components/session/login/login.component';
+import { RegisterComponent } from './components/session/register/register.component';
+import { LogoutComponent } from './components/session/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +57,10 @@ import { ChartsModule } from 'ng2-charts';
     MemberShowComponent,
     DialogComponent,
     GuestAddComponent,
-    ChartsComponent
+    ChartsComponent,
+    LoginComponent,
+    RegisterComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -62,11 +70,23 @@ import { ChartsModule } from 'ng2-charts';
     ReactiveFormsModule,
     Ng2Rut,
     MaterialModule,
-    ChartsModule
+    ChartsModule,
+    HttpModule,
+    RouterModule
 
   ],
   entryComponents: [EventNewComponent, GuestAddComponent, DialogComponent],
-  providers: [AppConfig, EventService, MemberService, GuestService, DialogsServiceService, RutValidator],
+  providers: [
+    AppConfig, 
+    EventService, 
+    MemberService, 
+    GuestService, 
+    DialogsServiceService, 
+    SessionService,
+    RutValidator,
+    Angular2TokenService,
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

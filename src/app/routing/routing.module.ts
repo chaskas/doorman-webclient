@@ -12,6 +12,9 @@ import { MemberListInvitadosComponent } from '../components/member/member-list/m
 import { MemberShowComponent } from '../components/member/member-show/member-show.component';
 import { EventShowComponent } from '../components/events/event-show/event-show.component';
 import { ChartsComponent } from '../components/charts/charts.component';
+import { LoginComponent } from '../components/session/login/login.component';
+import { RegisterComponent } from '../components/session/register/register.component';
+import { LogoutComponent } from '../components/session/logout/logout.component';
 
 
 const routes: Routes = [
@@ -24,7 +27,10 @@ const routes: Routes = [
         { path : 'members/show/:id', component: MemberShowComponent },
         { path : 'events/show/:id', component: EventShowComponent },
         { path : 'invitados', component: MemberListInvitadosComponent },
-        { path : 'charts', component: ChartsComponent }
+        { path : 'charts', component: ChartsComponent },
+        { path : 'login', component: LoginComponent },
+        { path : 'signup', component: RegisterComponent },
+        { path : 'logout', component: LogoutComponent }
       ]
  },
 ];

@@ -1,4 +1,13 @@
 .grafico-pie {
-	height: 400px;
-	width: 400px;
+	height: 500px;
+	width: 500px;
+}
+.grafico-bar {
+	height: 600px;
+	width: 600px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
 }
