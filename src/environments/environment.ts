@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  host: "http://xsknet.dyndns.org:82"
+  // host: "http://xsknet.dyndns.org:82"
+  host: "http://192.168.1.66:3000"
 };

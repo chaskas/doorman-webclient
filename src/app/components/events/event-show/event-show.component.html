@@ -9,31 +9,31 @@
 
         <div fxFlex="20">
           <md-input-container class="full-width">
-            <input mdInput placeholder="Nombre" [value]="event.name">
+            <input mdInput placeholder="Nombre" [value]="event.name" readonly="true">
           </md-input-container>
         </div>
 
         <div fxFlex="20">
           <md-input-container class="full-width">
-            <input mdInput placeholder="Inicio" [value]="event.starts | date: 'dd/MM/yyyy  HH:mm'">
+            <input mdInput placeholder="Inicio" [value]="event.starts | date: 'dd/MM/yyyy  HH:mm'" readonly="true">
           </md-input-container>
         </div>
 
         <div fxFlex="20">
           <md-input-container class="full-width">
-            <input mdInput placeholder="Inicio" [value]="event.ends | date: 'dd/MM/yyyy  HH:mm'">
+            <input mdInput placeholder="Inicio" [value]="event.ends | date: 'dd/MM/yyyy  HH:mm'" readonly="true">
           </md-input-container>
         </div>
 
         <div fxFlex="20">
           <md-input-container class="full-width">
-            <input mdInput placeholder="Total Invitados" [value]="event.guests">
+            <input mdInput placeholder="Total Invitados" [value]="event.guests" readonly="true">
           </md-input-container>
         </div>
 
         <div fxFlex="20">
           <md-input-container class="full-width">
-            <input mdInput placeholder="Total Asistentes" [value]="event.attendees">
+            <input mdInput placeholder="Total Asistentes" [value]="event.attendees"  readonly="true">
           </md-input-container>
         </div>
 
@@ -50,6 +50,96 @@
       </md-card-header>
     </md-card>
   </div>
+
+  <div fxLayout="row" class="rowMargin">
+    <div fxFlex="50" class="card-padding">
+      <md-card class="card-container-chart">
+        <md-card-header>
+          <md-card-title>
+          <span class="md-title">Invitados / Asistentes</span>
+          </md-card-title>
+        </md-card-header>
+        <md-card-content class="md-card-content-chart">
+          <div class="grafico-pie">
+            <canvas baseChart
+                    [data]="pieChart1Data"
+                    [labels]="pieChart1Labels"
+                    [chartType]="pieChart1Type"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </md-card-content>
+      </md-card>
+    </div>
+
+    <div fxFlex="50" class="card-padding">
+      <md-card class="card-container-chart">
+        <md-card-header>
+          <md-card-title>
+          <span class="md-title">Invitados/Asistentes</span>
+          </md-card-title>
+        </md-card-header>
+        <md-card-content class="md-card-content-chart">
+          <div class="grafico-pie">
+            <canvas baseChart
+                    [data]="pieChart2Data"
+                    [labels]="pieChart2Labels"
+                    [chartType]="pieChart2Type"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+
+
+
+    <div fxLayout="row" class="rowMargin">
+
+      <div fxFlex="50" class="card-padding">
+        <md-card class="card-container-chart">
+          <md-card-header>
+            <md-card-title>
+            <span class="md-title">Hora llegada</span>
+            </md-card-title>
+          </md-card-header>
+          <md-card-content class="md-card-content-chart">
+            <div class="grafico-barra">
+              <canvas baseChart
+        	            [datasets]="barChart3Data"
+        	            [labels]="barChart3Labels"
+        	            [options]="barChart3Options"
+        	            [legend]="barChart3Legend"
+        	            [chartType]="barChart3Type"
+        	            (chartHover)="chartHovered($event)"
+        	            (chartClick)="chartClicked($event)"></canvas>
+            </div>
+          </md-card-content>
+        </md-card>
+      </div>
+
+      <div fxFlex="50" class="card-padding">
+        <md-card class="card-container-chart">
+          <md-card-header>
+            <md-card-title>
+            <span class="md-title">Invitados / Asistentes</span>
+            </md-card-title>
+          </md-card-header>
+          <md-card-content class="md-card-content-chart">
+            <div class="grafico-pie">
+              <canvas baseChart
+                      [data]="pieChart1Data"
+                      [labels]="pieChart1Labels"
+                      [chartType]="pieChart1Type"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"></canvas>
+            </div>
+          </md-card-content>
+        </md-card>
+      </div>
+    </div>
+
 
 </div>
 </ng-container>

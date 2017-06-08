@@ -17,6 +17,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 
 import { MemberService} from './services/member.service';
+import { StatisticsService} from './services/statistics.service';
 import { EventService } from './services/event.service';
 import { GuestService } from './services/guest.service';
 import { DialogsServiceService } from './services/dialogs-service.service';
@@ -77,11 +78,12 @@ import { LogoutComponent } from './components/session/logout/logout.component';
   ],
   entryComponents: [EventNewComponent, GuestAddComponent, DialogComponent],
   providers: [
-    AppConfig, 
-    EventService, 
-    MemberService, 
-    GuestService, 
-    DialogsServiceService, 
+    AppConfig,
+    EventService,
+    MemberService,
+    StatisticsService,
+    GuestService,
+    DialogsServiceService,
     SessionService,
     RutValidator,
     Angular2TokenService,

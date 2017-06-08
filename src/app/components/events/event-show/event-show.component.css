@@ -5,3 +5,32 @@
 .full-width { width: 100%; }
 
 .rowMargin { margin-bottom: 20px; }
+
+.md-card-content-chart {
+	display: flex;
+	justify-content: center;
+}
+
+.card-padding {
+	margin-right: 20px;
+}
+
+.grafico-pie {
+	height: 400px;
+	width: 400px;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+
+}
+
+.grafico-bar {
+	height: 600px;
+	width: 600px;
+}
+
+.containerg {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
