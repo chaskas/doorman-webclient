@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
 
   private _handleSuccess(data: any) {
       this.errors = null;
-      this._router.navigate(['dash']);
+      this._router.navigate(['/']);
   }
 
   private _handleError(error: any) {

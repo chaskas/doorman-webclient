@@ -1,10 +1,10 @@
 <div class="container">
-	<form [formGroup]="registerForm">
+	<form [formGroup]="registerForm" (submit)="doRegister()">
 		<md-card>
 		  <md-card-header>
 		    <md-card-title class="title">Registro de Usuario</md-card-title>
 		  </md-card-header>
-		     
+
 		    <div>
 		       <md-input-container><input mdInput placeholder="Nombre" formControlName="first_name" required></md-input-container>
 		    </div>
@@ -12,7 +12,7 @@
 		   <div>
 		      <md-input-container><input mdInput placeholder="Apellido" formControlName="last_name" required></md-input-container>
 		    </div>
-		  
+
 		    <div>
 		      <md-input-container><input type="email" mdInput placeholder="Email" formControlName="email" required>
 
@@ -26,7 +26,7 @@
 		    <div>
 		       <md-input-container><input type="password" mdInput placeholder="Confirmar Password" formControlName="password_confirmation" required></md-input-container>
 		    </div>
-		  
+
 		  <md-card-actions class="actions">
 			  <div>
 			     <a routerLink="/login"><button md-button >Volver</button></a>

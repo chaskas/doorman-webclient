@@ -22,6 +22,7 @@ import { EventService } from './services/event.service';
 import { GuestService } from './services/guest.service';
 import { DialogsServiceService } from './services/dialogs-service.service';
 import { SessionService } from './services/session.service';
+import { ProfileService } from './services/profile.service';
 
 import { EventNewComponent } from './components/events/event-new/event-new.component';
 import { EventShowComponent } from './components/events/event-show/event-show.component';
@@ -86,8 +87,8 @@ import { LogoutComponent } from './components/session/logout/logout.component';
     DialogsServiceService,
     SessionService,
     RutValidator,
-    Angular2TokenService,
-
+    ProfileService,
+    Angular2TokenService
   ],
   bootstrap: [AppComponent]
 })

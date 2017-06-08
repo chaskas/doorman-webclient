@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { RouterModule, Routes } from '@angular/router';
 
+import { Angular2TokenService } from 'angular2-token';
+
 import { DashboardComponent } from '../components/dashboard/dashboard.component';
 import { CalendarComponent } from '../components/calendar/calendar.component';
 import { MemberListComponent } from '../components/member/member-list/member-list.component';
@@ -20,19 +22,20 @@ import { LogoutComponent } from '../components/session/logout/logout.component';
 const routes: Routes = [
  {  path: '', component: DashboardComponent ,
       children:[
-        { path : '', component: CalendarComponent },
-        { path : 'members', component: MemberListComponent },
-        { path : 'members/new', component: MemberNewComponent },
-        { path : 'members/edit/:id', component: MemberEditComponent },
-        { path : 'members/show/:id', component: MemberShowComponent },
-        { path : 'events/show/:id', component: EventShowComponent },
-        { path : 'invitados', component: MemberListInvitadosComponent },
-        { path : 'charts', component: ChartsComponent },
-        { path : 'login', component: LoginComponent },
-        { path : 'signup', component: RegisterComponent },
-        { path : 'logout', component: LogoutComponent }
+        { path: '', component: CalendarComponent },
+        { path: 'members', component: MemberListComponent, canActivate: [Angular2TokenService] },
+        { path: 'members/new', component: MemberNewComponent, canActivate: [Angular2TokenService] },
+        { path: 'members/edit/:id', component: MemberEditComponent, canActivate: [Angular2TokenService] },
+        { path: 'members/show/:id', component: MemberShowComponent, canActivate: [Angular2TokenService] },
+        { path: 'events/show/:id', component: EventShowComponent, canActivate: [Angular2TokenService] },
+        { path: 'invitados', component: MemberListInvitadosComponent, canActivate: [Angular2TokenService] },
+        { path: 'charts', component: ChartsComponent, canActivate: [Angular2TokenService] },
+        { path: 'users', component: RegisterComponent, canActivate: [Angular2TokenService] },
+        { path: 'users/new', component: RegisterComponent, canActivate: [Angular2TokenService] }
       ]
  },
+ { path: 'signin', component: LoginComponent },
+ { path: 'signout', component: LogoutComponent, canActivate: [Angular2TokenService] }
 ];
 
 @NgModule({
