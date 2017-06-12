@@ -31,22 +31,14 @@ export class EventShowComponent implements OnInit {
   public pieChart2Type:string = 'pie';
 
   //GRÁFICO 3
-  public barChart3Labels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChart3Labels:string[] = ['22', '23', '00', '01', '02', '03', '04'];
   public barChart3Type:string = 'bar';
   public barChart3Legend:boolean = true;
-
-  public barChart3Data:any[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
-  ];
-
+  public barChart3Data:any[] = [{data: [0, 0, 0, 0, 0, 0, 0], label: 'Cantidad'}];
   public barChart3Options:any = {
     scaleShowVerticalLines: false,
     responsive: true
   };
-
-
-  //GRÁFICO 4
 
 
   public chartPieClicked(e:any):void {
@@ -92,6 +84,10 @@ export class EventShowComponent implements OnInit {
       .switchMap((params: Params) => this.statisticsService.getChart2(+params['id']))
       .subscribe(data => this._handleChart2Success(data));
 
+    this.route.params
+      .switchMap((params: Params) => this.statisticsService.getChart3(+params['id']))
+      .subscribe(data => this._handleChart3Success(data));
+
   }
 
   private _handleGetEventSuccess(event: Event)
@@ -119,6 +115,22 @@ export class EventShowComponent implements OnInit {
                         	data['invInvitado1'],
                         	data['invInvitado']
                         ];
+
+  }
+
+  private _handleChart3Success(data: any)
+  {
+    console.log(this.barChart3Data);
+    this.barChart3Data[0]['data'] = [
+                          data['22'],
+                        	data['23'],
+                          data['00'],
+                          data['01'],
+                          data['02'],
+                          data['03'],
+                        	data['04']
+                        ];
+    console.log(this.barChart3Data);
 
   }
 

@@ -34,6 +34,13 @@ export class StatisticsService {
                .catch(this.handleError);
   }
 
+  getChart3(id: number): Promise<any> {
+    return this.http.get(this.url + '/3/' + id)
+               .toPromise()
+               .then(response => response.json() as any)
+               .catch(this.handleError);
+  }
+
 
   private handleError(error: any): Promise<any>
   {
