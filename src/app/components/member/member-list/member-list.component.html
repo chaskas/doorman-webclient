@@ -1,5 +1,6 @@
 <div class="container">
   <md-tab-group class="member-list-tabs">
+
     <md-tab label="Hosts">
 
       <md-grid-list cols="5" rowHeight="80px">
@@ -17,10 +18,68 @@
       </md-grid-list>
 
     </md-tab>
+
     <md-tab label="Residentes">
 
       <md-grid-list cols="5" rowHeight="80px">
         <md-grid-tile *ngFor="let member of residentes">
+
+          <div fxLayout="row">
+            <a [routerLink]="['edit',member.id]"> <div><img  src="https://api.adorable.io/avatars/60/{{ member.first_name }}" class="member-avatar"/></div> </a>
+            <div fxLayout="column" class="member-desc">
+
+             <a [routerLink]="['show',member.id]">  <span class="member-title">{{ member.first_name }} {{ member.last_name }}</span> </a>
+
+              <span class="member-subtitle">Últ. visto: {{ member.last_seen | date:'dd/MM/y' }}</span>
+            </div>
+          </div>
+
+        </md-grid-tile>
+      </md-grid-list>
+    </md-tab>
+
+    <md-tab label="Embajadores">
+
+      <md-grid-list cols="5" rowHeight="80px">
+        <md-grid-tile *ngFor="let member of embajadores">
+
+          <div fxLayout="row">
+            <a [routerLink]="['edit',member.id]"> <div><img  src="https://api.adorable.io/avatars/60/{{ member.first_name }}" class="member-avatar"/></div> </a>
+            <div fxLayout="column" class="member-desc">
+
+             <a [routerLink]="['show',member.id]">  <span class="member-title">{{ member.first_name }} {{ member.last_name }}</span> </a>
+
+              <span class="member-subtitle">Últ. visto: {{ member.last_seen | date:'dd/MM/y' }}</span>
+            </div>
+          </div>
+
+        </md-grid-tile>
+      </md-grid-list>
+    </md-tab>
+
+    <md-tab label="Invitados +1">
+
+      <md-grid-list cols="5" rowHeight="80px">
+        <md-grid-tile *ngFor="let member of invitados1">
+
+          <div fxLayout="row">
+            <a [routerLink]="['edit',member.id]"> <div><img  src="https://api.adorable.io/avatars/60/{{ member.first_name }}" class="member-avatar"/></div> </a>
+            <div fxLayout="column" class="member-desc">
+
+             <a [routerLink]="['show',member.id]">  <span class="member-title">{{ member.first_name }} {{ member.last_name }}</span> </a>
+
+              <span class="member-subtitle">Últ. visto: {{ member.last_seen | date:'dd/MM/y' }}</span>
+            </div>
+          </div>
+
+        </md-grid-tile>
+      </md-grid-list>
+    </md-tab>
+
+    <md-tab label="Invitados">
+
+      <md-grid-list cols="5" rowHeight="80px">
+        <md-grid-tile *ngFor="let member of invitados">
 
           <div fxLayout="row">
             <a [routerLink]="['edit',member.id]"> <div><img  src="https://api.adorable.io/avatars/60/{{ member.first_name }}" class="member-avatar"/></div> </a>

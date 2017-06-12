@@ -13,7 +13,6 @@ import { MemberEditComponent } from '../components/member/member-edit/member-edi
 import { MemberListInvitadosComponent } from '../components/member/member-list/member-list-invitados/member-list-invitados.component';
 import { MemberShowComponent } from '../components/member/member-show/member-show.component';
 import { EventShowComponent } from '../components/events/event-show/event-show.component';
-import { ChartsComponent } from '../components/charts/charts.component';
 import { LoginComponent } from '../components/session/login/login.component';
 import { RegisterComponent } from '../components/session/register/register.component';
 import { LogoutComponent } from '../components/session/logout/logout.component';
@@ -29,7 +28,6 @@ const routes: Routes = [
         { path: 'members/show/:id', component: MemberShowComponent, canActivate: [Angular2TokenService] },
         { path: 'events/show/:id', component: EventShowComponent, canActivate: [Angular2TokenService] },
         { path: 'invitados', component: MemberListInvitadosComponent, canActivate: [Angular2TokenService] },
-        { path: 'charts', component: ChartsComponent, canActivate: [Angular2TokenService] },
         { path: 'users', component: RegisterComponent, canActivate: [Angular2TokenService] },
         { path: 'users/new', component: RegisterComponent, canActivate: [Angular2TokenService] }
       ]

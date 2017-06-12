@@ -12,6 +12,9 @@ export class MemberListComponent implements OnInit {
 
   hosts: Member[] = [];
   residentes: Member[] = [];
+  embajadores: Member[] = [];
+  invitados: Member[] = [];
+  invitados1: Member[] = [];
 
   constructor(
       private memberService: MemberService
@@ -22,9 +25,17 @@ export class MemberListComponent implements OnInit {
   	this.memberService.getHosts()
   	    .then(hosts => this.hosts = hosts);
 
-
     this.memberService.getResidentes()
   	    .then(residentes => this.residentes = residentes);
+
+    this.memberService.getEmbajadores()
+  	    .then(embajadores => this.embajadores = embajadores);
+
+    this.memberService.getInvitados()
+  	    .then(invitados => this.invitados = invitados);
+
+    this.memberService.getInvitados1()
+  	    .then(invitados1 => this.invitados1 = invitados1);
 
   }
 

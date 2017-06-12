@@ -48,8 +48,28 @@ export class MemberService {
                .catch(this.handleError);
   }
 
+  getEmbajadores(): Promise<Member[]> {
+    return this.http.get(this.url + '/m/embajador')
+               .toPromise()
+               .then(response => response.json() as Member[])
+               .catch(this.handleError);
+  }
+
   getInvitados(): Promise<Member[]> {
     return this.http.get(this.url + '/m/invitado')
+               .toPromise()
+               .then(response => response.json() as Member[])
+               .catch(this.handleError);
+  }
+
+  getInvitados1(): Promise<Member[]> {
+    return this.http.get(this.url + '/m/invitado1')
+               .toPromise()
+               .then(response => response.json() as Member[])
+               .catch(this.handleError);
+  }
+  getNormales(): Promise<Member[]> {
+    return this.http.get(this.url + '/m/normal')
                .toPromise()
                .then(response => response.json() as Member[])
                .catch(this.handleError);

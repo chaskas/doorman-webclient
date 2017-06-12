@@ -38,7 +38,6 @@ import { GuestAddComponent } from './components/guests/guest-add/guest-add.compo
 import { DialogComponent } from './utils/dialog/dialog.component';
 import { CustomValidators } from 'ng2-validation';
 import { Ng2Rut, RutValidator } from './utils/rut/ng2-rut.module';
-import { ChartsComponent } from './components/charts/charts.component';
 import { ChartsModule } from 'ng2-charts';
 import { Angular2TokenService } from 'angular2-token';
 import { LoginComponent } from './components/session/login/login.component';
@@ -59,7 +58,6 @@ import { LogoutComponent } from './components/session/logout/logout.component';
     MemberShowComponent,
     DialogComponent,
     GuestAddComponent,
-    ChartsComponent,
     LoginComponent,
     RegisterComponent,
     LogoutComponent

@@ -18,7 +18,7 @@ export class MemberListInvitadosComponent implements OnInit {
 
   ngOnInit() {
 
-    this.memberService.getInvitados()
+    this.memberService.getNormales()
         .then(invitados => this.invitados = invitados);
   }
 

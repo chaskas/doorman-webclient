@@ -44,7 +44,7 @@ export class MemberEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
   public openDialog() {
     this.dialogsService
@@ -65,7 +65,7 @@ export class MemberEditComponent implements OnInit {
     if(res) {
       this.memberService.deleteMember(this.member.id).then((data) => {
         this._router.navigate(['members']);
-      });  
+      });
     }
   }
 
@@ -92,8 +92,8 @@ export class MemberEditComponent implements OnInit {
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
       gender: ['', [Validators.required]],
-      email: ['', [Validators.required, CustomValidators.email]],
-      phone: ['', [Validators.required, CustomValidators.max(99999999999)]],
+      email: [''],
+      phone: [''],
       mtype: ['', [Validators.required]]
 
     });

@@ -8,7 +8,7 @@
           </md-card-actions>
       </md-card-header>
       <div>
-         <md-input-container><input mdInput placeholder="Rut" formControlName="rut" required="true"></md-input-container>
+         <md-input-container><input mdInput placeholder="Rut" formControlName="rut" required></md-input-container>
       </div>
       <div fxLayout="row" class="form-row">
         <div fxFlex="50">
@@ -16,22 +16,22 @@
            <input mdInput placeholder="Nombre" formControlName="first_name" ></md-input-container>
         </div>
        <div fxFlex="50">
-          <md-input-container><input mdInput placeholder="Apellido" formControlName="last_name" required="true"></md-input-container>
+          <md-input-container><input mdInput placeholder="Apellido" formControlName="last_name" required></md-input-container>
         </div>
       </div>
 
       <div fxLayout="row" class="form-row">
         <div fxFlex="50">
-          <md-input-container><input type="email" mdInput placeholder="Email" formControlName="email" required="true"></md-input-container>
+          <md-input-container><input type="email" mdInput placeholder="Email" formControlName="email"></md-input-container>
         </div>
         <div fxFlex="50">
-           <md-input-container><input mdInput placeholder="Teléfono" formControlName="phone" required="true"></md-input-container>
+           <md-input-container><input mdInput placeholder="Teléfono" formControlName="phone"></md-input-container>
         </div>
       </div>
 
       <div fxLayout="row" class="form-row">
         <div fxFlex="50">
-          <md-select placeholder="Género" formControlName="gender" required="true">
+          <md-select placeholder="Género" formControlName="gender" required>
              <md-option [value]="1"> Masculino</md-option>
              <md-option [value]="2"> Femenino </md-option>
           </md-select>

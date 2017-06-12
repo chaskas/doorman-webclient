@@ -20,34 +20,33 @@ import { ChartsModule } from 'ng2-charts';
 })
 export class EventShowComponent implements OnInit {
 
-
- //GRÁFICO 1
+  //GRÁFICO 1
   public pieChart1Labels:string[] = ['Invitados', 'Asistentes'];
   public pieChart1Data:number[] = [0,0];
   public pieChart1Type:string = 'pie';
 
-//GRÁFICO 2
-  public pieChart2Labels:string[] = ['Invitados', 'Hosts', 'Residentes', 'Invitados Host', 'Invitados Residentes', 'Invitados Staff'];
-  public pieChart2Data:number[] = [0,0,0,0,0,0];
+  //GRÁFICO 2
+  public pieChart2Labels:string[] = ['Normal', 'Host', 'Residente', 'Embajador', 'Invitado +1', 'Invitado', '+4 Host', '+3 Residente', '+7 Embajador', '+1 Invitado +1', 'Staff'];
+  public pieChart2Data:number[] = [0,0,0,0,0,0,0,0,0,0,0];
   public pieChart2Type:string = 'pie';
 
-//GRÁFICO 3
-public barChart3Labels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-public barChart3Type:string = 'bar';
-public barChart3Legend:boolean = true;
+  //GRÁFICO 3
+  public barChart3Labels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChart3Type:string = 'bar';
+  public barChart3Legend:boolean = true;
 
-public barChart3Data:any[] = [
-  {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-  {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
-];
+  public barChart3Data:any[] = [
+    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+  ];
 
-public barChart3Options:any = {
-  scaleShowVerticalLines: false,
-  responsive: true
-};
+  public barChart3Options:any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
 
 
-//GRÁFICO 4
+  //GRÁFICO 4
 
 
   public chartPieClicked(e:any):void {
@@ -57,8 +56,6 @@ public barChart3Options:any = {
   public chartPieHovered(e:any):void {
     console.log(e);
   }
-
-
 
   // events
   public chartBarClicked(e:any):void {
@@ -72,8 +69,6 @@ public barChart3Options:any = {
   event: Event;
 
   chart1: any;
-
-
 
   constructor(
     private route: ActivatedRoute,
@@ -93,6 +88,10 @@ public barChart3Options:any = {
       .switchMap((params: Params) => this.statisticsService.getChart1(+params['id']))
       .subscribe(data => this._handleChart1Success(data));
 
+    this.route.params
+      .switchMap((params: Params) => this.statisticsService.getChart2(+params['id']))
+      .subscribe(data => this._handleChart2Success(data));
+
   }
 
   private _handleGetEventSuccess(event: Event)
@@ -103,6 +102,24 @@ public barChart3Options:any = {
   private _handleChart1Success(data: any)
   {
     this.pieChart1Data = [data['guests'],data['attendees']];
+  }
+
+  private _handleChart2Success(data: any)
+  {
+    this.pieChart2Data = [
+                          data['normal'],
+                        	data['host'],
+                          data['residente'],
+                          data['embajador'],
+                          data['invitado1'],
+                          data['invitado'],
+                        	data['invHost'],
+                        	data['invResidente'],
+                        	data['invEmbajador'],
+                        	data['invInvitado1'],
+                        	data['invInvitado']
+                        ];
+
   }
 
   addGuestsDialog() {

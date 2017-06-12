@@ -5,9 +5,9 @@
 }
 
 .monthName { font-size: 18px; font-weight: bold; }
-.dayName { font-weight: bold; background-color: #2196F3; }
-.dayNumber { font-weight: bold; color: #BBDEFB; background-color: #E3F2FD; text-align: center; font-size: 30px; }
-.eventDay { background-color: #90CAF9; color: #616161; cursor: pointer; cursor: hand;}
+.dayName { font-weight: bold; background-color: #BDBDBD; }
+.dayNumber { font-weight: bold; color: #9E9E9E; background-color: #FAFAFA; text-align: center; font-size: 30px; }
+.eventDay { background-color: #BDBDBD; color: #616161; cursor: pointer; cursor: hand;}
 .fill-remaining-space { flex: 1 1 auto; }
 
 .calendar-wrapper { width: 100%; }

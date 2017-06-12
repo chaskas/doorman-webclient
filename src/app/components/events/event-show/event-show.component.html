@@ -9,31 +9,31 @@
 
         <div fxFlex="20">
           <md-input-container class="full-width">
-            <input mdInput placeholder="Nombre" [value]="event.name" readonly="true">
+            <input mdInput placeholder="Nombre" [value]="event.name" readonly>
           </md-input-container>
         </div>
 
         <div fxFlex="20">
           <md-input-container class="full-width">
-            <input mdInput placeholder="Inicio" [value]="event.starts | date: 'dd/MM/yyyy  HH:mm'" readonly="true">
+            <input mdInput placeholder="Inicio" [value]="event.starts | date: 'dd/MM/yyyy  HH:mm'" readonly>
           </md-input-container>
         </div>
 
         <div fxFlex="20">
           <md-input-container class="full-width">
-            <input mdInput placeholder="Inicio" [value]="event.ends | date: 'dd/MM/yyyy  HH:mm'" readonly="true">
+            <input mdInput placeholder="Inicio" [value]="event.ends | date: 'dd/MM/yyyy  HH:mm'" readonly>
           </md-input-container>
         </div>
 
         <div fxFlex="20">
           <md-input-container class="full-width">
-            <input mdInput placeholder="Total Invitados" [value]="event.total_guests" readonly="true">
+            <input mdInput placeholder="Total Invitados" [value]="event.total_guests" readonly>
           </md-input-container>
         </div>
 
         <div fxFlex="20">
           <md-input-container class="full-width">
-            <input mdInput placeholder="Total Asistentes" [value]="event.total_attendees"  readonly="true">
+            <input mdInput placeholder="Total Asistentes" [value]="event.total_attendees"  readonly>
           </md-input-container>
         </div>
 
@@ -56,7 +56,7 @@
       <md-card class="card-container-chart">
         <md-card-header>
           <md-card-title>
-          <span class="md-title">Invitados / Asistentes</span>
+          <span class="md-title">Lista General</span>
           </md-card-title>
         </md-card-header>
         <md-card-content class="md-card-content-chart">
@@ -76,7 +76,7 @@
       <md-card class="card-container-chart">
         <md-card-header>
           <md-card-title>
-          <span class="md-title">Invitados/Asistentes</span>
+          <span class="md-title">Asistentes</span>
           </md-card-title>
         </md-card-header>
         <md-card-content class="md-card-content-chart">
