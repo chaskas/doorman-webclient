@@ -23,12 +23,18 @@ export class EventShowComponent implements OnInit {
   //GRÁFICO 1
   public pieChart1Labels:string[] = ['Invitados', 'Asistentes'];
   public pieChart1Data:number[] = [0,0];
-  public pieChart1Type:string = 'pie';
+  public pieChart1Type:string = 'doughnut';
+  public pieChart1Options:any = {
+                                  legend: { position: 'right' }
+                                };
 
   //GRÁFICO 2
   public pieChart2Labels:string[] = ['Normal', 'Host', 'Residente', 'Embajador', 'Invitado +1', 'Invitado', '+4 Host', '+3 Residente', '+7 Embajador', '+1 Invitado +1', 'Staff'];
   public pieChart2Data:number[] = [0,0,0,0,0,0,0,0,0,0,0];
-  public pieChart2Type:string = 'pie';
+  public pieChart2Type:string = 'doughnut';
+  public pieChart2Options:any = {
+                                  legend: { position: 'right' }
+                                };
 
   //GRÁFICO 3
   public barChart3Labels:string[] = ['22', '23', '00', '01', '02', '03', '04'];
@@ -36,45 +42,20 @@ export class EventShowComponent implements OnInit {
   public barChart3Legend:boolean = true;
   public barChart3Data:any[] = [{data: [0, 0, 0, 0, 0, 0, 0], label: 'Cantidad'}];
   public barChart3Options:any = {
-    scaleShowVerticalLines: false,
-    responsive: true
-  };
+                                  scaleShowVerticalLines: false,
+                                  responsive: true,
+                                  legend: { position: 'right', fullWidth: true }
+                                };
 
   //GRÁFICO 4
   public doughnutChart4Labels:string[] = new Array();
   public doughnutChart4Data:number[] = new Array();
   public doughnutChart4Type:string = 'doughnut';
+  public doughnutChart4Options:any = {
+                                  legend: { position: 'right' }
+                                };
 
-
-  public chartPieClicked(e:any):void {
-    console.log(e);
-  }
-
-  public chartPieHovered(e:any):void {
-    console.log(e);
-  }
-
-  // events
-  public chartBarClicked(e:any):void {
-    console.log(e);
-  }
-
-  public chartBarHovered(e:any):void {
-    console.log(e);
-  }
-
-
-
-  public chartClicked(e:any):void {
-     console.log(e);
-   }
-
-   public chartHovered(e:any):void {
-     console.log(e);
-   }
   event: Event;
-
-  chart1: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -151,17 +132,12 @@ export class EventShowComponent implements OnInit {
 
   private _handleChart4Success(data: any)
   {
-    // ;
-    console.log(data.length);
-
     for (var i=0;i< data.length; i++)
     {
         this.doughnutChart4Labels.push(data[i]['name']);
         this.doughnutChart4Data.push(data[i]['guests']);
     }
-
   }
-
 
   addGuestsDialog() {
     var config = new MdDialogConfig();
