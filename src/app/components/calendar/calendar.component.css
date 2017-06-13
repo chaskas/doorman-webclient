@@ -1,13 +1,40 @@
 .container {
   display: flex;
   justify-content: center;
-  padding: 40px;
+  padding: 20px;
 }
 
-.monthName { font-size: 18px; font-weight: bold; }
-.dayName { font-weight: bold; background-color: #BDBDBD; }
-.dayNumber { font-weight: bold; color: #9E9E9E; background-color: #FAFAFA; text-align: center; font-size: 30px; }
-.eventDay { background-color: #BDBDBD; color: #616161; cursor: pointer; cursor: hand;}
+.full-width { width: 100%; }
+
+.calendar-wrapper { flex: 1 0 auto; border: 1px  #000000 solid; }
+
+.monthName { font-size: 18px; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+.dayName { font-weight: bold; background-color: #000000; color: #FFFFFF; }
+.dayNumber { font-weight: bold; color: #616161; background-color: #FAFAFA; text-align: center; font-size: 2rem; }
+.eventDay { background-color: #E0E0E0; color: #212121; cursor: pointer; cursor: hand;}
 .fill-remaining-space { flex: 1 1 auto; }
 
-.calendar-wrapper { width: 100%; }
+.mat-card { padding-top: 0; }
+.month-buttons { height: 50px; }
+.month-arrow.mat-button { padding: 0px; display: flex; min-width: 30px; }
+.month-arrow.left.mat-button { justify-content: flex-start; }
+.month-arrow.right.mat-button { justify-content: flex-end; }
+
+@media screen and (min-width: 0em) {
+		.dayNumber { font-size: 0.7rem; }
+    .dayNameS { display: inline; }
+    .dayNameL { display: none; }
+    .monthName { font-size: 0.8rem; }
+}
+@media screen and (min-width: 20em) {
+		.dayNumber { font-size: 1rem; }
+    .dayNameS { display: inline; }
+    .dayNameL { display: none; }
+    .monthName { font-size: 1rem; }
+}
+@media screen and (min-width: 50em) {
+		.dayNumber { font-size: 1.5rem; }
+    .dayNameS { display: none; }
+    .dayNameL { display: inline; }
+    .monthName { font-size: 1.5rem; }
+}

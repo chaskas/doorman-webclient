@@ -1,27 +1,25 @@
 <div class="container">
-
-  <md-card class="calendar-wrapper">
-    <md-card-header>
-      <md-card-title>
-        <button md-button (click)="changeMonth(-1)"><md-icon>skip_previous</md-icon></button>
-        <span class="fill-remaining-space monthName">{{ today | date: "MMMM / y" }}</span>
-        <button md-button (click)="changeMonth(+1)"><md-icon>skip_next</md-icon></button>
-      </md-card-title>
-    </md-card-header>
+  <md-card class="full-width">
     <md-card-content>
-      <md-grid-list cols="7" rowHeight="50px">
-        <md-grid-tile [colspan]="1" [rowspan]="1" class="dayName">Lunes</md-grid-tile>
-        <md-grid-tile [colspan]="1" [rowspan]="1" class="dayName">Martes</md-grid-tile>
-        <md-grid-tile [colspan]="1" [rowspan]="1" class="dayName">Miércoles</md-grid-tile>
-        <md-grid-tile [colspan]="1" [rowspan]="1" class="dayName">Jueves</md-grid-tile>
-        <md-grid-tile [colspan]="1" [rowspan]="1" class="dayName">Viernes</md-grid-tile>
-        <md-grid-tile [colspan]="1" [rowspan]="1" class="dayName">Sábado</md-grid-tile>
-        <md-grid-tile [colspan]="1" [rowspan]="1" class="dayName">Domingo</md-grid-tile>
-      </md-grid-list>
-      <md-grid-list cols="7" rowHeight="100px">
-        <md-grid-tile [colspan]="1" [rowspan]="1" class="dayNumber" *ngFor="let day of daysList" [class.eventDay]="day.event" (click)="getEvent(day)">{{ day.date | date: 'dd' }}</md-grid-tile>
-      </md-grid-list>
+      <div fxLayout="row" class="month-buttons">
+        <button md-button (click)="changeMonth(-1)" class="month-arrow"><md-icon>skip_previous</md-icon></button>
+        <span class="fill-remaining-space monthName">{{ today | date: "MMMM / y" }}</span>
+        <button md-button (click)="changeMonth(+1)" class="month-arrow right"><md-icon>skip_next</md-icon></button>
+      </div>
+      <div class="calendar-wrapper">
+        <md-grid-list cols="7" rowHeight="50px">
+          <md-grid-tile [colspan]="1" [rowspan]="1" class="dayName"><span class="dayNameS">L</span><span class="dayNameL">Lunes</span></md-grid-tile>
+          <md-grid-tile [colspan]="1" [rowspan]="1" class="dayName"><span class="dayNameS">M</span><span class="dayNameL">Martes</span></md-grid-tile>
+          <md-grid-tile [colspan]="1" [rowspan]="1" class="dayName"><span class="dayNameS">M</span><span class="dayNameL">Miércoles</span></md-grid-tile>
+          <md-grid-tile [colspan]="1" [rowspan]="1" class="dayName"><span class="dayNameS">J</span><span class="dayNameL">Jueves</span></md-grid-tile>
+          <md-grid-tile [colspan]="1" [rowspan]="1" class="dayName"><span class="dayNameS">V</span><span class="dayNameL">Viernes</span></md-grid-tile>
+          <md-grid-tile [colspan]="1" [rowspan]="1" class="dayName"><span class="dayNameS">S</span><span class="dayNameL">Sábado</span></md-grid-tile>
+          <md-grid-tile [colspan]="1" [rowspan]="1" class="dayName"><span class="dayNameS">D</span><span class="dayNameL">Domingo</span></md-grid-tile>
+        </md-grid-list>
+        <md-grid-list cols="7" rowHeight="100px" class="row-days">
+          <md-grid-tile [colspan]="1" [rowspan]="1" class="dayNumber" *ngFor="let day of daysList" [class.eventDay]="day.event" (click)="getEvent(day)">{{ day.date | date: 'dd' }}</md-grid-tile>
+        </md-grid-list>
+      </div>
     </md-card-content>
-
   </md-card>
 </div>
