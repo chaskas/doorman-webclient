@@ -25,7 +25,7 @@ export class EventShowComponent implements OnInit {
   public pieChart1Data:number[] = [0,0];
   public pieChart1Type:string = 'doughnut';
   public pieChart1Options:any = {
-                                  legend: { position: 'right' }
+                                  legend: { position: 'right', labels: { usePointStyle: true } }
                                 };
 
   //GRÁFICO 2
@@ -33,18 +33,18 @@ export class EventShowComponent implements OnInit {
   public pieChart2Data:number[] = [0,0,0,0,0,0,0,0,0,0,0];
   public pieChart2Type:string = 'doughnut';
   public pieChart2Options:any = {
-                                  legend: { position: 'right' }
+                                  legend: { position: 'right', labels: { usePointStyle: true } }
                                 };
 
   //GRÁFICO 3
   public barChart3Labels:string[] = ['22', '23', '00', '01', '02', '03', '04'];
   public barChart3Type:string = 'bar';
   public barChart3Legend:boolean = true;
-  public barChart3Data:any[] = [{data: [0, 0, 0, 0, 0, 0, 0], label: 'Cantidad'}];
+  public barChart3Data:any[] = [{data: [0, 0, 0, 0, 0, 0, 0], label: 'Cantidad', borderWidth: 0 }];
   public barChart3Options:any = {
-                                  scaleShowVerticalLines: false,
+                                  scaleShowVerticalLines: true,
                                   responsive: true,
-                                  legend: { position: 'right', fullWidth: true }
+                                  legend: { position: 'bottom', labels: { usePointStyle: true, fontSize: 11 } }
                                 };
 
   //GRÁFICO 4
@@ -52,7 +52,7 @@ export class EventShowComponent implements OnInit {
   public doughnutChart4Data:number[] = new Array();
   public doughnutChart4Type:string = 'doughnut';
   public doughnutChart4Options:any = {
-                                  legend: { position: 'right' }
+                                  legend: { position: 'right', labels: { usePointStyle: true } }
                                 };
 
   event: Event;
@@ -132,6 +132,8 @@ export class EventShowComponent implements OnInit {
 
   private _handleChart4Success(data: any)
   {
+    this.doughnutChart4Labels = [];
+    this.doughnutChart4Data = [];
     for (var i=0;i< data.length; i++)
     {
         this.doughnutChart4Labels.push(data[i]['name']);
@@ -142,8 +144,6 @@ export class EventShowComponent implements OnInit {
   addGuestsDialog() {
     var config = new MdDialogConfig();
     config.data = this.event;
-    config.height = "400px";
-    config.width = "600px";
     let dialogRef = this.dialog.open(GuestAddComponent, config);
     dialogRef.afterClosed().subscribe(result => { this.eventService.getEvent(this.event.id).then(event => this.ngOnInit()); });
   }

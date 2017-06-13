@@ -135,8 +135,6 @@ export class CalendarComponent implements OnInit {
 
       var config = new MdDialogConfig();
       config.data = day;
-      config.height = "300px";
-      config.width = "400px";
       let dialogRef = this.dialog.open(EventNewComponent, config);
       dialogRef.afterClosed().subscribe(result => { this.eventService.getEventsByMonth(this.month + 1).then(events => this.fillMonth(events)); });
     }
