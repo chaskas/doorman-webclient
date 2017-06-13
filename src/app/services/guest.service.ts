@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/toPromise';
 
+import { Angular2TokenService } from 'angular2-token';
+
 import { AppConfig } from '../config/app.config';
 
 @Injectable()
@@ -11,22 +13,20 @@ export class GuestService {
 
   constructor(
     private http: Http,
+    private tokenService: Angular2TokenService,
     private config: AppConfig
   ) { }
 
   addGuests(id: number, ruts: string[]) : Promise<string[]>
 	{
-    let url = this.config.get('host') + '/guest/add';
+    let url = '/guest/add';
 
     let body = JSON.stringify ({
                                 "id": id,
                                 "ruts": ruts
                               });
 
-    let headers      = new Headers({ 'Content-Type': 'application/json' });
-    let options      = new RequestOptions({ headers: headers });
-
-    return this.http.post(url, body, options)
+    return this.tokenService.post(url, body)
               .toPromise()
               .then(response => response.json() as string[])
               .catch(this.handleError);
