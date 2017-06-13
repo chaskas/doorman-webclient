@@ -72,11 +72,11 @@
       </md-card>
     </div>
 
-    <div fxFlex="50" class="card-padding">
+    <div fxFlex="50" >
       <md-card class="card-container-chart">
         <md-card-header>
           <md-card-title>
-          <span class="md-title">Asistentes</span>
+          <span class="md-title">Asistentes por tipo</span>
           </md-card-title>
         </md-card-header>
         <md-card-content class="md-card-content-chart">
@@ -104,7 +104,7 @@
             <span class="md-title">Hora llegada</span>
             </md-card-title>
           </md-card-header>
-          <md-card-content class="md-card-content-chart">
+          <md-card-content class="md-card-content-chart2">
             <div class="grafico-barra">
               <canvas baseChart
         	            [datasets]="barChart3Data"
@@ -119,21 +119,21 @@
         </md-card>
       </div>
 
-      <div fxFlex="50" class="card-padding">
+      <div fxFlex="50" *ngIf="doughnutChart4Data">
         <md-card class="card-container-chart">
           <md-card-header>
             <md-card-title>
-            <span class="md-title">Invitados / Asistentes</span>
+            <span class="md-title">Invitados por Usuario</span>
             </md-card-title>
           </md-card-header>
           <md-card-content class="md-card-content-chart">
-            <div class="grafico-pie">
+            <div class="grafico-doughnut">
               <canvas baseChart
-                      [data]="pieChart1Data"
-                      [labels]="pieChart1Labels"
-                      [chartType]="pieChart1Type"
+                      [data]="doughnutChart4Data"
+                      [labels]="doughnutChart4Labels"
+                      [chartType]="doughnutChart4Type"
                       (chartHover)="chartHovered($event)"
-                      (chartClick)="chartClicked($event)"></canvas>
+                (chartClick)="chartClicked($event)"></canvas>
             </div>
           </md-card-content>
         </md-card>

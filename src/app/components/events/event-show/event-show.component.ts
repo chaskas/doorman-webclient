@@ -40,6 +40,11 @@ export class EventShowComponent implements OnInit {
     responsive: true
   };
 
+  //GRÁFICO 4
+  public doughnutChart4Labels:string[] = new Array();
+  public doughnutChart4Data:number[] = new Array();
+  public doughnutChart4Type:string = 'doughnut';
+
 
   public chartPieClicked(e:any):void {
     console.log(e);
@@ -58,6 +63,15 @@ export class EventShowComponent implements OnInit {
     console.log(e);
   }
 
+
+
+  public chartClicked(e:any):void {
+     console.log(e);
+   }
+
+   public chartHovered(e:any):void {
+     console.log(e);
+   }
   event: Event;
 
   chart1: any;
@@ -88,6 +102,10 @@ export class EventShowComponent implements OnInit {
       .switchMap((params: Params) => this.statisticsService.getChart3(+params['id']))
       .subscribe(data => this._handleChart3Success(data));
 
+    this.route.params
+        .switchMap((params: Params) => this.statisticsService.getChart4(+params['id']))
+        .subscribe(data => this._handleChart4Success(data));
+
   }
 
   private _handleGetEventSuccess(event: Event)
@@ -98,41 +116,52 @@ export class EventShowComponent implements OnInit {
   private _handleChart1Success(data: any)
   {
     this.pieChart1Data = [data['guests'],data['attendees']];
+
   }
 
   private _handleChart2Success(data: any)
   {
     this.pieChart2Data = [
                           data['normal'],
-                        	data['host'],
+                          data['host'],
                           data['residente'],
                           data['embajador'],
                           data['invitado1'],
                           data['invitado'],
-                        	data['invHost'],
-                        	data['invResidente'],
-                        	data['invEmbajador'],
-                        	data['invInvitado1'],
-                        	data['invInvitado']
+                          data['invHost'],
+                          data['invResidente'],
+                          data['invEmbajador'],
+                          data['invInvitado1'],
+                          data['invInvitado']
                         ];
 
   }
 
   private _handleChart3Success(data: any)
   {
-    console.log(this.barChart3Data);
-    this.barChart3Data[0]['data'] = [
-                          data['22'],
-                        	data['23'],
-                          data['00'],
-                          data['01'],
-                          data['02'],
-                          data['03'],
-                        	data['04']
-                        ];
-    console.log(this.barChart3Data);
+    this.barChart3Data = [
+        {data: [data['22'],
+                data['23'],
+                data['00'],
+                data['01'],
+                data['02'],
+                data['03'],
+                data['04']], label: 'Cantidad'}];
+  }
+
+  private _handleChart4Success(data: any)
+  {
+    // ;
+    console.log(data.length);
+
+    for (var i=0;i< data.length; i++)
+    {
+        this.doughnutChart4Labels.push(data[i]['name']);
+        this.doughnutChart4Data.push(data[i]['guests']);
+    }
 
   }
+
 
   addGuestsDialog() {
     var config = new MdDialogConfig();
