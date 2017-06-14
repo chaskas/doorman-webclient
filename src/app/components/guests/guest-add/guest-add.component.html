@@ -1,18 +1,32 @@
-<h1 md-dialog-title>Añadir Invitados</h1>
-<md-dialog-content>
-  <div>
-    <table *ngIf="badRuts">
-      <h4 *ngIf="badRuts.length">Inválido</h4>
-      <tr *ngFor="let rut of badRuts" class="badruts"><td>
-        {{ rut }}
-      </td></tr>
-    </table>
-    <md-input-container class="full-width">
-      <textarea mdInput class="textarea-height" [(ngModel)]="guests"></textarea>
-    </md-input-container>
-  </div>
-</md-dialog-content>
-<md-dialog-actions class="event-actions">
-  <button md-button md-dialog-close>Cancelar</button>
-  <button md-button [disabled]="!guests" (click)="addGuests()">Aceptar</button>
-</md-dialog-actions>
+<div class="container">
+  <h4 md-dialog-title class="title">Añadir Invitados</h4>
+  <md-dialog-content class="content">
+    <div fxLayout="row">
+      <div fxFlex="50">
+        <div *ngIf="valid_ruts.length > 0" class="result-wrapper">
+          <button md-button (click)="addGuests()" class="invite-button">Invitar</button>
+          <ul class="valids">
+            <li *ngFor="let rut of valid_ruts; let i = index;" (click)="removeValid(i)"><span class="over-hidden">{{ rut }}</span><md-icon class="icon">clear</md-icon></li>
+          </ul>
+        </div>
+      </div>
+      <div fxFlex="50">
+        <div *ngIf="invalid_ruts.length > 0" class="result-wrapper">
+          <button md-button (click)="editInvalids()" class="edit-button" [disabled]="valid_ruts.length != 0">Editar</button>
+          <ul class="invalids">
+            <li *ngFor="let rut of invalid_ruts; let i = index;" (click)="removeInvalid(i)"><span class="over-hidden">{{ rut }}</span><md-icon class="icon">clear</md-icon></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <md-input-container class="full-width">
+        <textarea mdInput [(ngModel)]="guests" mdTextareaAutosize></textarea>
+      </md-input-container>
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions class="actions">
+    <button md-button md-dialog-close>Cancelar</button>
+    <button md-button [disabled]="!guests" (click)="validate()">Validar</button>
+  </md-dialog-actions>
+</div>

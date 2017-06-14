@@ -23,7 +23,7 @@ export class EventShowComponent implements OnInit {
   //GRÁFICO 1
   public pieChart1Labels:string[] = ['Invitados', 'Asistentes'];
   public pieChart1Data:number[] = [0,0];
-  public pieChart1Type:string = 'doughnut';
+  public pieChart1Type:string = 'pie';
   public pieChart1Options:any = {
                                   legend: { position: 'right', labels: { usePointStyle: true } }
                                 };

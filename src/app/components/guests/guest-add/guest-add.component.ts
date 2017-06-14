@@ -3,6 +3,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { MdSnackBar } from '@angular/material';
 
+import * as rutHelpers from 'rut-helpers';
+
 import { GuestService } from '../../../services/guest.service';
 
 import { Event } from '../../../model/event';
@@ -18,9 +20,8 @@ export class GuestAddComponent implements OnInit {
 
   guests: string;
 
-  ruts: string[];
-
-  badRuts: string[];
+  valid_ruts: string[] = new Array();
+  invalid_ruts: string[] = new Array();
 
   @Input() errors: string[];
 	@Input() success: string;
@@ -32,26 +33,55 @@ export class GuestAddComponent implements OnInit {
   ) { }
 
   addGuests() {
-    this.split();
-    this.guestService.addGuests(this.event.id,this.ruts).then(
+
+    for (var i = 0, len = this.valid_ruts.length; i < len; i++) {
+      var clean = rutHelpers.rutClean(this.valid_ruts[i])
+      this.valid_ruts[i] = clean.substring(0, clean.length - 1);
+    }
+
+    this.guestService.addGuests(this.event.id,this.valid_ruts).then(
       res =>      this._handleUpdateSuccess(res),
       error =>    this._handleError(error)
-    );;
+    );
+
+    this.valid_ruts = [];
+
   }
 
-  split() {
-    this.ruts = this.guests.split(/[\n,\s]+/);
-    this.ruts = this.ruts.filter(entry => /\S/.test(entry));
-
-    for (var i = 0, len = this.ruts.length; i < len; i++) {
-      this.ruts[i] = this.ruts[i].replace(/\./g,'');
-      this.ruts[i] = this.ruts[i].replace(/\-/g,'');
+  editInvalids(){
+    for (var i = 0, len = this.invalid_ruts.length; i < len; i++) {
+      this.guests += this.invalid_ruts[i] + "\n";
     }
+    this.invalid_ruts = [];
+  }
+
+  removeValid(i: number){
+    this.valid_ruts.splice(i,1);
+  }
+
+  removeInvalid(i: number){
+    this.invalid_ruts.splice(i,1);
+  }
+
+  validate() {
+    this.valid_ruts = new Array();
+    this.invalid_ruts = new Array();
+
+    var ruts = this.guests.split(/[\n,\s]+/);
+    ruts = ruts.filter(entry => /\S/.test(entry));
+
+    for (var i = 0, len = ruts.length; i < len; i++) {
+      if(rutHelpers.rutValidate(ruts[i])){
+        this.valid_ruts.push(rutHelpers.rutFormat(ruts[i]))
+      } else {
+        this.invalid_ruts.push(ruts[i]);
+      }
+    }
+
+    this.guests = '';
   }
 
   private _handleUpdateSuccess(data: any) {
-    this.guests = "";
-    this.badRuts = data;
     this.snackBar.open("Invitados correctamente.", "OK", {
       duration: 2000,
     });
