@@ -1,6 +1,6 @@
 import { Angular2TokenService } from 'angular2-token';
 import { Component, Input, OnInit } from '@angular/core';
-
+import { MdSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private formBuilder: FormBuilder,
     private _tokenService: Angular2TokenService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+      public snackBar: MdSnackBar
   ) { }
 
   ngOnInit() {
@@ -52,6 +53,10 @@ export class LoginComponent implements OnInit {
 
   private _handleError(error: any) {
       this.errors = error.json().errors;
+      this.snackBar.open("Error en credenciales", "OK", {
+        duration: 3000,
+      });
+
   }
 
 }
