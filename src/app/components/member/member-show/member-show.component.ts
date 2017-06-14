@@ -12,7 +12,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class MemberShowComponent implements OnInit {
 
-member: Member;
+  member: Member;
+  mtype_value: string;
+  c_invite: number=0;
 // memberForm: FormGroup;
 
   constructor(
@@ -34,6 +36,33 @@ member: Member;
   private _handleGetMemberSuccess(member: Member)
   {
     this.member = member;
+
+    if(this.member.mtype == 0){
+      this.mtype_value = "Normal";
+      this.c_invite=0;
+    }
+    else if(this.member.mtype == 1){
+      this.mtype_value = "Residente";
+      this.c_invite=4;
+    }
+    else if(this.member.mtype == 2){
+      this.mtype_value = "Host";
+      this.c_invite=5;
+    }
+    else if(this.member.mtype == 3){
+      this.mtype_value = "Invitado";
+      this.c_invite=1;
+    }
+    else if(this.member.mtype == 5){
+      this.mtype_value = "Invitado +1";
+      this.c_invite=2;
+    }
+    else if(this.member.mtype == 4){
+      this.mtype_value = "Embajador";
+      this.c_invite=8;
+    }
+
+
 
     // this.memberForm.setValue({
     //   rut: member.rut,

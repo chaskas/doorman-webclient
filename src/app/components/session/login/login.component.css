@@ -12,6 +12,12 @@
 	justify-content: center;
 }
 
+.error {
+  color: red;
+  font-size: 8pt;
+}
+
+
 .actions { display: flex; justify-content: flex-end; }
 
 .center-container {
