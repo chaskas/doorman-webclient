@@ -1,6 +1,21 @@
 <div class="container">
   <h4 md-dialog-title class="title">Añadir Invitados</h4>
   <md-dialog-content class="content">
+    <div fxLayout="row" class="slider-wrapper">
+      <md-slider
+        class="slider"
+        [disabled]="s_disabled"
+        [invert]="s_invert"
+        [max]="s_max"
+        [min]="s_min"
+        [step]="s_step"
+        [thumb-label]="s_thumbLabel"
+        [tick-interval]="tickInterval"
+        displayValue="s_displayValue"
+        [value]="s_value"
+        [vertical]="s_vertical">
+    </md-slider>
+    </div>
     <div fxLayout="row">
       <div fxFlex="50">
         <div *ngIf="valid_ruts.length > 0" class="result-wrapper">

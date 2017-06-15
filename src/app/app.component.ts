@@ -4,6 +4,8 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { Angular2TokenService } from 'angular2-token';
 import { AppConfig } from './config/app.config';
 
+import 'hammerjs';
+
 @Component({
   selector: 'app-root',
   template: '<router-outlet></router-outlet>',

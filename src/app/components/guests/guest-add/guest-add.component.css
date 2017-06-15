@@ -11,6 +11,7 @@
 .title {
   flex: 0 1 auto;
   font-family: Roboto,"Helvetica Neue",sans-serif;
+  margin-bottom: 0;
 }
 .content {
   display: flex;
@@ -89,6 +90,13 @@ ul.invalids > li {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.slider-wrapper {
+  padding-top: 18px;
+}
+.slider {
+  width: 100%;
 }
 
 /deep/ app-guest-add {

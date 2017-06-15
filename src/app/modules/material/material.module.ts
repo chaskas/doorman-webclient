@@ -17,6 +17,7 @@ import { MdNativeDateModule } from '@angular/material';
 import { MdTabsModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MdSnackBarModule } from '@angular/material';
+import { MdSliderModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { MdSnackBarModule } from '@angular/material';
     MdNativeDateModule,
     MdTabsModule,
     FlexLayoutModule,
-    MdSnackBarModule
+    MdSnackBarModule,
+    MdSliderModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -52,7 +54,8 @@ import { MdSnackBarModule } from '@angular/material';
     MdNativeDateModule,
     MdTabsModule,
     FlexLayoutModule,
-    MdSnackBarModule
+    MdSnackBarModule,
+    MdSliderModule
   ],
   declarations: []
 })

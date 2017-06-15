@@ -96,4 +96,29 @@ export class GuestAddComponent implements OnInit {
     this.event = this.dialogRef._containerInstance.dialogConfig.data;
   }
 
+  // Slider
+  s_autoTicks = true;
+  s_disabled = false;
+  s_invert = false;
+  s_max = 5;
+  s_min = 0;
+  s_showTicks = true;
+  s_step = 1;
+  s_thumbLabel = true;
+  s_value = 0;
+  s_vertical = false;
+
+  get s_displayValue(): string {
+    if(this.s_value == 0)
+      return "00";
+  }
+
+  get tickInterval(): number | 'auto' {
+    return this.s_showTicks ? (this.s_autoTicks ? 'auto' : this._tickInterval) : null;
+  }
+  set tickInterval(v) {
+    this._tickInterval = Number(v);
+  }
+  private _tickInterval = 1;
+
 }
