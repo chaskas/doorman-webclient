@@ -1,19 +1,11 @@
 <div class="container">
-  <h4 md-dialog-title class="title">Añadir Invitados</h4>
+  <div fxLayout="row" class="header">
+    <h4 md-dialog-title class="title">Añadir Invitados</h4>
+    <span class="clock">{{ sDisplayValue }}</span>
+  </div>
   <md-dialog-content class="content">
     <div fxLayout="row" class="slider-wrapper">
-      <md-slider
-        class="slider"
-        [disabled]="s_disabled"
-        [invert]="s_invert"
-        [max]="s_max"
-        [min]="s_min"
-        [step]="s_step"
-        [thumb-label]="s_thumbLabel"
-        [tick-interval]="tickInterval"
-        displayValue="s_displayValue"
-        [value]="s_value"
-        [vertical]="s_vertical">
+      <md-slider class="slider" max="5" min="0" step="1" tickInterval="1" [value]="sValue" [(ngModel)]="sValue">
     </md-slider>
     </div>
     <div fxLayout="row">
@@ -41,7 +33,7 @@
     </div>
   </md-dialog-content>
   <md-dialog-actions class="actions">
-    <button md-button md-dialog-close>Cancelar</button>
+    <button md-button md-dialog-close>Atrás</button>
     <button md-button [disabled]="!guests" (click)="validate()">Validar</button>
   </md-dialog-actions>
 </div>

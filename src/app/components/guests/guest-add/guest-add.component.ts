@@ -39,7 +39,7 @@ export class GuestAddComponent implements OnInit {
       this.valid_ruts[i] = clean.substring(0, clean.length - 1);
     }
 
-    this.guestService.addGuests(this.event.id,this.valid_ruts).then(
+    this.guestService.addGuests(this.event.id,this.sValue, this.valid_ruts).then(
       res =>      this._handleUpdateSuccess(res),
       error =>    this._handleError(error)
     );
@@ -82,7 +82,7 @@ export class GuestAddComponent implements OnInit {
   }
 
   private _handleUpdateSuccess(data: any) {
-    this.snackBar.open("Invitados correctamente.", "OK", {
+    this.snackBar.open("Invitados correctamente.", undefined, {
       duration: 2000,
     });
   }
@@ -96,29 +96,22 @@ export class GuestAddComponent implements OnInit {
     this.event = this.dialogRef._containerInstance.dialogConfig.data;
   }
 
-  // Slider
-  s_autoTicks = true;
-  s_disabled = false;
-  s_invert = false;
-  s_max = 5;
-  s_min = 0;
-  s_showTicks = true;
-  s_step = 1;
-  s_thumbLabel = true;
-  s_value = 0;
-  s_vertical = false;
+  sValue: number = 1;
 
-  get s_displayValue(): string {
-    if(this.s_value == 0)
-      return "00";
+  get sDisplayValue(): string {
+    if(this.sValue == 0)
+      return "00:00";
+    else if (this.sValue == 1)
+      return "01:00";
+    else if (this.sValue == 2)
+      return "02:00";
+    else if (this.sValue == 3)
+      return "03:00";
+    else if (this.sValue == 4)
+      return "04:00";
+    else if (this.sValue == 5)
+      return "05:00";
   }
 
-  get tickInterval(): number | 'auto' {
-    return this.s_showTicks ? (this.s_autoTicks ? 'auto' : this._tickInterval) : null;
-  }
-  set tickInterval(v) {
-    this._tickInterval = Number(v);
-  }
-  private _tickInterval = 1;
 
 }

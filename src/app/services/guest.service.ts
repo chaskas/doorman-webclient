@@ -17,12 +17,13 @@ export class GuestService {
     private config: AppConfig
   ) { }
 
-  addGuests(id: number, ruts: string[]) : Promise<string[]>
+  addGuests(id: number, ends: number, ruts: string[]) : Promise<string[]>
 	{
     let url = '/guest/add';
 
     let body = JSON.stringify ({
                                 "id": id,
+                                "ends": ends,
                                 "ruts": ruts
                               });
 
