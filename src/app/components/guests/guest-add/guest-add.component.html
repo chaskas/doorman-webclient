@@ -3,34 +3,37 @@
     <h4 md-dialog-title class="title">Añadir Invitados</h4>
     <span class="clock">{{ sDisplayValue }}</span>
   </div>
+
   <md-dialog-content class="content">
     <div fxLayout="row" class="slider-wrapper">
       <md-slider class="slider" max="5" min="0" step="1" tickInterval="1" [value]="sValue" [(ngModel)]="sValue">
     </md-slider>
     </div>
-    <div fxLayout="row">
-      <div fxFlex="50">
-        <div *ngIf="valid_ruts.length > 0" class="result-wrapper">
-          <button md-button (click)="addGuests()" class="invite-button">Invitar</button>
-          <ul class="valids">
-            <li *ngFor="let rut of valid_ruts; let i = index;" (click)="removeValid(i)"><span class="over-hidden">{{ rut }}</span><md-icon class="icon">clear</md-icon></li>
-          </ul>
+
+    <div fxLayout="column" class="asa" [ngClass]="{'margin-on-result': (valid_ruts.length > 0) || (invalid_ruts.length > 0)  }">
+      <div>
+        <div fxLayout="row">
+          <div *ngIf="valid_ruts.length > 0" class="result-wrapper">
+            <button md-button (click)="addGuests()" class="invite-button">Invitar</button>
+            <ul class="valids">
+              <li *ngFor="let rut of valid_ruts; let i = index;" (click)="removeValid(i)"><span class="over-hidden">{{ rut }}</span><md-icon class="icon">clear</md-icon></li>
+            </ul>
+          </div>
+        </div>
+        <div fxLayout="row">
+          <div *ngIf="invalid_ruts.length > 0" class="result-wrapper">
+            <button md-button (click)="editInvalids()" class="edit-button" [disabled]="valid_ruts.length != 0">Editar</button>
+            <ul class="invalids">
+              <li *ngFor="let rut of invalid_ruts; let i = index;" (click)="removeInvalid(i)"><span class="over-hidden">{{ rut }}</span><md-icon class="icon">clear</md-icon></li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div fxFlex="50">
-        <div *ngIf="invalid_ruts.length > 0" class="result-wrapper">
-          <button md-button (click)="editInvalids()" class="edit-button" [disabled]="valid_ruts.length != 0">Editar</button>
-          <ul class="invalids">
-            <li *ngFor="let rut of invalid_ruts; let i = index;" (click)="removeInvalid(i)"><span class="over-hidden">{{ rut }}</span><md-icon class="icon">clear</md-icon></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div fxLayout="row">
       <md-input-container class="full-width">
-        <textarea mdInput [(ngModel)]="guests" mdTextareaAutosize></textarea>
+        <textarea class="full-width" mdInput [(ngModel)]="guests"></textarea>
       </md-input-container>
     </div>
+    
   </md-dialog-content>
   <md-dialog-actions class="actions">
     <button md-button md-dialog-close>Atrás</button>
