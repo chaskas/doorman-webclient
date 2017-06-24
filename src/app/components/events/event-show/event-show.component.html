@@ -92,7 +92,7 @@
       </md-card>
     </div>
 
-    <div class="chart-wrapper" >
+    <div class="chart-wrapper">
       <md-card class="card-container-chart">
         <md-card-header>
           <md-card-title>
@@ -112,7 +112,7 @@
       </md-card>
     </div>
 
-    <div class="chart-wrapper" *ngIf="doughnutChart4Data">
+    <div class="chart-wrapper" *ngIf="doughnutChart4Data.length > 0">
       <md-card>
         <md-card-header>
           <md-card-title>
@@ -126,6 +126,26 @@
                     [labels]="doughnutChart4Labels"
                     [chartType]="doughnutChart4Type"
                     [options]="doughnutChart4Options"></canvas>
+          </div>
+        </md-card-content>
+      </md-card>
+    </div>
+
+    <div class="chart-wrapper">
+      <md-card class="card-container-chart">
+        <md-card-header>
+          <md-card-title>
+          <span class="md-title">Cortesias</span>
+          </md-card-title>
+        </md-card-header>
+        <md-card-content class="md-card-content-chart2">
+          <div class="grafico-barra">
+            <canvas baseChart
+      	            [datasets]="barChart5Data"
+      	            [labels]="barChart5Labels"
+      	            [options]="barChart5Options"
+      	            [legend]="barChart5Legend"
+      	            [chartType]="barChart5Type"></canvas>
           </div>
         </md-card-content>
       </md-card>

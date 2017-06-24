@@ -1,6 +1,6 @@
 import { Angular2TokenService } from 'angular2-token';
 import { Component, Input, OnInit } from '@angular/core';
-import { MdSnackBar } from '@angular/material';
+import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -53,9 +53,9 @@ export class LoginComponent implements OnInit {
 
   private _handleError(error: any) {
       this.errors = error.json().errors;
-      this.snackBar.open("Error en credenciales", "OK", {
-        duration: 3000,
-      });
+      var config: MdSnackBarConfig = new MdSnackBarConfig();
+      config.duration = 300000;
+      this.snackBar.open("Usuario y/o Contraseña Incorrecto", undefined, config);
 
   }
 

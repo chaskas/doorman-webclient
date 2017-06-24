@@ -55,6 +55,17 @@ export class EventShowComponent implements OnInit {
                                   legend: { position: 'right', labels: { usePointStyle: true } }
                                 };
 
+  //GRÁFICO 5
+  public barChart5Labels:string[] = ['Embajador', 'Host'];
+  public barChart5Type:string = 'bar';
+  public barChart5Legend:boolean = true;
+  public barChart5Data:any[] = [{data: [0, 0], label: 'Cantidad', borderWidth: 0 }];
+  public barChart5Options:any = {
+                                  scaleShowVerticalLines: true,
+                                  responsive: true,
+                                  legend: { position: 'bottom', labels: { usePointStyle: true, fontSize: 11 } }
+                                };
+
   event: Event;
 
   constructor(
@@ -86,6 +97,11 @@ export class EventShowComponent implements OnInit {
     this.route.params
         .switchMap((params: Params) => this.statisticsService.getChart4(+params['id']))
         .subscribe(data => this._handleChart4Success(data));
+
+
+    this.route.params
+        .switchMap((params: Params) => this.statisticsService.getChart5(+params['id']))
+        .subscribe(data => this._handleChart5Success(data));
 
   }
 
@@ -139,6 +155,13 @@ export class EventShowComponent implements OnInit {
         this.doughnutChart4Labels.push(data[i]['name']);
         this.doughnutChart4Data.push(data[i]['guests']);
     }
+  }
+
+  private _handleChart5Success(data: any)
+  {
+    this.barChart5Data = [
+        {data: [data['embajador'],
+                data['host']], label: 'Cantidad'}];
   }
 
   addGuestsDialog() {

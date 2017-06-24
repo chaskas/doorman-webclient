@@ -19,7 +19,6 @@ export class StatisticsService {
   ) {
    }
 
-
   getChart1(id: number): Promise<any> {
     return this.http.get(this.url + '/1/' + id)
                .toPromise()
@@ -48,6 +47,12 @@ export class StatisticsService {
                .catch(this.handleError);
   }
 
+  getChart5(id: number): Promise<any> {
+    return this.http.get(this.url + '/5/' + id)
+               .toPromise()
+               .then(response => response.json() as any)
+               .catch(this.handleError);
+  }
 
   private handleError(error: any): Promise<any>
   {
