@@ -46,7 +46,7 @@ export class CalendarComponent implements OnInit {
     private _tokenService: Angular2TokenService
   ) {
     this._tokenService.validateToken().subscribe(
-      res =>      console.log(res),
+      res =>      console.log("Token Valid!"),
       error =>    this._handleTokenError(error)
     );
   }

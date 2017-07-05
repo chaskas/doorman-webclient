@@ -1,7 +1,7 @@
 <div class="container">
 
   <div fxLayout="row" fxFlexAlign="flex-end">
-    <a [routerLink]="['new']" md-raised-button> <md-icon>add</md-icon> Nuevo</a>
+    <a *ngIf="user.isAdmin()" [routerLink]="['new']" md-raised-button> <md-icon>add</md-icon> Nuevo</a>
   </div>
   <br>
   <div fxLayout="row">

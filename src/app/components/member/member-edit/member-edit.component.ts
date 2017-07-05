@@ -41,7 +41,7 @@ export class MemberEditComponent implements OnInit {
   ) {
 
     this._tokenService.validateToken().subscribe(
-      res =>      console.log(res),
+      res =>      console.log("Token Valid!"),
       error =>    this._handleTokenError(error)
     );
 

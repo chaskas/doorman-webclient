@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Member } from '../../../model/member';
-import { MemberService } from '../../../services/member.service';
+import { Router } from '@angular/router';
 
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
 import { Angular2TokenService } from 'angular2-token';
-import { Router } from '@angular/router';
+
+import { Member } from '../../../model/member';
+
+import { MemberService } from '../../../services/member.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-member-list',
@@ -25,10 +27,11 @@ export class MemberListComponent implements OnInit {
       private memberService: MemberService,
       public snackBar: MdSnackBar,
       private _router: Router,
-      private _tokenService: Angular2TokenService
+      private _tokenService: Angular2TokenService,
+      private user: UserService
   ) {
     this._tokenService.validateToken().subscribe(
-      res =>      console.log(res),
+      res =>      console.log("Token Valid!"),
       error =>    this._handleTokenError(error)
     );
   }

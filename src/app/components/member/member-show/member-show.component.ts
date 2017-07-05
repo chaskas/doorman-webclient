@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params }   from '@angular/router';
-import 'rxjs/add/operator/switchMap';
-import { Member } from '../../../model/member';
-import { MemberService } from '../../../services/member.service';
+import { Router, ActivatedRoute, Params }   from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import 'rxjs/add/operator/switchMap';
 
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
 import { Angular2TokenService } from 'angular2-token';
-import { Router } from '@angular/router';
-
 import { rutClean } from 'rut-helpers';
+
+import { Member } from '../../../model/member';
+
+import { MemberService } from '../../../services/member.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-member-show',
@@ -28,11 +30,12 @@ export class MemberShowComponent implements OnInit {
     private route: ActivatedRoute,
     public snackBar: MdSnackBar,
     private _router: Router,
-    private _tokenService: Angular2TokenService
+    private _tokenService: Angular2TokenService,
+    private user: UserService
   ) {
 
     this._tokenService.validateToken().subscribe(
-      res =>      console.log(res),
+      res =>      console.log("Token Valid!"),
       error =>    this._handleTokenError(error)
     );
 

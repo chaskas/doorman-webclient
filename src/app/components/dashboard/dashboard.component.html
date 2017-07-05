@@ -4,9 +4,9 @@
 
   <div fxLayout="row" fxShow="false" fxShow.gt-xs>
     <a md-button routerLink="/">Calendario</a>
-    <a *ngIf="isAdmin" md-button routerLink="/members">Miembros</a>
-    <a *ngIf="isAdmin" md-button routerLink="/invitados">Invitados</a>
-    <a *ngIf="isAdmin" md-button routerLink="/members">Usuarios</a>
+    <a md-button routerLink="/members">Miembros</a>
+    <a *ngIf="user.isAdmin()" md-button routerLink="/invitados">Invitados</a>
+    <a *ngIf="user.isAdmin()" md-button routerLink="/members">Usuarios</a>
   </div>
 
   <span class="fill-remaining-space"></span>
@@ -23,13 +23,13 @@
   <button md-menu-item routerLink="/">
     Calendario
   </button>
-  <button md-menu-item *ngIf="isAdmin" routerLink="/members">
+  <button md-menu-item routerLink="/members">
     Miembros
   </button>
-  <button md-menu-item *ngIf="isAdmin" routerLink="/invitados">
+  <button md-menu-item *ngIf="user.isAdmin()" routerLink="/invitados">
     Invitados
   </button>
-  <button md-menu-item *ngIf="isAdmin" routerLink="/members">
+  <button md-menu-item *ngIf="user.isAdmin()" routerLink="/members">
     Usuarios
   </button>
   <button md-menu-item routerLink="/signout">

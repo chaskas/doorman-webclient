@@ -8,6 +8,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { CustomValidators } from 'ng2-validation';
 
 import { SessionService } from '../../../services/session.service';
+import { UserService } from '../../../services/user.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,7 +26,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private _tokenService: Angular2TokenService,
     private sessionService: SessionService,
-      public snackBar: MdSnackBar
+    private userService: UserService,
+    public snackBar: MdSnackBar
   ) { }
 
   ngOnInit() {
@@ -48,6 +51,7 @@ export class LoginComponent implements OnInit {
 
   private _handleSuccess(data: any) {
       this.errors = null;
+      this.userService.init();
       this._router.navigate(['/']);
   }
 

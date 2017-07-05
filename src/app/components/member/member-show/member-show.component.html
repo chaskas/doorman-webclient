@@ -57,7 +57,7 @@
         </md-card-content>
 
         <md-card-actions class="actions">
-            <button [routerLink]="['/members/edit',member.id]" md-button type="button">Editar Miembro</button>
+            <button *ngIf="user.isAdmin()" [routerLink]="['/members/edit',member.id]" md-button type="button">Editar Miembro</button>
         </md-card-actions>
 
         </md-card>

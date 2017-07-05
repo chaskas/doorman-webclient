@@ -6,11 +6,14 @@ import { Observable } from 'rxjs/Observable';
 
 import { Angular2TokenService } from 'angular2-token';
 
+import { UserService } from './user.service';
+
 @Injectable()
 export class SessionService {
 
   constructor(
     private _tokenService: Angular2TokenService,
+    private userService: UserService,
     private _router: Router,
     private _http: Http
   ) { }
@@ -35,7 +38,7 @@ export class SessionService {
   doLogout()
   {
     this._tokenService.signOut().subscribe(
-        res =>      console.log(res), // TODO corregir
+        res =>      console.log("bye"),
         error =>    console.log(error) // TODO corregir
     );
   }

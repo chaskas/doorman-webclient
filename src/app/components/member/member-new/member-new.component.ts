@@ -34,7 +34,7 @@ export class MemberNewComponent implements OnInit {
   ) {
 
     this._tokenService.validateToken().subscribe(
-      res =>      console.log(res),
+      res =>      console.log("Token Valid!"),
       error =>    this._handleTokenError(error)
     );
 
@@ -75,7 +75,6 @@ export class MemberNewComponent implements OnInit {
 
 
   private _handleError(error: any) {
-      console.log(error.json()['rut']);
       this.snackBar.open(error.json()['rut'], null, {
         duration: 2000,
       });

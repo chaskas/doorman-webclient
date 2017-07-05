@@ -15,8 +15,6 @@ import { UserService } from '../../services/user.service';
 })
 export class DashboardComponent implements OnInit {
 
-  isAdmin: boolean = false;
-
   @Input() errors: string[];
 
   constructor(
@@ -24,11 +22,11 @@ export class DashboardComponent implements OnInit {
     private route: ActivatedRoute,
     private _tokenService: Angular2TokenService,
     private snackBar: MdSnackBar,
-    private userService: UserService,
+    private user: UserService,
   ) {
 
     this._tokenService.validateToken().subscribe(
-      res =>      this._handleTokenSuccess(res),
+      res =>      console.log("Token Valid!"),
       error =>    this._handleTokenError(error)
     )
 
@@ -36,22 +34,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-  }
-
-  private _handleGetActualUserSuccess(data: any) {
-    this.isAdmin = data['admin'];
-  }
-
-  private _handleGetActualUserError(error: any) {
-    this.errors = error.json().errors.full_messages;
-  }
-
-  private _handleTokenSuccess(error: any) {
-    this.userService.getActualUser()
-      .then(
-        user => this._handleGetActualUserSuccess(user),
-        error => this._handleGetActualUserError(error)
-      );
   }
 
   private _handleTokenError(error: any) {
