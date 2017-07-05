@@ -3,6 +3,8 @@ import { ActivatedRoute, Params }   from '@angular/router';
 
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 
+import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
+
 import { EventService } from '../../../services/event.service';
 
 import { StatisticsService } from '../../../services/statistics.service';
@@ -12,6 +14,9 @@ import { Event } from '../../../model/event';
 import { GuestAddComponent } from '../../guests/guest-add/guest-add.component';
 
 import { ChartsModule } from 'ng2-charts';
+
+import { Angular2TokenService } from 'angular2-token';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-show',
@@ -72,8 +77,16 @@ export class EventShowComponent implements OnInit {
     private route: ActivatedRoute,
     private eventService: EventService,
     private statisticsService: StatisticsService,
+    public snackBar: MdSnackBar,
     public dialog: MdDialog,
+    private _router: Router,
+    private _tokenService: Angular2TokenService
   ) {
+
+    this._tokenService.validateToken().subscribe(
+      res =>      console.log(res),
+      error =>    this._handleTokenError(error)
+    );
 
   }
 
@@ -169,6 +182,13 @@ export class EventShowComponent implements OnInit {
     config.data = this.event;
     let dialogRef = this.dialog.open(GuestAddComponent, config);
     dialogRef.afterClosed().subscribe(result => { this.eventService.getEvent(this.event.id).then(event => this.ngOnInit()); });
+  }
+
+  private _handleTokenError(error: any) {
+    var config: MdSnackBarConfig = new MdSnackBarConfig();
+    config.duration = 1000;
+    this.snackBar.open("Su sesión ha expirado.", undefined, config);
+    this._router.navigate(['/signin']);
   }
 
 }

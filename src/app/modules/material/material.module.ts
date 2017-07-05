@@ -18,6 +18,7 @@ import { MdTabsModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MdSnackBarModule } from '@angular/material';
 import { MdSliderModule } from '@angular/material';
+import { MdMenuModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { MdSliderModule } from '@angular/material';
     MdTabsModule,
     FlexLayoutModule,
     MdSnackBarModule,
-    MdSliderModule
+    MdSliderModule,
+    MdMenuModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -55,7 +57,8 @@ import { MdSliderModule } from '@angular/material';
     MdTabsModule,
     FlexLayoutModule,
     MdSnackBarModule,
-    MdSliderModule
+    MdSliderModule,
+    MdMenuModule
   ],
   declarations: []
 })

@@ -5,6 +5,11 @@ import { Member } from '../../../model/member';
 import { MemberService } from '../../../services/member.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
+
+import { Angular2TokenService } from 'angular2-token';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-member-show',
   templateUrl: './member-show.component.html',
@@ -15,13 +20,19 @@ export class MemberShowComponent implements OnInit {
   member: Member;
   mtype_value: string;
   c_invite: number=0;
-// memberForm: FormGroup;
 
   constructor(
     private memberService: MemberService,
-    // private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public snackBar: MdSnackBar,
+    private _router: Router,
+    private _tokenService: Angular2TokenService
   ) {
+
+    this._tokenService.validateToken().subscribe(
+      res =>      console.log(res),
+      error =>    this._handleTokenError(error)
+    );
 
     this.route.params
     .switchMap((params: Params) => this.memberService.getMember(+params['id']))
@@ -31,7 +42,6 @@ export class MemberShowComponent implements OnInit {
   ngOnInit() {
 
   }
-
 
   private _handleGetMemberSuccess(member: Member)
   {
@@ -62,32 +72,13 @@ export class MemberShowComponent implements OnInit {
       this.c_invite=8;
     }
 
-
-
-    // this.memberForm.setValue({
-    //   rut: member.rut,
-    //   first_name: member.first_name,
-    //   last_name: member.last_name,
-    //   gender: member.gender,
-    //   email: member.email,
-    //   phone: member.phone,
-    //   mtype: member.mtype
-    // });
   }
 
-
-  	// private createForm()
-  	// {
-    //   this.memberForm = this.formBuilder.group({
-    //     rut: ['', [Validators.required]],
-    //     first_name: ['', [Validators.required]],
-    //     last_name: ['', [Validators.required]],
-    //     gender: ['', [Validators.required]],
-    //     email: ['', [Validators.required]],
-    //     phone: ['', [Validators.required]],
-    //     mtype: ['', [Validators.required]]
-    //
-    //   });
-  	// }
+  private _handleTokenError(error: any) {
+    var config: MdSnackBarConfig = new MdSnackBarConfig();
+    config.duration = 1000;
+    this.snackBar.open("Su sesión ha expirado.", undefined, config);
+    this._router.navigate(['/signin']);
+  }
 
 }

@@ -23,6 +23,7 @@ import { GuestService } from './services/guest.service';
 import { DialogsServiceService } from './services/dialogs-service.service';
 import { SessionService } from './services/session.service';
 import { ProfileService } from './services/profile.service';
+import { UserService } from './services/user.service';
 
 import { EventNewComponent } from './components/events/event-new/event-new.component';
 import { EventShowComponent } from './components/events/event-show/event-show.component';
@@ -73,7 +74,6 @@ import { LogoutComponent } from './components/session/logout/logout.component';
     ChartsModule,
     HttpModule,
     RouterModule
-
   ],
   entryComponents: [EventNewComponent, GuestAddComponent, DialogComponent],
   providers: [
@@ -86,6 +86,7 @@ import { LogoutComponent } from './components/session/logout/logout.component';
     SessionService,
     RutValidator,
     ProfileService,
+    UserService,
     Angular2TokenService
   ],
   bootstrap: [AppComponent]

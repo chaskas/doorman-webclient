@@ -5,8 +5,13 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { Angular2TokenService } from 'angular2-token';
+import { Router } from '@angular/router';
+
 import { Day } from '../../../model/day';
 import { Event } from '../../../model/event';
+
+import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
 import { EventService } from '../../../services/event.service';
 
@@ -29,8 +34,15 @@ export class EventNewComponent implements OnInit {
   constructor(
     public dialogRef: MdDialogRef<EventNewComponent>,
     private formBuilder: FormBuilder,
-    private eventService: EventService
+    private eventService: EventService,
+    public snackBar: MdSnackBar,
+    private _router: Router,
+    private _tokenService: Angular2TokenService
   ) {
+    this._tokenService.validateToken().subscribe(
+      res =>      console.log(res),
+      error =>    this._handleTokenError(error)
+    );
     this.createEventForm();
   }
 
@@ -62,6 +74,14 @@ export class EventNewComponent implements OnInit {
       starts: ['20:00:00', [Validators.required]],
       ends: ['05:00:00', [Validators.required]]
     });
+  }
+
+  private _handleTokenError(error: any) {
+    this.dialogRef.close();
+    var config: MdSnackBarConfig = new MdSnackBarConfig();
+    config.duration = 1000;
+    this.snackBar.open("Su sesión ha expirado.", undefined, config);
+    this._router.navigate(['/signin']);
   }
 
   ngOnInit() {

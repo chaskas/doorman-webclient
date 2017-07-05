@@ -92,6 +92,25 @@
       </md-card>
     </div>
 
+    <div class="chart-wrapper" *ngIf="doughnutChart4Data.length > 0">
+      <md-card>
+        <md-card-header>
+          <md-card-title>
+          <span class="md-title">Invitados por Usuario</span>
+          </md-card-title>
+        </md-card-header>
+        <md-card-content class="md-card-content-chart">
+          <div class="grafico-doughnut">
+            <canvas baseChart
+                    [data]="doughnutChart4Data"
+                    [labels]="doughnutChart4Labels"
+                    [chartType]="doughnutChart4Type"
+                    [options]="doughnutChart4Options"></canvas>
+          </div>
+        </md-card-content>
+      </md-card>
+    </div>
+
     <div class="chart-wrapper">
       <md-card class="card-container-chart">
         <md-card-header>
@@ -107,25 +126,6 @@
       	            [options]="barChart3Options"
       	            [legend]="barChart3Legend"
       	            [chartType]="barChart3Type"></canvas>
-          </div>
-        </md-card-content>
-      </md-card>
-    </div>
-
-    <div class="chart-wrapper" *ngIf="doughnutChart4Data.length > 0">
-      <md-card>
-        <md-card-header>
-          <md-card-title>
-          <span class="md-title">Invitados por Usuario</span>
-          </md-card-title>
-        </md-card-header>
-        <md-card-content class="md-card-content-chart">
-          <div class="grafico-doughnut">
-            <canvas baseChart
-                    [data]="doughnutChart4Data"
-                    [labels]="doughnutChart4Labels"
-                    [chartType]="doughnutChart4Type"
-                    [options]="doughnutChart4Options"></canvas>
           </div>
         </md-card-content>
       </md-card>

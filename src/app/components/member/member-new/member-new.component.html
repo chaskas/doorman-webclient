@@ -37,7 +37,7 @@
 
             <div class="input-wrapper">
               <md-input-container class="full-width">
-               <input type="number" mdInput placeholder="Teléfono" formControlName="phone" required></md-input-container>
+               <input type="number" mdInput placeholder="Teléfono" formControlName="phone"></md-input-container>
             </div>
 
             <div class="input-wrapper">
@@ -49,13 +49,14 @@
 
             <div class="input-wrapper">
               <md-select placeholder="Tipo Miembro" formControlName="mtype" required class="full-width select">
-                 <md-option [value]="1"> Residente </md-option>
-                 <md-option [value]="2"> Host </md-option>
-                 <md-option [value]="5"> Invitado +1 </md-option>
-                 <md-option [value]="4"> Embajador </md-option>
+                 <md-option [value]="1">Residente</md-option>
+                 <md-option [value]="2">Host</md-option>
+                 <md-option [value]="4">Embajador</md-option>
+                 <md-option [value]="5">Invitado +1</md-option>
+                 <md-option [value]="3">Invitado</md-option>
               </md-select>
             </div>
-          
+
         </md-card-content>
 
         <md-card-actions class="actions">

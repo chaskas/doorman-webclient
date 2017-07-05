@@ -1,13 +1,40 @@
 <md-toolbar>
+
   <span><img src="assets/logo-xs.jpg" alt="Logo"></span>
-  <a md-button routerLink="/">Calendario</a>
-  <!-- <a md-button routerLink="/members">Miembros</a>
-  <a md-button routerLink="/invitados">Invitados</a>
-  <a md-button routerLink="/members">Usuarios</a> -->
+
+  <div fxLayout="row" fxShow="false" fxShow.gt-xs>
+    <a md-button routerLink="/">Calendario</a>
+    <a *ngIf="isAdmin" md-button routerLink="/members">Miembros</a>
+    <a *ngIf="isAdmin" md-button routerLink="/invitados">Invitados</a>
+    <a *ngIf="isAdmin" md-button routerLink="/members">Usuarios</a>
+  </div>
 
   <span class="fill-remaining-space"></span>
 
-  <span><a routerLink="/signout"><md-icon>exit_to_app</md-icon></a></span>
+  <button md-icon-button [mdMenuTriggerFor]="menu" fxHide="false" fxHide.gt-xs>
+    <md-icon>menu</md-icon>
+  </button>
+
+  <span><a routerLink="/signout" fxShow="false" fxShow.gt-xs><md-icon>exit_to_app</md-icon> </a></span>
+
 </md-toolbar>
+
+<md-menu #menu="mdMenu">
+  <button md-menu-item routerLink="/">
+    Calendario
+  </button>
+  <button md-menu-item *ngIf="isAdmin" routerLink="/members">
+    Miembros
+  </button>
+  <button md-menu-item *ngIf="isAdmin" routerLink="/invitados">
+    Invitados
+  </button>
+  <button md-menu-item *ngIf="isAdmin" routerLink="/members">
+    Usuarios
+  </button>
+  <button md-menu-item routerLink="/signout">
+    Salir
+  </button>
+</md-menu>
 
 <router-outlet></router-outlet>

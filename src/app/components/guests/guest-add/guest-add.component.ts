@@ -1,9 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { MdDialog, MdDialogRef } from '@angular/material';
-import { MdSnackBar } from '@angular/material';
+import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
 import * as rutHelpers from 'rut-helpers';
+
+import { Angular2TokenService } from 'angular2-token';
+import { Router } from '@angular/router';
 
 import { GuestService } from '../../../services/guest.service';
 
@@ -29,8 +32,15 @@ export class GuestAddComponent implements OnInit {
   constructor(
     public dialogRef: MdDialogRef<GuestAddComponent>,
     public snackBar: MdSnackBar,
-    private guestService: GuestService
-  ) { }
+    private guestService: GuestService,
+    private _router: Router,
+    private _tokenService: Angular2TokenService
+  ) {
+    this._tokenService.validateToken().subscribe(
+      res =>      console.log(res),
+      error =>    this._handleTokenError(error)
+    );
+  }
 
   addGuests() {
 
@@ -90,6 +100,14 @@ export class GuestAddComponent implements OnInit {
   private _handleError(error: any) {
       this.errors = error.json();
       console.log(this.errors);
+  }
+
+  private _handleTokenError(error: any) {
+    this.dialogRef.close();
+    var config: MdSnackBarConfig = new MdSnackBarConfig();
+    config.duration = 1000;
+    this.snackBar.open("Su sesión ha expirado.", undefined, config);
+    this._router.navigate(['/signin']);
   }
 
   ngOnInit(){

@@ -54,9 +54,8 @@ export class LoginComponent implements OnInit {
   private _handleError(error: any) {
       this.errors = error.json().errors;
       var config: MdSnackBarConfig = new MdSnackBarConfig();
-      config.duration = 300000;
+      config.duration = 1000;
       this.snackBar.open("Usuario y/o Contraseña Incorrecto", undefined, config);
-
   }
 
 }
