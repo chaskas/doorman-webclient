@@ -78,7 +78,16 @@ export class MemberService {
   createMember(member: Member) : Promise<Member>
 	{
     let url = this.config.get('host') + '/people';
-    let body = JSON.stringify({rut: member.rut, first_name: member.first_name, last_name: member.last_name,
+
+    var rut = "";
+
+    if(member.rut.includes("-")){
+      rut = member.rut.substring(0,member.rut.indexOf("-"))
+    } else {
+      rut = member.rut.substring(0,member.rut.length-1);
+    }
+
+    let body = JSON.stringify({rut: rut, first_name: member.first_name, last_name: member.last_name,
                               gender: member.gender, email: member.email, phone: member.phone, mtype: member.mtype
                             });
     let headers      = new Headers({ 'Content-Type': 'application/json' });
@@ -110,14 +119,13 @@ export class MemberService {
   deleteMember(id: number): Promise<any>
   {
     const url = `${this.url}/${id}`;
-      return this.http.delete(url)
-                  .toPromise()
-                  .catch(this.handleError);
+    return this.http.delete(url)
+                .toPromise()
+                .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any>
   {
-    console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
 

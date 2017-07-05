@@ -52,20 +52,6 @@ export class MemberNewComponent implements OnInit {
     );
   }
 
-  private _handleGetMemberSuccess(member: Member)
-  {
-    this.memberForm.setValue({
-      rut: member.rut,
-      first_name: member.first_name,
-      last_name: member.last_name,
-      gender: member.gender,
-      email: member.email,
-      phone: member.phone,
-      mtype: member.mtype
-
-    });
-  }
-
 	private createForm()
 	{
     this.memberForm = this.formBuilder.group({
@@ -84,11 +70,15 @@ export class MemberNewComponent implements OnInit {
     this.snackBar.open("Miembro Registrado correctamente", "OK", {
       duration: 2000,
     });
+    this._router.navigate(['/members']);
   }
 
 
   private _handleError(error: any) {
-      this.errors = error.json().errors.full_messages;
+      console.log(error.json()['rut']);
+      this.snackBar.open(error.json()['rut'], null, {
+        duration: 2000,
+      });
   }
 
   private _handleTokenError(error: any) {
