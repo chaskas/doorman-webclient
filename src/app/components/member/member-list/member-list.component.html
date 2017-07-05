@@ -3,6 +3,7 @@
   <div fxLayout="row" fxFlexAlign="flex-end">
     <a [routerLink]="['new']" md-raised-button> <md-icon>add</md-icon> Nuevo</a>
   </div>
+  <br>
   <div fxLayout="row">
     <md-tab-group class="member-list-tabs">
 
@@ -20,7 +21,7 @@
           <tr *ngFor="let member of hosts">
             <td>{{ member.first_name }} {{ member.last_name }}</td>
             <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
-            <td class="text-center">#</td>
+            <td class="text-center">{{ member.total_visits }}</td>
           </tr>
           </tbody>
         </table>
@@ -41,7 +42,7 @@
           <tr *ngFor="let member of residentes">
             <td>{{ member.first_name }} {{ member.last_name }}</td>
             <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
-            <td class="text-center">#</td>
+            <td class="text-center">{{ member.total_visits }}</td>
           </tr>
           </tbody>
         </table>
@@ -62,14 +63,14 @@
           <tr *ngFor="let member of embajadores">
             <td>{{ member.first_name }} {{ member.last_name }}</td>
             <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
-            <td class="text-center">#</td>
+            <td class="text-center">{{ member.total_visits }}</td>
           </tr>
           </tbody>
         </table>
 
       </md-tab>
 
-      <md-tab label="Invitados +1">
+      <md-tab label="Invitados+1">
 
         <table class="table table-hover table-sm">
           <thead>
@@ -83,7 +84,7 @@
           <tr *ngFor="let member of invitados1">
             <td>{{ member.first_name }} {{ member.last_name }}</td>
             <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
-            <td class="text-center">#</td>
+            <td class="text-center">{{ member.total_visits }}</td>
           </tr>
           </tbody>
         </table>
@@ -104,7 +105,7 @@
           <tr *ngFor="let member of invitados">
             <td>{{ member.first_name }} {{ member.last_name }}</td>
             <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
-            <td class="text-center">#</td>
+            <td class="text-center">{{ member.total_visits }}</td>
           </tr>
           </tbody>
         </table>
