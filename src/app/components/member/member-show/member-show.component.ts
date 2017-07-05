@@ -10,6 +10,8 @@ import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 import { Angular2TokenService } from 'angular2-token';
 import { Router } from '@angular/router';
 
+import { rutClean } from 'rut-helpers';
+
 @Component({
   selector: 'app-member-show',
   templateUrl: './member-show.component.html',
@@ -19,7 +21,7 @@ export class MemberShowComponent implements OnInit {
 
   member: Member;
   mtype_value: string;
-  c_invite: number=0;
+  c_invite: number = 0;
 
   constructor(
     private memberService: MemberService,
@@ -46,6 +48,18 @@ export class MemberShowComponent implements OnInit {
   private _handleGetMemberSuccess(member: Member)
   {
     this.member = member;
+
+    var rut = rutClean(member.rut);
+    var rutDigits = parseInt(rut, 10);
+    var m = 0;
+    var s = 1;
+    while (rutDigits > 0) {
+        s = (s + rutDigits % 10 * (9 - m++ % 6)) % 11;
+        rutDigits = Math.floor(rutDigits / 10);
+    }
+    var checkDigit = (s > 0) ? String((s - 1)) : 'K';
+
+    member.rut = member.rut + "-" + checkDigit;
 
     if(this.member.mtype == 0){
       this.mtype_value = "Normal";

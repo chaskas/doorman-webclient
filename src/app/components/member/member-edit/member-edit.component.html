@@ -1,14 +1,15 @@
 <div class="container">
-  <form [formGroup]="memberForm" (submit)="updateMember()">
-    <div fxLayout="row">
-      <md-card class="card-container">
+  <div fxLayout="column">
+    <ng-container *ngIf="member">
+      <div fxLayout="row">
 
-      <md-card-header class="header">
-        <md-card-title>Actualización de Miembros</md-card-title>
-          
-          <button type="button" md-mini-fab (click)="openDialog()" confirm><md-icon>delete_sweep</md-icon> </button>
-          
-      </md-card-header>
+        <md-card class="full-width">
+          <form [formGroup]="memberForm" (submit)="updateMember()">
+          <md-card-header>
+            <md-card-title>Editar</md-card-title>
+            <span class="fill-remaining-space"></span>
+            <button md-button [routerLink]="['/members/show',member.id]">Volver</button>
+          </md-card-header>
 
           <md-card-content class="inputs-wrapper">
 
@@ -34,41 +35,42 @@
 
             <div class="input-wrapper">
               <md-input-container class="full-width">
-              <input type="email" mdInput placeholder="Email" formControlName="email" required>
+              <input type="email" mdInput placeholder="Email" formControlName="email">
               </md-input-container>
             </div>
 
             <div class="input-wrapper">
               <md-input-container class="full-width">
-               <input type="number" mdInput placeholder="Teléfono" formControlName="phone" required></md-input-container>
+               <input type="number" mdInput placeholder="Teléfono" formControlName="phone"></md-input-container>
             </div>
 
             <div class="input-wrapper">
               <md-select placeholder="Género" formControlName="gender" required class="full-width select">
-                 <md-option [value]="1"> Masculino</md-option>
-                 <md-option [value]="2"> Femenino </md-option>
+                 <md-option [value]="1">Masculino</md-option>
+                 <md-option [value]="2">Femenino </md-option>
               </md-select>
             </div>
 
             <div class="input-wrapper">
               <md-select placeholder="Tipo Miembro" formControlName="mtype" required class="full-width select">
-                 <md-option [value]="1"> Residente </md-option>
-                 <md-option [value]="2"> Host </md-option>
-                 <md-option [value]="5"> Invitado +1 </md-option>
-                 <md-option [value]="4"> Embajador </md-option>
+                 <md-option [value]="3">Invitado</md-option>
+                 <md-option [value]="5">Invitado+1</md-option>
+                 <md-option [value]="1">Residente</md-option>
+                 <md-option [value]="2">Host</md-option>
+                 <md-option [value]="4">Embajador</md-option>
               </md-select>
             </div>
-          
-        </md-card-content>
 
-      <md-card-actions class="actions">
-        <div class="example-button-row">
-           <a routerLink="/members"><button md-button >Cancelar</button></a>
-           <button md-button type="submit" [disabled]="!memberForm.valid">Actualizar Miembro</button>
-       </div>
-      </md-card-actions>
+          </md-card-content>
 
-    </md-card>
-    </div>
-  </form>
+          <md-card-actions class="actions">
+            <button md-button type="button" (click)="openDialog()" confirm color="accent">Eliminar</button>
+            <button md-raised-button type="submit" [disabled]="!memberForm.valid">Aceptar</button>
+          </md-card-actions>
+          </form>
+        </md-card>
+        
+      </div>
+    </ng-container>
+  </div>
 </div>

@@ -87,9 +87,16 @@ export class MemberService {
       rut = member.rut.substring(0,member.rut.length-1);
     }
 
-    let body = JSON.stringify({rut: rut, first_name: member.first_name, last_name: member.last_name,
-                              gender: member.gender, email: member.email, phone: member.phone, mtype: member.mtype
-                            });
+    let body = JSON.stringify({
+                          rut: rut,
+                          first_name: member.first_name,
+                          last_name: member.last_name,
+                          gender: member.gender,
+                          email: member.email,
+                          phone: member.phone,
+                          mtype: member.mtype
+                        });
+
     let headers      = new Headers({ 'Content-Type': 'application/json' });
     let options      = new RequestOptions({ headers: headers });
 
@@ -102,10 +109,26 @@ export class MemberService {
   updateMember(id: number, member: Member): Promise<Member>
   {
     member.id = id;
-
-    let body = JSON.stringify(member);
-
     const url = `${this.url}/${member.id}`;
+
+    var rut = "";
+
+    if(member.rut.includes("-")){
+      rut = member.rut.substring(0,member.rut.indexOf("-"))
+    } else {
+      rut = member.rut.substring(0,member.rut.length-1);
+    }
+
+    let body = JSON.stringify({
+                          id: member.id,
+                          rut: rut,
+                          first_name: member.first_name,
+                          last_name: member.last_name,
+                          gender: member.gender,
+                          email: member.email,
+                          phone: member.phone,
+                          mtype: member.mtype
+                        });
 
     let headers      = new Headers({ 'Content-Type': 'application/json' });
     let options      = new RequestOptions({ headers: headers });

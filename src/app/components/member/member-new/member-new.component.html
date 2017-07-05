@@ -4,7 +4,9 @@
         <md-card class="card-container">
 
           <md-card-header>
-            <md-card-title>Registro de Miembros</md-card-title>
+            <md-card-title>Nuevo</md-card-title>
+            <span class="fill-remaining-space"></span>
+            <button md-button routerLink="/members">Volver</button>
           </md-card-header>
 
           <md-card-content class="inputs-wrapper">
@@ -49,11 +51,11 @@
 
             <div class="input-wrapper">
               <md-select placeholder="Tipo Miembro" formControlName="mtype" required class="full-width select">
-                 <md-option [value]="1">Residente</md-option>
-                 <md-option [value]="2">Host</md-option>
-                 <md-option [value]="4">Embajador</md-option>
-                 <md-option [value]="5">Invitado +1</md-option>
-                 <md-option [value]="3">Invitado</md-option>
+                <md-option [value]="3">Invitado</md-option>
+                <md-option [value]="5">Invitado+1</md-option>
+                <md-option [value]="1">Residente</md-option>
+                <md-option [value]="2">Host</md-option>
+                <md-option [value]="4">Embajador</md-option>
               </md-select>
             </div>
 
@@ -61,8 +63,7 @@
 
         <md-card-actions class="actions">
           <div class="example-button-row">
-             <a routerLink="/members"><button md-button >Volver</button></a>
-             <button md-button type="submit" [disabled]="!memberForm.valid">Aceptar</button>
+             <button md-raised-button type="submit" [disabled]="!memberForm.valid">Aceptar</button>
            </div>
         </md-card-actions>
 

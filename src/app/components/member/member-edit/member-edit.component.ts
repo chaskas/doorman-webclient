@@ -12,6 +12,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { Angular2TokenService } from 'angular2-token';
 
+import { rutClean } from 'rut-helpers';
+
 @Component({
   selector: 'app-member-edit',
   templateUrl: './member-edit.component.html',
@@ -20,7 +22,6 @@ import { Angular2TokenService } from 'angular2-token';
 export class MemberEditComponent implements OnInit {
 
   member: Member;
-  members: Member[];
   memberForm: FormGroup;
 
   @Input() errors: string[];
@@ -54,6 +55,7 @@ export class MemberEditComponent implements OnInit {
   ngOnInit() {
 
   }
+
   public openDialog() {
     this.dialogsService
       .confirm('Confirmar', '¿Seguro que quiere eliminar?')
@@ -80,6 +82,18 @@ export class MemberEditComponent implements OnInit {
   private _handleGetMemberSuccess(member: Member)
   {
     this.member = member;
+
+    var rut = rutClean(member.rut);
+    var rutDigits = parseInt(rut, 10);
+    var m = 0;
+    var s = 1;
+    while (rutDigits > 0) {
+        s = (s + rutDigits % 10 * (9 - m++ % 6)) % 11;
+        rutDigits = Math.floor(rutDigits / 10);
+    }
+    var checkDigit = (s > 0) ? String((s - 1)) : 'K';
+
+    member.rut = member.rut + "-" + checkDigit;
 
     this.memberForm.setValue({
       rut: member.rut,
@@ -109,12 +123,9 @@ export class MemberEditComponent implements OnInit {
 
   private _handleUpdateSuccess(data: any) {
     this.errors = null;
-    this.snackBar.open("Miembro actualizado correctamente", "OK", {
+    this.snackBar.open("Miembro actualizado correctamente", undefined, {
       duration: 2000,
     });
-
-    this.success = "Miembro actualizado correctamente";
-    //this.router.navigate(['dash/business/offers']);
   }
 
   private _handleError(error: any) {

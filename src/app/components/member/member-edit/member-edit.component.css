@@ -1,11 +1,8 @@
 .container { padding: 20px; }
-
-.card-container { width: 100%; }
+.fill-remaining-space { flex: 1 1 auto; }
 .full-width { width: 100%; }
 .actions { display: flex; justify-content: flex-end; }
-.header{
-	justify-content: space-between;
-}
+
 .inputs-wrapper {
 	display: flex;
 	flex-wrap: wrap;
@@ -19,13 +16,9 @@
 	height: 50px;
 }
 
-.select {
-	margin-top: 5px;
-}
-
 @media screen and (min-width: 0em) {
 	.input-wrapper {
-       max-width: calc(100%);
+      max-width: calc(100%);
     }
 }
 
@@ -51,4 +44,9 @@
 	.input-wrapper {
        max-width: calc(20% -  1em);
     }
+}
+
+.select {
+	margin-top: 5px;
+	width: calc(100% - 1em);
 }

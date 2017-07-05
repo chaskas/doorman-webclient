@@ -18,7 +18,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let member of hosts">
+          <tr *ngFor="let member of hosts" [routerLink]="['show',member.id]">
             <td>{{ member.first_name }} {{ member.last_name }}</td>
             <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
             <td class="text-center">{{ member.total_visits }}</td>
@@ -39,7 +39,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let member of residentes">
+          <tr *ngFor="let member of residentes" [routerLink]="['show',member.id]">
             <td>{{ member.first_name }} {{ member.last_name }}</td>
             <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
             <td class="text-center">{{ member.total_visits }}</td>
@@ -60,7 +60,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let member of embajadores">
+          <tr *ngFor="let member of embajadores" [routerLink]="['show',member.id]">
             <td>{{ member.first_name }} {{ member.last_name }}</td>
             <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
             <td class="text-center">{{ member.total_visits }}</td>
@@ -81,7 +81,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let member of invitados1">
+          <tr *ngFor="let member of invitados1" [routerLink]="['show',member.id]">
             <td>{{ member.first_name }} {{ member.last_name }}</td>
             <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
             <td class="text-center">{{ member.total_visits }}</td>
@@ -102,7 +102,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let member of invitados">
+          <tr *ngFor="let member of invitados" [routerLink]="['show',member.id]">
             <td>{{ member.first_name }} {{ member.last_name }}</td>
             <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
             <td class="text-center">{{ member.total_visits }}</td>

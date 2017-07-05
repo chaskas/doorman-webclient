@@ -1,14 +1,16 @@
 <div class="container">
-  <div fxLayout="row">
-  <ng-container *ngIf="member">
-  <md-card class="card-container">
-    <md-card-header>
-      <md-card-title>Detalle de Miembro </md-card-title>
-    </md-card-header>
+  <div fxLayout="column">
+    <ng-container *ngIf="member">
+      <div fxLayout="row">
+        <md-card class="full-width">
+          <md-card-header>
+            <md-card-title>Detalle</md-card-title>
+            <span class="fill-remaining-space"></span>
+            <button md-button routerLink="/members">Volver</button>
+          </md-card-header>
 
-      
           <md-card-content class="inputs-wrapper">
-            
+
             <span></span>
 
             <div class="input-wrapper">
@@ -51,37 +53,36 @@
               <input mdInput placeholder="Tipo" [value]="mtype_value" readonly="true">
              </md-input-container>
            </div>
-           
+
         </md-card-content>
 
         <md-card-actions class="actions">
-          <div>
-            <a routerLink="/members"><button md-button >Volver</button></a>
             <button [routerLink]="['/members/edit',member.id]" md-button type="button">Editar Miembro</button>
-          </div>
-      </md-card-actions>
-      
-  </md-card>
+        </md-card-actions>
 
+        </md-card>
+      </div>
+      <br>
+      <div fxLayout="row">
+        <md-card class="full-width">
+          <md-card-header>
+            <md-card-title>Historial de Visitas</md-card-title>
+          </md-card-header>
+          <md-card-content>
+            <table class="table table-hover table-sm">
+              <tr>
+                <th class="text-center">Fecha</th>
+                <th class="text-center">Invitados</th>
+              </tr>
+              <tr *ngFor="let visit of member.visits">
+                <td class="text-center">{{visit.created_at | date: "dd/MM/yyyy"}}</td>
+                <td class="text-center">{{c_invite - visit.remaining_guest}}</td>
+              </tr>
+            </table>
+          </md-card-content>
+        </md-card>
+      </div>
 
-  <md-card class="container">
-    <md-card-header>
-      <md-card-title>Historial de Visitas</md-card-title>
-    </md-card-header>
-    <md-card-content>
-      <table>
-        <tr>
-          <th>Fecha</th>
-          <th>Invitados</th>
-        </tr>
-        <tr *ngFor="let visit of member.visits">
-          <td>{{visit.created_at | date: "dd/MM/yyyy"}}</td>
-          <td>{{c_invite - visit.remaining_guest}}</td>
-        </tr>
-      </table>
-    </md-card-content>
-  </md-card>
-  
-  </ng-container>
-</div>
+    </ng-container>
+  </div>
 </div>
