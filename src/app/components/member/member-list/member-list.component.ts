@@ -95,8 +95,6 @@ export class MemberListComponent implements OnInit {
       else MIN = this.total_pages - 4;
     }
 
-    console.log(Array.from({length:MAX-MIN+1},(v,k)=>k+MIN));
-
     this.members_pages  = Array.from({length:MAX-MIN+1},(v,k)=>k+MIN);
   }
 
