@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 
@@ -17,29 +17,26 @@ import { UserService } from '../../../services/user.service';
 })
 export class MemberListComponent implements OnInit {
 
-  hosts: Member[] = [];
-  residentes: Member[] = [];
-  embajadores: Member[] = [];
-  invitados: Member[] = [];
-  invitados1: Member[] = [];
+  title: string = "Hosts";
 
-  hosts_pages: Array<number> = [];
-  residentes_pages: Array<number> = [];
-  embajadores_pages: Array<number> = [];
-  invitados_pages: Array<number> = [];
-  invitados1_pages: Array<number> = [];
+  members: Member[] = [];
+  members_mtype: number = 0;
+  members_pages: Array<number> = [];
 
-  actual_tab: number = 0;
-  actual_mtype: number = 0;
-
-  actual_pages: Array<number> = [1,1,1,1,1];
+  current_page:   number = 1;
+  first_page:     number = 1;
+  last_page:      number = 1;
+  prev_page:      number = 1;
+  next_page:      number = 1;
+  total_pages:    number = 1;
 
   constructor(
       private memberService: MemberService,
       public snackBar: MdSnackBar,
       private _router: Router,
+      private route: ActivatedRoute,
       private _tokenService: Angular2TokenService,
-      private user: UserService
+      public user: UserService
   ) {
     this._tokenService.validateToken().subscribe(
       res =>      console.log("Token Valid!"),
@@ -48,58 +45,58 @@ export class MemberListComponent implements OnInit {
   }
 
   ngOnInit() {
-
-  	this.memberService.getMembersByType(1,1).then(response => this.renderMembers(response));
-    this.memberService.getMembersByType(2,1).then(response => this.renderMembers(response));
-    this.memberService.getMembersByType(3,1).then(response => this.renderMembers(response));
-    this.memberService.getMembersByType(4,1).then(response => this.renderMembers(response));
-    this.memberService.getMembersByType(5,1).then(response => this.renderMembers(response));
-
-  }
-
-  changeTab(event: any){
-
-    this.actual_tab = event['index'];
-
-    if(event['index'] == 0)
-      this.actual_mtype = 4;
-    else if(event['index'] == 1)
-      this.actual_mtype = 2;
-    else if(event['index'] == 2)
-      this.actual_mtype = 1;
-    else if(event['index'] == 3)
-      this.actual_mtype = 5;
-    else if(event['index'] == 4)
-      this.actual_mtype = 3;
-
-    this.memberService.getMembersByType(this.actual_mtype,this.actual_pages[this.actual_tab]).then(response => this.renderMembers(response));
+    this.current_page = 1;
+    this.route.params
+    .switchMap((params: Params) => this.memberService.getMembersByType(+params['type'],1))
+    .subscribe(response => this.renderMembers(response));
 
   }
 
   renderMembers(response: any)
   {
-    if(response['mtype'] == 1) {
-      this.residentes = response['people'];
-      this.residentes_pages = Array.from(Array(parseInt(response['meta']['pages'])),(x,i)=>i);
-    } else if(response['mtype'] == 2) {
-      this.hosts = response['people'];
-      this.hosts_pages = Array.from(Array(parseInt(response['meta']['pages'])),(x,i)=>i);
-    } else if(response['mtype'] == 5) {
-      this.invitados1 = response['people'];
-      this.invitados1_pages = Array.from(Array(parseInt(response['meta']['pages'])),(x,i)=>i);
-    } else if(response['mtype'] == 4) {
-      this.embajadores = response['people'];
-      this.embajadores_pages = Array.from(Array(parseInt(response['meta']['pages'])),(x,i)=>i);
-    } else if(response['mtype'] == 3) {
-      this.invitados = response['people'];
-      this.invitados_pages = Array.from(Array(parseInt(response['meta']['pages'])),(x,i)=>i);
+    window.scrollTo(0,0);
+
+    this.current_page   = parseInt(response['meta']['current_page']);
+    this.first_page     = response['meta']['first_page'];
+    this.last_page      = response['meta']['last_page'];
+    this.prev_page      = parseInt(response['meta']['prev_page']);
+    this.next_page      = parseInt(response['meta']['next_page']);
+    this.total_pages    = parseInt(response['meta']['total_pages']);
+
+    this.members        = response['people'];
+    this.members_mtype  = response['mtype'];
+
+    if(this.members_mtype == 1) {
+      this.title = "Residentes";
+    } else if(this.members_mtype == 2) {
+      this.title = "Hosts";
+    } else if(this.members_mtype == 3) {
+      this.title = "Invitados";
+    } else if(this.members_mtype == 4) {
+      this.title = "Embajadores";
+    } else if(this.members_mtype == 5) {
+      this.title = "Invitados+1";
     }
 
+    var MIN: number = this.current_page - 2;
+    var MAX: number = this.current_page + 2;
+
+    if(MIN <= 0) {
+      MAX = 5;
+      MIN = 1;
+    }
+
+    if(MAX >= this.total_pages) {
+      MAX = this.total_pages;
+      MIN = this.total_pages - 4;
+    }
+
+    this.members_pages  = Array.from({length:MAX-MIN+1},(v,k)=>k+MIN);
   }
 
   changePage(page: number){
-    this.actual_pages[this.actual_tab] = page;
-    this.memberService.getMembersByType(this.actual_mtype,page).then(response => this.renderMembers(response));
+    this.current_page = page;
+    this.memberService.getMembersByType(this.members_mtype,page).then(response => this.renderMembers(response));
   }
 
   private _handleTokenError(error: any) {

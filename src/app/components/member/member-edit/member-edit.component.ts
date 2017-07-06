@@ -74,7 +74,7 @@ export class MemberEditComponent implements OnInit {
   {
     if(res) {
       this.memberService.deleteMember(this.member.id).then((data) => {
-        this._router.navigate(['members']);
+        this._router.navigate(['members/'+this.member.mtype]);
       });
     }
   }

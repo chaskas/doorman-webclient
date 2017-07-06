@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
     private route: ActivatedRoute,
     private _tokenService: Angular2TokenService,
     private snackBar: MdSnackBar,
-    private user: UserService,
+    public user: UserService
   ) {
 
     this._tokenService.validateToken().subscribe(

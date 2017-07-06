@@ -3,10 +3,10 @@
   <span><img src="assets/logo-xs.jpg" alt="Logo"></span>
 
   <div fxLayout="row" fxShow="false" fxShow.gt-xs>
-    <a md-button routerLink="/">Calendario</a>
-    <a md-button routerLink="/members">Miembros</a>
-    <a *ngIf="user.isAdmin()" md-button routerLink="/invitados">Invitados</a>
-    <a *ngIf="user.isAdmin()" md-button routerLink="/members">Usuarios</a>
+    <button md-button routerLink="/">Calendario</button>
+    <button md-button [mdMenuTriggerFor]="menuMembers">Miembros<md-icon>keyboard_arrow_down</md-icon></button>
+    <button *ngIf="user.isAdmin()" md-button routerLink="/invitados">Invitados</button>
+    <button *ngIf="user.isAdmin()" md-button routerLink="/members">Usuarios</button>
   </div>
 
   <span class="fill-remaining-space"></span>
@@ -23,8 +23,8 @@
   <button md-menu-item routerLink="/">
     Calendario
   </button>
-  <button md-menu-item routerLink="/members">
-    Miembros
+  <button md-menu-item [mdMenuTriggerFor]="menuMembers">
+    Miembros<md-icon>keyboard_arrow_down</md-icon>
   </button>
   <button md-menu-item *ngIf="user.isAdmin()" routerLink="/invitados">
     Invitados
@@ -34,6 +34,24 @@
   </button>
   <button md-menu-item routerLink="/signout">
     Salir
+  </button>
+</md-menu>
+
+<md-menu #menuMembers="mdMenu">
+  <button md-menu-item routerLink="/members/4">
+    Embajadores
+  </button>
+  <button md-menu-item routerLink="/members/2">
+    Hosts
+  </button>
+  <button md-menu-item routerLink="/members/1">
+    Residentes
+  </button>
+  <button md-menu-item routerLink="/members/5">
+    Invitados+1
+  </button>
+  <button md-menu-item routerLink="/members/3">
+    Invitados
   </button>
 </md-menu>
 

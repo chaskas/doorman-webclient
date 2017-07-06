@@ -70,7 +70,7 @@ export class MemberNewComponent implements OnInit {
     this.snackBar.open("Miembro Registrado correctamente", "OK", {
       duration: 2000,
     });
-    this._router.navigate(['/members']);
+    this._router.navigate(['/members/'+this.memberForm.value.mtype]);
   }
 
 

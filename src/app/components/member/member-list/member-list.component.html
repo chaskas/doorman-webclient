@@ -1,157 +1,36 @@
 <div class="container">
 
-  <div fxLayout="row" fxFlexAlign="flex-end">
-    <a *ngIf="user.isAdmin()" [routerLink]="['new']" md-raised-button> <md-icon>add</md-icon> Nuevo</a>
+  <div fxLayout="row" class="header">
+    <span class="title">{{ title }}</span>
+    <span class="fill-remaining-space"></span>
+    <a *ngIf="user.isAdmin()" routerLink="/members/new" md-raised-button> <md-icon>add</md-icon> Nuevo</a>
   </div>
   <br>
+
   <div fxLayout="row">
-    <md-tab-group class="member-list-tabs" (selectChange)="changeTab($event)">
-
-      <md-tab label="Embajadores">
-
-        <div fxLayout="column">
-          <div fxLayout="row">
-            <table class="table table-hover table-sm">
-              <thead>
-              <tr>
-                <th>Nombre Completo</th>
-                <th class="text-center">Última vez visto</th>
-                <th class="text-center"># Visitas</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let member of embajadores" [routerLink]="['show',member.id]">
-                <td class="member-name">{{ member.first_name }} {{ member.last_name }}</td>
-                <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
-                <td class="text-center">{{ member.total_visits }}</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-          <div fxLayout="row" fxFlexAlign="center" *ngIf="embajadores_pages.length > 1">
-            <button md-mini-fab *ngFor="let i of embajadores_pages" color="warn" [ngClass]="{'active': actual_pages[0] == i + 1}" (click)="changePage(i+1)">{{i+1}}</button>
-          </div>
-          <br>
-        </div>
-
-      </md-tab>
-
-      <md-tab label="Hosts">
-
-        <div fxLayout="column">
-          <div fxLayout="row">
-            <table class="table table-hover table-sm">
-              <thead>
-              <tr>
-                <th>Nombre Completo</th>
-                <th class="text-center">Última vez visto</th>
-                <th class="text-center"># Visitas</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let member of hosts" [routerLink]="['show',member.id]">
-                <td class="member-name">{{ member.first_name }} {{ member.last_name }}</td>
-                <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
-                <td class="text-center">{{ member.total_visits }}</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-          <div fxLayout="row" fxFlexAlign="center" *ngIf="hosts_pages.length > 1">
-            <button md-mini-fab *ngFor="let i of hosts_pages" color="warn" [ngClass]="{'active': actual_pages[1] == i + 1}" (click)="changePage(i+1)">{{i+1}}</button>
-          </div>
-          <br>
-        </div>
-
-      </md-tab>
-
-      <md-tab label="Residentes">
-
-        <div fxLayout="column">
-          <div fxLayout="row">
-            <table class="table table-hover table-sm">
-              <thead>
-              <tr>
-                <th>Nombre Completo</th>
-                <th class="text-center">Última vez visto</th>
-                <th class="text-center"># Visitas</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let member of residentes" [routerLink]="['show',member.id]">
-                <td class="member-name">{{ member.first_name }} {{ member.last_name }}</td>
-                <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
-                <td class="text-center">{{ member.total_visits }}</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-          <div fxLayout="row" fxFlexAlign="center" *ngIf="residentes_pages.length > 1">
-            <button md-mini-fab *ngFor="let i of residentes_pages" color="warn" [ngClass]="{'active': actual_pages[2] == i + 1}" (click)="changePage(i+1)">{{i+1}}</button>
-          </div>
-          <br>
-        </div>
-
-      </md-tab>
-
-      <md-tab label="Invitados+1">
-
-        <div fxLayout="column">
-          <div fxLayout="row">
-            <table class="table table-hover table-sm">
-              <thead>
-              <tr>
-                <th>Nombre Completo</th>
-                <th class="text-center">Última vez visto</th>
-                <th class="text-center"># Visitas</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let member of invitados1" [routerLink]="['show',member.id]">
-                <td class="member-name">{{ member.first_name }} {{ member.last_name }}</td>
-                <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
-                <td class="text-center">{{ member.total_visits }}</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-          <div fxLayout="row" fxFlexAlign="center" *ngIf="invitados1_pages.length > 1">
-            <button md-mini-fab *ngFor="let i of invitados1_pages" color="warn" [ngClass]="{'active': actual_pages[3] == i + 1}" (click)="changePage(i+1)">{{i+1}}</button>
-          </div>
-          <br>
-        </div>
-
-      </md-tab>
-
-      <md-tab label="Invitados">
-
-        <div fxLayout="column">
-          <div fxLayout="row">
-            <table class="table table-hover table-sm">
-              <thead>
-              <tr>
-                <th>Nombre Completo</th>
-                <th class="text-center">Última vez visto</th>
-                <th class="text-center"># Visitas</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr *ngFor="let member of invitados" [routerLink]="['show',member.id]">
-                <td class="member-name">{{ member.first_name }} {{ member.last_name }}</td>
-                <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
-                <td class="text-center">{{ member.total_visits }}</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-          <div fxLayout="row" fxFlexAlign="center" *ngIf="invitados_pages.length > 1">
-            <button md-mini-fab *ngFor="let i of invitados_pages" color="warn" [ngClass]="{'active': actual_pages[4] == i + 1}" (click)="changePage(i+1)">{{i+1}}</button>
-          </div>
-          <br>
-        </div>
-
-      </md-tab>
-
-    </md-tab-group>
+    <table class="table table-hover table-sm">
+      <thead>
+      <tr>
+        <th>Nombre Completo</th>
+        <th class="text-center">Última vez visto</th>
+        <th class="text-center"># Visitas</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let member of members" [routerLink]="['/members/show',member.id]">
+        <td class="member-name">{{ member.first_name }} {{ member.last_name }}</td>
+        <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
+        <td class="text-center">{{ member.total_visits }}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
+
+  <div fxLayout="row" fxFlexAlign="center" *ngIf="total_pages > 1">
+    <button md-mini-fab color="warn" *ngIf="!first_page" (click)="changePage(prev_page)"><md-icon>keyboard_arrow_left</md-icon></button>
+    <button md-mini-fab *ngFor="let i of members_pages" color="warn" [ngClass]="{'active': current_page == i }" (click)="changePage(i)">{{i}}</button>
+    <button md-mini-fab color="warn" *ngIf="!last_page" (click)="changePage(next_page)"><md-icon>keyboard_arrow_right</md-icon></button>
+  </div>
+  <br>
+
 </div>

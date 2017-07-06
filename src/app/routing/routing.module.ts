@@ -22,8 +22,8 @@ const routes: Routes = [
  {  path: '', component: DashboardComponent ,
       children:[
         { path: '', component: CalendarComponent },
-        { path: 'members', component: MemberListComponent, canActivate: [Angular2TokenService] },
         { path: 'members/new', component: MemberNewComponent, canActivate: [Angular2TokenService] },
+        { path: 'members/:type', component: MemberListComponent, canActivate: [Angular2TokenService] },
         { path: 'members/edit/:id', component: MemberEditComponent, canActivate: [Angular2TokenService] },
         { path: 'members/show/:id', component: MemberShowComponent, canActivate: [Angular2TokenService] },
         { path: 'events/show/:id', component: EventShowComponent, canActivate: [Angular2TokenService] },
