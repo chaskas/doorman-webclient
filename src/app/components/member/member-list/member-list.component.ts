@@ -82,14 +82,20 @@ export class MemberListComponent implements OnInit {
     var MAX: number = this.current_page + 2;
 
     if(MIN <= 0) {
-      MAX = 5;
+      if(this.total_pages < 5)
+        MAX = this.total_pages;
+      else MAX = 5;
       MIN = 1;
     }
 
     if(MAX >= this.total_pages) {
       MAX = this.total_pages;
-      MIN = this.total_pages - 4;
+      if(this.total_pages < 5)
+        MIN = 1;
+      else MIN = this.total_pages - 4;
     }
+
+    console.log(Array.from({length:MAX-MIN+1},(v,k)=>k+MIN));
 
     this.members_pages  = Array.from({length:MAX-MIN+1},(v,k)=>k+MIN);
   }
