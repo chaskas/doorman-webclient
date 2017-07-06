@@ -5,8 +5,8 @@
 
 export const environment = {
   production: true,
-   //host: "http://xsknet.dyndns.org:8080" // PROD
-   host: "http://xsknet.dyndns.org:82"   // TEST
+   host: "http://xsknet.dyndns.org:8080" // PROD
+  //  host: "http://xsknet.dyndns.org:82"   // TEST
   // host: "http://localhost:3000"         // DEV
   // host: "http://192.168.1.76:3000"        // DEV
 
