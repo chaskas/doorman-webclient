@@ -23,6 +23,17 @@ export class MemberListComponent implements OnInit {
   invitados: Member[] = [];
   invitados1: Member[] = [];
 
+  hosts_pages: Array<number> = [];
+  residentes_pages: Array<number> = [];
+  embajadores_pages: Array<number> = [];
+  invitados_pages: Array<number> = [];
+  invitados1_pages: Array<number> = [];
+
+  actual_tab: number = 0;
+  actual_mtype: number = 0;
+
+  actual_pages: Array<number> = [1,1,1,1,1];
+
   constructor(
       private memberService: MemberService,
       public snackBar: MdSnackBar,
@@ -38,21 +49,57 @@ export class MemberListComponent implements OnInit {
 
   ngOnInit() {
 
-  	this.memberService.getHosts()
-  	    .then(hosts => this.hosts = hosts);
+  	this.memberService.getMembersByType(1,1).then(response => this.renderMembers(response));
+    this.memberService.getMembersByType(2,1).then(response => this.renderMembers(response));
+    this.memberService.getMembersByType(3,1).then(response => this.renderMembers(response));
+    this.memberService.getMembersByType(4,1).then(response => this.renderMembers(response));
+    this.memberService.getMembersByType(5,1).then(response => this.renderMembers(response));
 
-    this.memberService.getResidentes()
-  	    .then(residentes => this.residentes = residentes);
+  }
 
-    this.memberService.getEmbajadores()
-  	    .then(embajadores => this.embajadores = embajadores);
+  changeTab(event: any){
 
-    this.memberService.getInvitados()
-  	    .then(invitados => this.invitados = invitados);
+    this.actual_tab = event['index'];
 
-    this.memberService.getInvitados1()
-  	    .then(invitados1 => this.invitados1 = invitados1);
+    if(event['index'] == 0)
+      this.actual_mtype = 4;
+    else if(event['index'] == 1)
+      this.actual_mtype = 2;
+    else if(event['index'] == 2)
+      this.actual_mtype = 1;
+    else if(event['index'] == 3)
+      this.actual_mtype = 5;
+    else if(event['index'] == 4)
+      this.actual_mtype = 3;
 
+    this.memberService.getMembersByType(this.actual_mtype,this.actual_pages[this.actual_tab]).then(response => this.renderMembers(response));
+
+  }
+
+  renderMembers(response: any)
+  {
+    if(response['mtype'] == 1) {
+      this.residentes = response['people'];
+      this.residentes_pages = Array.from(Array(parseInt(response['meta']['pages'])),(x,i)=>i);
+    } else if(response['mtype'] == 2) {
+      this.hosts = response['people'];
+      this.hosts_pages = Array.from(Array(parseInt(response['meta']['pages'])),(x,i)=>i);
+    } else if(response['mtype'] == 5) {
+      this.invitados1 = response['people'];
+      this.invitados1_pages = Array.from(Array(parseInt(response['meta']['pages'])),(x,i)=>i);
+    } else if(response['mtype'] == 4) {
+      this.embajadores = response['people'];
+      this.embajadores_pages = Array.from(Array(parseInt(response['meta']['pages'])),(x,i)=>i);
+    } else if(response['mtype'] == 3) {
+      this.invitados = response['people'];
+      this.invitados_pages = Array.from(Array(parseInt(response['meta']['pages'])),(x,i)=>i);
+    }
+
+  }
+
+  changePage(page: number){
+    this.actual_pages[this.actual_tab] = page;
+    this.memberService.getMembersByType(this.actual_mtype,page).then(response => this.renderMembers(response));
   }
 
   private _handleTokenError(error: any) {

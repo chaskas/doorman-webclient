@@ -34,40 +34,13 @@ export class MemberService {
                .catch(this.handleError);
   }
 
-  getHosts(): Promise<Member[]> {
-    return this.http.get(this.url + '/m/host')
+  getMembersByType(type: number, page: number): Promise<any> {
+    return this.http.get(this.url + '/' + type + '/' + page)
                .toPromise()
-               .then(response => response.json() as Member[])
+               .then(response => response.json() as any)
                .catch(this.handleError);
   }
 
-  getResidentes(): Promise<Member[]> {
-    return this.http.get(this.url + '/m/residente')
-               .toPromise()
-               .then(response => response.json() as Member[])
-               .catch(this.handleError);
-  }
-
-  getEmbajadores(): Promise<Member[]> {
-    return this.http.get(this.url + '/m/embajador')
-               .toPromise()
-               .then(response => response.json() as Member[])
-               .catch(this.handleError);
-  }
-
-  getInvitados(): Promise<Member[]> {
-    return this.http.get(this.url + '/m/invitado')
-               .toPromise()
-               .then(response => response.json() as Member[])
-               .catch(this.handleError);
-  }
-
-  getInvitados1(): Promise<Member[]> {
-    return this.http.get(this.url + '/m/invitado1')
-               .toPromise()
-               .then(response => response.json() as Member[])
-               .catch(this.handleError);
-  }
   getNormales(): Promise<Member[]> {
     return this.http.get(this.url + '/m/normal')
                .toPromise()

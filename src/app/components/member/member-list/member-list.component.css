@@ -10,6 +10,23 @@
 .member-avatar { border-radius: 30px; margin-right: 20px;}
 .member-title { font-size: 14px; font-weight: bold; display: block; }
 .member-subtitle { font-size: 10px; }
+.member-name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-mini-fab {
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+  line-height: 20px;
+  margin: 2px;
+}
+
+.active {
+  background-color: #FFFFFF;
+  color: #F44336;
+}
 
 .text-center {
   text-align: center;
