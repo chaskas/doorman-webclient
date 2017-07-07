@@ -1,7 +1,8 @@
 <div class="container">
   <form [formGroup]="memberForm" (submit)="createMember()">
     <div fxLayout="row">
-        <md-card class="card-container">
+
+        <md-card class="full-width">
 
           <md-card-header>
             <md-card-title>Nuevo</md-card-title>
@@ -62,9 +63,8 @@
         </md-card-content>
 
         <md-card-actions class="actions">
-          <div class="example-button-row">
-             <button md-raised-button type="submit" [disabled]="!memberForm.valid">Aceptar</button>
-           </div>
+          <button md-raised-button type="submit" [disabled]="!memberForm.valid">Aceptar</button>
+
         </md-card-actions>
 
     </md-card>

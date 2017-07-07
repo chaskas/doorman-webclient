@@ -1,10 +1,9 @@
 <div class="container">
-  <div fxLayout="column">
-    <ng-container *ngIf="member">
-      <div fxLayout="row">
-
+  <form [formGroup]="memberForm" (submit)="updateMember()">
+    <div fxLayout="row">
+      <ng-container *ngIf="member">
         <md-card class="full-width">
-          <form [formGroup]="memberForm" (submit)="updateMember()">
+
           <md-card-header>
             <md-card-title>Editar</md-card-title>
             <span class="fill-remaining-space"></span>
@@ -67,10 +66,10 @@
             <button md-button type="button" (click)="openDialog()" confirm color="accent">Eliminar</button>
             <button md-raised-button type="submit" [disabled]="!memberForm.valid">Aceptar</button>
           </md-card-actions>
-          </form>
+
         </md-card>
-        
-      </div>
-    </ng-container>
-  </div>
+
+      </ng-container>
+    </div>
+  </form>
 </div>
