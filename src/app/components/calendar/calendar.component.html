@@ -3,7 +3,7 @@
     <md-card-content>
       <div fxLayout="row" class="month-buttons">
         <button md-button (click)="changeMonth(-1)" class="month-arrow"><md-icon>skip_previous</md-icon></button>
-        <span class="fill-remaining-space monthName">{{ today | date: "MMMM / y" }}</span>
+        <span class="fill-remaining-space monthName">{{ today | date: "MMMM / y" | titlecase }}</span>
         <button md-button (click)="changeMonth(+1)" class="month-arrow right"><md-icon>skip_next</md-icon></button>
       </div>
       <div class="calendar-wrapper">

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { LOCALE_ID } from '@angular/core';
 
 import { AppConfig } from './config/app.config';
 
@@ -87,7 +88,8 @@ import { LogoutComponent } from './components/session/logout/logout.component';
     RutValidator,
     ProfileService,
     UserService,
-    Angular2TokenService
+    Angular2TokenService,
+    { provide: LOCALE_ID, useValue: "es-CL" }
   ],
   bootstrap: [AppComponent]
 })
