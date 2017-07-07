@@ -76,7 +76,7 @@
               </tr>
               <tr *ngFor="let visit of member.visits">
                 <td class="text-center">{{visit.created_at | date: "dd/MM/yyyy"}}</td>
-                <td class="text-center">{{c_invite - visit.remaining_guest}}</td>
+                <td class="text-center">{{ (c_invite - visit.remaining_guest - 1) >= 0 ? c_invite - visit.remaining_guest - 1 : c_invite - visit.remaining_guest }}</td>
               </tr>
             </table>
           </md-card-content>
