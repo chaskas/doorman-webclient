@@ -114,20 +114,50 @@ export class GuestAddComponent implements OnInit {
     this.event = this.dialogRef._containerInstance.dialogConfig.data;
   }
 
-  sValue: number = 1;
+  sValue: number = 60;
 
   get sDisplayValue(): string {
     if(this.sValue == 0)
       return "00:00";
-    else if (this.sValue == 1)
+    else if (this.sValue == 15)
+      return "00:15";
+    else if (this.sValue == 30)
+      return "00:30";
+    else if (this.sValue == 45)
+      return "00:45";
+    else if (this.sValue == 60)
       return "01:00";
-    else if (this.sValue == 2)
+    else if (this.sValue == 75)
+      return "01:15";
+    else if (this.sValue == 90)
+      return "01:30";
+    else if (this.sValue == 105)
+      return "01:45";
+    else if (this.sValue == 120)
       return "02:00";
-    else if (this.sValue == 3)
+    else if (this.sValue == 135)
+      return "02:15";
+    else if (this.sValue == 150)
+      return "02:30";
+    else if (this.sValue == 165)
+      return "02:45";
+    else if (this.sValue == 180)
       return "03:00";
-    else if (this.sValue == 4)
+    else if (this.sValue == 195)
+      return "03:15";
+    else if (this.sValue == 210)
+      return "03:30";
+    else if (this.sValue == 225)
+      return "03:45";
+    else if (this.sValue == 240)
       return "04:00";
-    else if (this.sValue == 5)
+    else if (this.sValue == 255)
+      return "04:15";
+    else if (this.sValue == 270)
+      return "04:30";
+    else if (this.sValue == 285)
+      return "04:45";
+    else if (this.sValue == 300)
       return "05:00";
   }
 

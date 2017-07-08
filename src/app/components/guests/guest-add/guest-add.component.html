@@ -6,7 +6,7 @@
 
   <md-dialog-content class="content">
     <div fxLayout="row" class="slider-wrapper">
-      <md-slider class="slider" max="5" min="0" step="1" tickInterval="1" [value]="sValue" [(ngModel)]="sValue">
+      <md-slider class="slider" max="300" min="0" step="15" tickInterval="4" [value]="sValue" [(ngModel)]="sValue">
     </md-slider>
     </div>
 
@@ -33,7 +33,7 @@
         <textarea class="full-width" mdInput [(ngModel)]="guests"></textarea>
       </md-input-container>
     </div>
-    
+
   </md-dialog-content>
   <md-dialog-actions class="actions">
     <button md-button md-dialog-close>Atrás</button>
