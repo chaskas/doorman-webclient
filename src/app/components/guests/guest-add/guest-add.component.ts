@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+
+import { MD_DIALOG_DATA } from '@angular/material';
 
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
@@ -19,8 +21,6 @@ import { Event } from '../../../model/event';
 })
 export class GuestAddComponent implements OnInit {
 
-  event: Event;
-
   guests: string;
 
   valid_ruts: string[] = new Array();
@@ -34,7 +34,8 @@ export class GuestAddComponent implements OnInit {
     public snackBar: MdSnackBar,
     private guestService: GuestService,
     private _router: Router,
-    private _tokenService: Angular2TokenService
+    private _tokenService: Angular2TokenService,
+    @Inject(MD_DIALOG_DATA) public event: Event
   ) {
     this._tokenService.validateToken().subscribe(
       res =>      console.log("Token Valid!"),
@@ -111,7 +112,7 @@ export class GuestAddComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.event = this.dialogRef._containerInstance.dialogConfig.data;
+
   }
 
   sValue: number = 60;

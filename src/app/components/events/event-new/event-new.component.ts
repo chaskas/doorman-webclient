@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 import { MdDialog, MdDialogRef } from '@angular/material';
+import { MD_DIALOG_DATA } from '@angular/material';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -22,8 +23,6 @@ import { EventService } from '../../../services/event.service';
 })
 export class EventNewComponent implements OnInit {
 
-  day: Day;
-
   eventForm: FormGroup;
 
   event: Event;
@@ -37,7 +36,8 @@ export class EventNewComponent implements OnInit {
     private eventService: EventService,
     public snackBar: MdSnackBar,
     private _router: Router,
-    private _tokenService: Angular2TokenService
+    private _tokenService: Angular2TokenService,
+    @Inject(MD_DIALOG_DATA) public day: Day
   ) {
     this._tokenService.validateToken().subscribe(
       res =>      console.log("Token Valid!"),
@@ -85,7 +85,7 @@ export class EventNewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.day = this.dialogRef._containerInstance.dialogConfig.data;
+
   }
 
 }

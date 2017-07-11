@@ -142,10 +142,7 @@ export class CalendarComponent implements OnInit {
       this._router.navigate(['events/show/',day.event['id']]);
 
     } else {
-
-      var config = new MdDialogConfig();
-      config.data = day;
-      let dialogRef = this.dialog.open(EventNewComponent, config);
+      let dialogRef = this.dialog.open(EventNewComponent, { data: day } );
       dialogRef.afterClosed().subscribe(result => { this.eventService.getEventsByMonth(this.month + 1).then(events => this.fillMonth(events)); });
     }
   }

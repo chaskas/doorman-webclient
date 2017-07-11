@@ -178,9 +178,7 @@ export class EventShowComponent implements OnInit {
   }
 
   addGuestsDialog() {
-    var config = new MdDialogConfig();
-    config.data = this.event;
-    let dialogRef = this.dialog.open(GuestAddComponent, config);
+    let dialogRef = this.dialog.open(GuestAddComponent, { data: this.event });
     dialogRef.afterClosed().subscribe(result => { this.eventService.getEvent(this.event.id).then(event => this.ngOnInit()); });
   }
 
