@@ -17,6 +17,7 @@ import { MdSort } from '@angular/material';
 import { MdPaginator } from '@angular/material';
 
 import { Angular2TokenService } from 'angular2-token';
+import { rutClean } from 'rut-helpers';
 
 import { Member } from '../../../model/member';
 
@@ -90,6 +91,20 @@ export class MemberListComponent {
           this.dataSource.filter = this.filter.nativeElement.value;
         });
 
+  }
+
+  formatRut(rut: string) {
+    rut = rutClean(rut);
+    var rutDigits = parseInt(rut, 10);
+    var m = 0;
+    var s = 1;
+    while (rutDigits > 0) {
+        s = (s + rutDigits % 10 * (9 - m++ % 6)) % 11;
+        rutDigits = Math.floor(rutDigits / 10);
+    }
+    var checkDigit = (s > 0) ? String((s - 1)) : 'K';
+
+  return rut + "-" + checkDigit;
   }
 
   private _handleTokenError(error: any) {

@@ -20,22 +20,22 @@
       <md-table #table [dataSource]="dataSource" mdSort class="full-width">
         <ng-container cdkColumnDef="rut">
           <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> Rut </md-header-cell>
-          <md-cell *cdkCellDef="let row" class="text-center"> {{ row.rut }} </md-cell>
+          <md-cell *cdkCellDef="let row" class="text-center" [routerLink]="['/members/show', row.id]"> {{ formatRut(row.rut) }} </md-cell>
         </ng-container>
 
         <ng-container cdkColumnDef="full_name">
           <md-header-cell *cdkHeaderCellDef md-sort-header> Nombre Completo </md-header-cell>
-          <md-cell *cdkCellDef="let row"> {{ row.first_name }} {{ row.last_name }}  </md-cell>
+          <md-cell *cdkCellDef="let row" [routerLink]="['/members/show', row.id]">{{ row.first_name }} {{ row.last_name }} </md-cell>
         </ng-container>
 
         <ng-container cdkColumnDef="last_seen">
           <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> Última Vez </md-header-cell>
-          <md-cell *cdkCellDef="let row" class="text-center"> {{ row.last_seen | date: 'dd/MM/y' }} </md-cell>
+          <md-cell *cdkCellDef="let row" class="text-center" [routerLink]="['/members/show', row.id]"> {{ row.last_seen | date: 'dd/MM/y' }} </md-cell>
         </ng-container>
 
         <ng-container cdkColumnDef="total_visits">
           <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> # Visitas </md-header-cell>
-          <md-cell *cdkCellDef="let row" class="text-center"> {{ row.nvisits }} </md-cell>
+          <md-cell *cdkCellDef="let row" class="text-center" [routerLink]="['/members/show', row.id]"> {{ row.nvisits }} </md-cell>
         </ng-container>
 
         <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
