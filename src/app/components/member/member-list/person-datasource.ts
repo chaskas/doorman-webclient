@@ -55,7 +55,7 @@ export class PersonDataSource extends DataSource<any> {
         case 'rut': [propertyA, propertyB] = [a.rut, b.rut]; break;
         case 'full_name': [propertyA, propertyB] = [a.first_name + " " + a.last_name, b.first_name + " " + b.last_name]; break;
         case 'last_seen': [propertyA, propertyB] = [a.last_seen, b.last_seen]; break;
-        case 'total_visits': [propertyA, propertyB] = [a.total_visits, b.total_visits]; break;
+        case 'total_visits': [propertyA, propertyB] = [a.nvisits, b.nvisits]; break;
       }
 
       let valueA = isNaN(+propertyA) ? propertyA : +propertyA;

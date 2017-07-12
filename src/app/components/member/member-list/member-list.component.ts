@@ -74,6 +74,8 @@ export class MemberListComponent {
         this.title = "Embajadores";
       } else if(parseInt(mtype) == 5) {
         this.title = "Invitados+1";
+      } else if(parseInt(mtype) == 0) {
+        this.title = "Lista General";
       }
     });
 

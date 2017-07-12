@@ -32,7 +32,6 @@ import { EventShowComponent } from './components/events/event-show/event-show.co
 import { MemberNewComponent } from './components/member/member-new/member-new.component';
 import { MemberListComponent } from './components/member/member-list/member-list.component';
 import { MemberEditComponent } from './components/member/member-edit/member-edit.component';
-import { MemberListInvitadosComponent } from './components/member/member-list/member-list-invitados/member-list-invitados.component';
 import { MemberShowComponent } from './components/member/member-show/member-show.component';
 
 import { PeopleDatabase } from './components/member/member-list/people-database';
@@ -58,7 +57,6 @@ import { LogoutComponent } from './components/session/logout/logout.component';
     MemberNewComponent,
     MemberListComponent,
     MemberEditComponent,
-    MemberListInvitadosComponent,
     MemberShowComponent,
     DialogComponent,
     GuestAddComponent,
