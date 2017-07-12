@@ -5,8 +5,8 @@
   <div fxLayout="row" fxShow="false" fxShow.gt-xs>
     <button md-button routerLink="/">Calendario</button>
     <button md-button [mdMenuTriggerFor]="menuMembers">Miembros<md-icon>keyboard_arrow_down</md-icon></button>
-    <button *ngIf="user.isAdmin()" md-button routerLink="/invitados">Invitados</button>
-    <button *ngIf="user.isAdmin()" md-button routerLink="/members">Usuarios</button>
+    <button md-button routerLink="/members/0">Lista General</button>
+    <button *ngIf="user.isAdmin()" md-button routerLink="/users">Usuarios</button>
   </div>
 
   <span class="fill-remaining-space"></span>
