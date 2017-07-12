@@ -35,6 +35,8 @@ import { MemberEditComponent } from './components/member/member-edit/member-edit
 import { MemberListInvitadosComponent } from './components/member/member-list/member-list-invitados/member-list-invitados.component';
 import { MemberShowComponent } from './components/member/member-show/member-show.component';
 
+import { PeopleDatabase } from './components/member/member-list/people-database';
+
 import { GuestAddComponent } from './components/guests/guest-add/guest-add.component';
 
 import { DialogComponent } from './utils/dialog/dialog.component';
@@ -89,6 +91,7 @@ import { LogoutComponent } from './components/session/logout/logout.component';
     ProfileService,
     UserService,
     Angular2TokenService,
+    PeopleDatabase,
     { provide: LOCALE_ID, useValue: "es-CL" }
   ],
   bootstrap: [AppComponent]

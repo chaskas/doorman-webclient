@@ -19,6 +19,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MdSnackBarModule } from '@angular/material';
 import { MdSliderModule } from '@angular/material';
 import { MdMenuModule } from '@angular/material';
+import { MdTableModule } from '@angular/material';
+import { MdSortModule } from '@angular/material';
+import { MdPaginatorModule } from '@angular/material';
+import { CdkTableModule } from '@angular/cdk';
 
 @NgModule({
   imports: [
@@ -39,7 +43,11 @@ import { MdMenuModule } from '@angular/material';
     FlexLayoutModule,
     MdSnackBarModule,
     MdSliderModule,
-    MdMenuModule
+    MdMenuModule,
+    MdTableModule,
+    MdSortModule,
+    MdPaginatorModule,
+    CdkTableModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -58,7 +66,11 @@ import { MdMenuModule } from '@angular/material';
     FlexLayoutModule,
     MdSnackBarModule,
     MdSliderModule,
-    MdMenuModule
+    MdMenuModule,
+    MdTableModule,
+    MdSortModule,
+    MdPaginatorModule,
+    CdkTableModule
   ],
   declarations: []
 })

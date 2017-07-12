@@ -7,30 +7,51 @@
   </div>
   <br>
 
-  <div fxLayout="row">
-    <table class="table table-hover table-sm">
-      <thead>
-      <tr>
-        <th>Nombre Completo</th>
-        <th class="text-center">Última vez visto</th>
-        <th class="text-center"># Visitas</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let member of members" [routerLink]="['/members/show',member.id]">
-        <td class="member-name">{{ member.first_name }} {{ member.last_name }}</td>
-        <td class="text-center">{{ member.last_seen | date:'dd/MM/y' }}</td>
-        <td class="text-center">{{ member.total_visits }}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+  <div fxLayout="column">
 
-  <div fxLayout="row" fxFlexAlign="center" *ngIf="total_pages > 1">
-    <button md-mini-fab color="warn" *ngIf="!first_page" (click)="changePage(prev_page)"><md-icon>keyboard_arrow_left</md-icon></button>
-    <button md-mini-fab *ngFor="let i of members_pages" color="warn" [ngClass]="{'active': current_page == i }" (click)="changePage(i)">{{i}}</button>
-    <button md-mini-fab color="warn" *ngIf="!last_page" (click)="changePage(next_page)"><md-icon>keyboard_arrow_right</md-icon></button>
+    <div fxLayout="row">
+      <md-input-container floatPlaceholder="never" class="full-width">
+        <input mdInput #filter placeholder="Buscar: ">
+      </md-input-container>
+    </div>
+
+    <div fxLayout="row">
+
+      <md-table #table [dataSource]="dataSource" mdSort class="full-width">
+        <ng-container cdkColumnDef="rut">
+          <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> Rut </md-header-cell>
+          <md-cell *cdkCellDef="let row" class="text-center"> {{ row.rut }} </md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="full_name">
+          <md-header-cell *cdkHeaderCellDef md-sort-header> Nombre Completo </md-header-cell>
+          <md-cell *cdkCellDef="let row"> {{ row.first_name }} {{ row.last_name }}  </md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="last_seen">
+          <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> Última Vez </md-header-cell>
+          <md-cell *cdkCellDef="let row" class="text-center"> {{ row.last_seen | date: 'dd/MM/y' }} </md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="total_visits">
+          <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> # Visitas </md-header-cell>
+          <md-cell *cdkCellDef="let row" class="text-center"> {{ row.total_visits }} </md-cell>
+        </ng-container>
+
+        <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+        <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+      </md-table>
+
+    </div>
+    <div fxLayout="row" >
+      <md-paginator #paginator
+                  [length]="_peopleDatabase.data.length"
+                  [pageIndex]="0"
+                  [pageSize]="25"
+                  [pageSizeOptions]="[10, 25, 50]">
+      </md-paginator>
+    </div>
+
   </div>
-  <br>
 
 </div>

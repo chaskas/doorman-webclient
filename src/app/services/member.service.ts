@@ -34,8 +34,8 @@ export class MemberService {
                .catch(this.handleError);
   }
 
-  getMembersByType(type: number, page: number): Promise<any> {
-    return this.http.get(this.url + '/' + type + '/' + page)
+  getMembersByType(type: number): Promise<any> {
+    return this.http.get(this.url + '/m/' + type)
                .toPromise()
                .then(response => response.json() as any)
                .catch(this.handleError);

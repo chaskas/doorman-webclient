@@ -1,7 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+import { DataSource } from '@angular/cdk';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/toPromise';
+
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
+import { MdSort } from '@angular/material';
+import { MdPaginator } from '@angular/material';
 
 import { Angular2TokenService } from 'angular2-token';
 
@@ -10,33 +23,36 @@ import { Member } from '../../../model/member';
 import { MemberService } from '../../../services/member.service';
 import { UserService } from '../../../services/user.service';
 
+import { PeopleDatabase } from './people-database';
+import { PersonDataSource } from './person-datasource';
+
 @Component({
   selector: 'app-member-list',
   templateUrl: './member-list.component.html',
   styleUrls: ['./member-list.component.css']
 })
-export class MemberListComponent implements OnInit {
+export class MemberListComponent {
 
   title: string = "Hosts";
-
-  members: Member[] = [];
+  members: Member[];
   members_mtype: number = 0;
-  members_pages: Array<number> = [];
 
-  current_page:   number = 1;
-  first_page:     number = 1;
-  last_page:      number = 1;
-  prev_page:      number = 1;
-  next_page:      number = 1;
-  total_pages:    number = 1;
+  displayedColumns = ['rut', 'full_name', 'last_seen', 'total_visits'];
+
+  dataSource: PersonDataSource | null;
+
+  @ViewChild(MdSort) sort: MdSort;
+  @ViewChild(MdPaginator) paginator: MdPaginator;
+  @ViewChild('filter') filter: ElementRef;
 
   constructor(
-      private memberService: MemberService,
       public snackBar: MdSnackBar,
       private _router: Router,
       private route: ActivatedRoute,
       private _tokenService: Angular2TokenService,
-      public user: UserService
+      private memberService: MemberService,
+      public user: UserService,
+      public _peopleDatabase: PeopleDatabase
   ) {
     this._tokenService.validateToken().subscribe(
       res =>      console.log("Token Valid!"),
@@ -45,62 +61,33 @@ export class MemberListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.current_page = 1;
-    this.route.params
-    .switchMap((params: Params) => this.memberService.getMembersByType(+params['type'],1))
-    .subscribe(response => this.renderMembers(response));
 
-  }
+    this.route.params.subscribe((params: Params) => {
+      let mtype = params['type'];
+      if(parseInt(mtype) == 1) {
+        this.title = "Residentes";
+      } else if(parseInt(mtype) == 2) {
+        this.title = "Hosts";
+      } else if(parseInt(mtype) == 3) {
+        this.title = "Invitados";
+      } else if(parseInt(mtype) == 4) {
+        this.title = "Embajadores";
+      } else if(parseInt(mtype) == 5) {
+        this.title = "Invitados+1";
+      }
+    });
 
-  renderMembers(response: any)
-  {
-    window.scrollTo(0,0);
+    this._peopleDatabase = new PeopleDatabase(this.route, this.memberService);
+    this.dataSource = new PersonDataSource(this._peopleDatabase, this.sort, this.paginator);
 
-    this.current_page   = parseInt(response['meta']['current_page']);
-    this.first_page     = response['meta']['first_page'];
-    this.last_page      = response['meta']['last_page'];
-    this.prev_page      = parseInt(response['meta']['prev_page']);
-    this.next_page      = parseInt(response['meta']['next_page']);
-    this.total_pages    = parseInt(response['meta']['total_pages']);
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+        .debounceTime(150)
+        .distinctUntilChanged()
+        .subscribe(() => {
+          if (!this.dataSource) { return; }
+          this.dataSource.filter = this.filter.nativeElement.value;
+        });
 
-    this.members        = response['people'];
-    this.members_mtype  = response['mtype'];
-
-    if(this.members_mtype == 1) {
-      this.title = "Residentes";
-    } else if(this.members_mtype == 2) {
-      this.title = "Hosts";
-    } else if(this.members_mtype == 3) {
-      this.title = "Invitados";
-    } else if(this.members_mtype == 4) {
-      this.title = "Embajadores";
-    } else if(this.members_mtype == 5) {
-      this.title = "Invitados+1";
-    }
-
-    var MIN: number = this.current_page - 2;
-    var MAX: number = this.current_page + 2;
-
-    if(MIN <= 0) {
-      if(this.total_pages < 5)
-        MAX = this.total_pages;
-      else MAX = 5;
-      MIN = 1;
-    }
-
-    if(MAX >= this.total_pages) {
-      MAX = this.total_pages;
-      if(this.total_pages < 5)
-        MIN = 1;
-      else MIN = this.total_pages - 4;
-    }
-
-    this.members_pages  = Array.from({length:MAX-MIN+1},(v,k)=>k+MIN);
-  }
-
-  changePage(page: number){
-    this.current_page = page;
-    this.memberService.getMembersByType(this.members_mtype,page).then(response => this.renderMembers(response));
   }
 
   private _handleTokenError(error: any) {

@@ -8,6 +8,7 @@ export class Member {
    phone: string;
    mtype: number;
    last_seen: string;
+   total_visits: number;
    created_at: string;
    updated_at: string;
 }
