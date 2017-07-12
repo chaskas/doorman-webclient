@@ -26,8 +26,8 @@
   <button md-menu-item [mdMenuTriggerFor]="menuMembers">
     Miembros<md-icon>keyboard_arrow_down</md-icon>
   </button>
-  <button md-menu-item *ngIf="user.isAdmin()" routerLink="/invitados">
-    Invitados
+  <button md-menu-item routerLink="/members/0">
+    Lista General
   </button>
   <button md-menu-item *ngIf="user.isAdmin()" routerLink="/members">
     Usuarios
