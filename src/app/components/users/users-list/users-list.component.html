@@ -1,0 +1,57 @@
+<div class="container">
+
+  <div fxLayout="row" class="header">
+    <span class="title">Usuarios</span>
+    <span class="fill-remaining-space"></span>
+  </div>
+  <br>
+
+  <div fxLayout="column">
+
+    <div fxLayout="row">
+      <md-input-container floatPlaceholder="never" class="full-width">
+        <input mdInput #filter placeholder="Buscar: ">
+      </md-input-container>
+    </div>
+
+    <div fxLayout="row">
+
+      <md-table #table [dataSource]="dataSource" mdSort class="full-width">
+
+        <ng-container cdkColumnDef="full_name">
+          <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> Nombre Completo </md-header-cell>
+          <md-cell *cdkCellDef="let row;" class="text-center"> {{ row.profile.first_name }} {{ row.profile.last_name }}  </md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="rut">
+          <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> Rut </md-header-cell>
+          <md-cell *cdkCellDef="let row;" class="text-center"> {{ row.profile.rut }}</md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="email">
+          <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> Email </md-header-cell>
+          <md-cell *cdkCellDef="let row;" class="text-center"> {{ row.email }} </md-cell>
+        </ng-container>  
+
+        <ng-container cdkColumnDef="admin">
+          <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> Admin </md-header-cell>
+          <md-cell *cdkCellDef="let row;" class="text-center"> {{ row.admin }} </md-cell>
+        </ng-container>
+
+        <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+        <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+      </md-table>
+
+    </div>
+    <div fxLayout="row" >
+      <md-paginator #paginator
+                  [length]="_usersDatabase.data.length"
+                  [pageIndex]="0"
+                  [pageSize]="25"
+                  [pageSizeOptions]="[10, 25, 50]">
+      </md-paginator>
+    </div>
+
+  </div>
+
+</div>

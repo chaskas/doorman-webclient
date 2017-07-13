@@ -15,7 +15,7 @@ import { EventShowComponent } from '../components/events/event-show/event-show.c
 import { LoginComponent } from '../components/session/login/login.component';
 import { RegisterComponent } from '../components/session/register/register.component';
 import { LogoutComponent } from '../components/session/logout/logout.component';
-
+import { UsersListComponent } from '../components/users/users-list/users-list.component';
 
 const routes: Routes = [
  {  path: '', component: DashboardComponent ,
@@ -26,8 +26,9 @@ const routes: Routes = [
         { path: 'members/edit/:id', component: MemberEditComponent, canActivate: [Angular2TokenService] },
         { path: 'members/show/:id', component: MemberShowComponent, canActivate: [Angular2TokenService] },
         { path: 'events/show/:id', component: EventShowComponent, canActivate: [Angular2TokenService] },
-        { path: 'users', component: RegisterComponent, canActivate: [Angular2TokenService] },
-        { path: 'users/new', component: RegisterComponent, canActivate: [Angular2TokenService] }
+        { path: 'users', component: UsersListComponent, canActivate: [Angular2TokenService] },
+        { path: 'users/new', component: RegisterComponent, canActivate: [Angular2TokenService] },
+        
       ]
  },
  { path: 'signin', component: LoginComponent },

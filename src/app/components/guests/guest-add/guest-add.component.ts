@@ -28,7 +28,7 @@ export class GuestAddComponent implements OnInit {
 
   @Input() errors: string[];
 	@Input() success: string;
-
+  n_guests: number=0;
   constructor(
     public dialogRef: MdDialogRef<GuestAddComponent>,
     public snackBar: MdSnackBar,
@@ -48,6 +48,7 @@ export class GuestAddComponent implements OnInit {
     for (var i = 0, len = this.valid_ruts.length; i < len; i++) {
       var clean = rutHelpers.rutClean(this.valid_ruts[i])
       this.valid_ruts[i] = clean.substring(0, clean.length - 1);
+      this.n_guests = this.n_guests+1;
     }
 
     this.guestService.addGuests(this.event.id,this.sValue, this.valid_ruts).then(

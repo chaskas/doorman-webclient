@@ -58,6 +58,13 @@ export class UserService {
               .catch(this.handleError);
   }
 
+  getUsers(): Promise<User[]> {
+    return this._tokenService.get(this.url)
+               .toPromise()
+               .then(response => response.json() as User[])
+               .catch(this.handleError);
+  }
+
   private handleSuccess(response: User)
   {
     this.user = response;

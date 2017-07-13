@@ -39,6 +39,7 @@ import { RegisterComponent } from './components/session/register/register.compon
 import { LogoutComponent } from './components/session/logout/logout.component';
 
 import { PeopleDatabase } from './components/member/member-list/people-database';
+import { UsersDatabase } from './components/users/users-list/users-database';
 
 import { GuestAddComponent } from './components/guests/guest-add/guest-add.component';
 
@@ -47,8 +48,11 @@ import { CustomValidators } from 'ng2-validation';
 import { Ng2Rut, RutValidator } from './utils/rut/ng2-rut.module';
 import { ChartsModule } from 'ng2-charts';
 import { Angular2TokenService } from 'angular2-token';
-import { StarRatingModule } from 'angular-star-rating';
 
+import { UsersListComponent } from './components/users/users-list/users-list.component';
+import { UsersEditComponent } from './components/users/users-edit/users-edit.component';
+
+import { StarRatingModule } from 'angular-star-rating';
 
 
 @NgModule({
@@ -66,7 +70,9 @@ import { StarRatingModule } from 'angular-star-rating';
     GuestAddComponent,
     LoginComponent,
     RegisterComponent,
-    LogoutComponent
+    LogoutComponent,
+    UsersListComponent,
+    UsersEditComponent
   ],
   imports: [
     BrowserModule,
@@ -95,6 +101,7 @@ import { StarRatingModule } from 'angular-star-rating';
     UserService,
     Angular2TokenService,
     PeopleDatabase,
+    UsersDatabase,
     { provide: LOCALE_ID, useValue: "es-CL" }
   ],
   bootstrap: [AppComponent]
