@@ -19,23 +19,13 @@
       <md-table #table [dataSource]="dataSource" mdSort class="full-width">
 
         <ng-container cdkColumnDef="full_name">
-          <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> Nombre Completo </md-header-cell>
-          <md-cell *cdkCellDef="let row;" class="text-center"> {{ row.profile.first_name }} {{ row.profile.last_name }}  </md-cell>
+          <md-header-cell *cdkHeaderCellDef md-sort-header> Nombre Completo </md-header-cell>
+          <md-cell *cdkCellDef="let row;"> {{ row.profile.first_name }} {{ row.profile.last_name }}  </md-cell>
         </ng-container>
-
-        <ng-container cdkColumnDef="rut">
-          <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> Rut </md-header-cell>
-          <md-cell *cdkCellDef="let row;" class="text-center"> {{ row.profile.rut }}</md-cell>
-        </ng-container>
-
-        <ng-container cdkColumnDef="email">
-          <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> Email </md-header-cell>
-          <md-cell *cdkCellDef="let row;" class="text-center"> {{ row.email }} </md-cell>
-        </ng-container>  
 
         <ng-container cdkColumnDef="admin">
           <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> Admin </md-header-cell>
-          <md-cell *cdkCellDef="let row;" class="text-center"> {{ row.admin }} </md-cell>
+          <md-cell *cdkCellDef="let row;" class="text-center"> <md-icon *ngIf="row.admin">done</md-icon> </md-cell>
         </ng-container>
 
         <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>

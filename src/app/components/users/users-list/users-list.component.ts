@@ -36,7 +36,7 @@ export class UsersListComponent{
 	@Input() errors: string[];
 
   dataSource: UserDataSource | null;
-  displayedColumns = ['full_name','rut','email', 'admin'];
+  displayedColumns = ['full_name', 'admin'];
 
   @ViewChild(MdSort) sort: MdSort;
   @ViewChild(MdPaginator) paginator: MdPaginator;
