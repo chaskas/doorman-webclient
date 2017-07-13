@@ -36,7 +36,7 @@
         <ng-container cdkColumnDef="rank">
           <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> Ranking </md-header-cell>
           <md-cell *cdkCellDef="let row" class="text-center" [routerLink]="mtype != 0 ? ['/members/show', row.id] : []">
-            <star-rating-comp [starType]="'svg'" [rating]="row.rank" [numOfStars]="4" [showHalfStars]="true"></star-rating-comp>
+            <star-rating-comp [starType]="'svg'" [rating]="row.rank" [numOfStars]="4" [showHalfStars]="true" [readOnly]="true"></star-rating-comp>
            </md-cell>
         </ng-container>
 
