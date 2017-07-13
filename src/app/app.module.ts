@@ -34,6 +34,10 @@ import { MemberListComponent } from './components/member/member-list/member-list
 import { MemberEditComponent } from './components/member/member-edit/member-edit.component';
 import { MemberShowComponent } from './components/member/member-show/member-show.component';
 
+import { LoginComponent } from './components/session/login/login.component';
+import { RegisterComponent } from './components/session/register/register.component';
+import { LogoutComponent } from './components/session/logout/logout.component';
+
 import { PeopleDatabase } from './components/member/member-list/people-database';
 
 import { GuestAddComponent } from './components/guests/guest-add/guest-add.component';
@@ -43,9 +47,9 @@ import { CustomValidators } from 'ng2-validation';
 import { Ng2Rut, RutValidator } from './utils/rut/ng2-rut.module';
 import { ChartsModule } from 'ng2-charts';
 import { Angular2TokenService } from 'angular2-token';
-import { LoginComponent } from './components/session/login/login.component';
-import { RegisterComponent } from './components/session/register/register.component';
-import { LogoutComponent } from './components/session/logout/logout.component';
+import { StarRatingModule } from 'angular-star-rating';
+
+
 
 @NgModule({
   declarations: [
@@ -74,6 +78,7 @@ import { LogoutComponent } from './components/session/logout/logout.component';
     MaterialModule,
     ChartsModule,
     HttpModule,
+    StarRatingModule,
     RouterModule
   ],
   entryComponents: [EventNewComponent, GuestAddComponent, DialogComponent],

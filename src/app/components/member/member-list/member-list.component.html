@@ -3,7 +3,7 @@
   <div fxLayout="row" class="header">
     <span class="title">{{ title }}</span>
     <span class="fill-remaining-space"></span>
-    <a *ngIf="user.isAdmin()" routerLink="/members/new" md-raised-button> <md-icon>add</md-icon> Nuevo</a>
+    <a *ngIf="user.isAdmin() && mtype != 0" routerLink="/members/new" md-raised-button> <md-icon>add</md-icon> Nuevo</a>
   </div>
   <br>
 
@@ -33,9 +33,11 @@
           <md-cell *cdkCellDef="let row" class="text-center" [routerLink]="['/members/show', row.id]"> {{ row.last_seen | date: 'dd/MM/y' }} </md-cell>
         </ng-container>
 
-        <ng-container cdkColumnDef="total_visits">
-          <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> # Visitas </md-header-cell>
-          <md-cell *cdkCellDef="let row" class="text-center" [routerLink]="['/members/show', row.id]"> {{ row.nvisits }} </md-cell>
+        <ng-container cdkColumnDef="rank">
+          <md-header-cell *cdkHeaderCellDef md-sort-header class="title-center"> Ranking </md-header-cell>
+          <md-cell *cdkCellDef="let row" class="text-center" [routerLink]="['/members/show', row.id]">
+            <star-rating-comp [starType]="'svg'" [rating]="row.rank" [numOfStars]="4" [showHalfStars]="true"></star-rating-comp>
+           </md-cell>
         </ng-container>
 
         <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>

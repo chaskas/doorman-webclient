@@ -9,6 +9,7 @@ export class Member {
    mtype: number;
    last_seen: string;
    nvisits: number;
+   rank: number;
    created_at: string;
    updated_at: string;
 }
