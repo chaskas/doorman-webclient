@@ -35,6 +35,7 @@ import { MemberEditComponent } from './components/member/member-edit/member-edit
 import { MemberShowComponent } from './components/member/member-show/member-show.component';
 
 import { PeopleDatabase } from './components/member/member-list/people-database';
+import { UsersDatabase } from './components/users/users-list/users-database';
 
 import { GuestAddComponent } from './components/guests/guest-add/guest-add.component';
 
@@ -46,6 +47,8 @@ import { Angular2TokenService } from 'angular2-token';
 import { LoginComponent } from './components/session/login/login.component';
 import { RegisterComponent } from './components/session/register/register.component';
 import { LogoutComponent } from './components/session/logout/logout.component';
+import { UsersListComponent } from './components/users/users-list/users-list.component';
+import { UsersEditComponent } from './components/users/users-edit/users-edit.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,9 @@ import { LogoutComponent } from './components/session/logout/logout.component';
     GuestAddComponent,
     LoginComponent,
     RegisterComponent,
-    LogoutComponent
+    LogoutComponent,
+    UsersListComponent,
+    UsersEditComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +95,7 @@ import { LogoutComponent } from './components/session/logout/logout.component';
     UserService,
     Angular2TokenService,
     PeopleDatabase,
+    UsersDatabase,
     { provide: LOCALE_ID, useValue: "es-CL" }
   ],
   bootstrap: [AppComponent]
