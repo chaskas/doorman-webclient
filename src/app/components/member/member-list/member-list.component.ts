@@ -36,9 +36,9 @@ export class MemberListComponent {
 
   title: string = "Hosts";
   members: Member[];
-  members_mtype: number = 0;
+  mtype: number = 0;
 
-  displayedColumns = ['rut', 'full_name', 'last_seen', 'total_visits'];
+  displayedColumns = ['rut', 'full_name', 'last_seen', 'rank'];
 
   dataSource: PersonDataSource | null;
 
@@ -64,18 +64,18 @@ export class MemberListComponent {
   ngOnInit() {
 
     this.route.params.subscribe((params: Params) => {
-      let mtype = params['type'];
-      if(parseInt(mtype) == 1) {
+      this.mtype = parseInt(params['type']);
+      if(this.mtype == 1) {
         this.title = "Residentes";
-      } else if(parseInt(mtype) == 2) {
+      } else if(this.mtype == 2) {
         this.title = "Hosts";
-      } else if(parseInt(mtype) == 3) {
+      } else if(this.mtype == 3) {
         this.title = "Invitados";
-      } else if(parseInt(mtype) == 4) {
+      } else if(this.mtype == 4) {
         this.title = "Embajadores";
-      } else if(parseInt(mtype) == 5) {
+      } else if(this.mtype == 5) {
         this.title = "Invitados+1";
-      } else if(parseInt(mtype) == 0) {
+      } else if(this.mtype == 0) {
         this.title = "Lista General";
       }
     });
